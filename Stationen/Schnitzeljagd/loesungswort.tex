@@ -1,0 +1,33 @@
+\documentclass[oneside,a4paper]{memoir}
+
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{stringstrings}
+\usepackage{type1cm}
+\usepackage{pstricks}
+
+\pagestyle{empty}
+\setlrmarginsandblock{2cm}{2cm}{*}
+\setulmarginsandblock{2cm}{2cm}{*}
+\checkandfixthelayout
+
+\newenvironment{letterpage}
+    {\begin{vplace}\begin{center}}
+    {\end{center}\end{vplace}}
+
+\newcommand{\printLetter}[1]{
+    \begin{letterpage}	
+	    {\fontsize{500}{500}\selectfont#1}
+    \end{letterpage}
+}
+
+\begin{document}
+    \printLetter{\letter}
+    \begin{vplace}[2]
+	    \Huge
+	    \noindent\place
+
+	    \vspace{1em}
+	    \noindent\nxt
+    \end{vplace}
+\end{document}
