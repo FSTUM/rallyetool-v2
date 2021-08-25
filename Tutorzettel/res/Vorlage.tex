@@ -1,0 +1,117 @@
+\documentclass{scrartcl}
+\usepackage{amsmath}
+\usepackage{a4wide}
+\usepackage{float}
+\usepackage[ngerman]{babel}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\parindent0cm
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\setlength{\parindent}{0pt}
+\setlength{\fboxsep}{-\fboxrule}%
+
+\usepackage{forloop}
+\usepackage{multicol}
+
+\usepackage[headsepline]{scrpage2}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{tabularx}
+%% ------------- 
+%%Argumente
+%%- Nummer
+%\def \stationsNummer {1}
+%%- Name
+%\def \stationsName {FuBar}
+%%- Ansprechpartner
+%\def \stationsAnsprechpartner {Heinzi-Kurti}
+%%- Link
+%\def \stationsLink {https://set.lamf.de/QADFADFER}
+%%- QR-Code (Bild)
+%\def \stationsQRCode {QR-1}
+%%- Anleitungen (Files)
+%\def \stationsAnleitung {a-1}
+%\def \stationsAnleitungPunkte {p-1}
+%\def \stationsAnleitungKontakt {kontakt}
+%
+%%- Karte (Bild)
+%\def \stationsKarte {karte}
+%%- Anzahl Gruppen
+%\def \anzahlGruppen {200}
+%\def \hinweise {hinweise}
+%%--------------
+
+
+\usepackage{geometry}
+\geometry{a4paper, top=15mm, left=15mm, right=15mm, bottom=15mm,
+headsep=1mm, footskip=12mm}
+
+
+\ihead{SET Campus Rallye - Stop \stationsNummer}
+\chead{2019}
+
+
+\begin{document}
+	\ \\
+	\Huge{\stationsNummer \ -  \stationsName}
+	\normalsize 
+	\ \\
+%	\begin{table}[h!]
+%		\begin{center}
+%			\begin{tabularx}{18cm}{Xr}
+%				\makecell[l]{\Huge{\stationsNummer \ -  \stationsName} \\ \ \\ Ansprechpartner: \stationsAnsprechpartner } &
+%				\begin{minipage}{0.2\textwidth}
+%      				%\includegraphics[width=4cm, height=4cm]{\stationsQRCode}
+%    			\end{minipage}
+%			\end{tabularx}
+%		\end{center}
+%	\end{table}
+	\noindent\rule{\textwidth}{0.2pt}
+	\section*{General}
+	\input{\hinweise.tex}
+	\noindent\rule{\textwidth}{0.2pt}
+	\section*{Station Instruction}
+	\input{\stationsAnleitung.tex}
+	\noindent\rule{\textwidth}{0.2pt}
+	\section*{Scoring System}
+	\input{\stationsAnleitungPunkte.tex}
+	\noindent\rule{\textwidth}{0.2pt}
+	\section*{Communication}
+	\input{\stationsAnleitungKontakt.tex}
+	\noindent\rule{\textwidth}{0.2pt}
+	\section*{Map}
+		\begin{center}
+			\includegraphics[width=0.8\textwidth]{\stationsKarte}
+		\end{center}
+	
+	\noindent\rule{\textwidth}{0.2pt}
+
+	\newpage
+	
+	\section*{Scores}
+	\begin{multicols}{3}
+
+    \begin{enumerate}
+		\newcounter{ct}
+		\forloop{ct}{0}{\value{ct} < \anzahlGruppen}{
+			\item \dotfill 
+		}
+    \end{enumerate}
+       
+
+	\end{multicols}
+
+
+\end{document}
