@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Encrypted Text: asdf</h1>
+    <form method="POST" action="{% url 'crypto' %}">
+        {% csrf_token %}
+        <h5>Team Number</h5>
+        <input type="text" name="group" /> <br> <br>
+        <h5>Decrypted Answer</h5>
+        <input type="text" name="decrypted_answer" /> <br> <br>
+        <input class="btn btn-lg btn-secondary" type="submit" value="Submit" />
+    </form>
+    <br>
+    <p style="color:#ff0000;">{{ message }}</p>
+
+{% endblock %}
