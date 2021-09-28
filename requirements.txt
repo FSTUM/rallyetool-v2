@@ -1,7 +1,7 @@
 django~=3.2.7
 django-active-link~=0.1.8
 django-bootstrap5~=2.1.2
-djangorestframework~=3.12.1
+djangorestframework~=3.12.4
 Pillow~=8.3.2
 psycopg2-binary~=2.9.1
 pytz
