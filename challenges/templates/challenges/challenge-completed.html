@@ -1,0 +1,10 @@
+{% extends '../../../rallyetool/templates/base.html' %}
+
+{% block content %}
+<h2> Done! </h2>
+<h3> {{ message }}</h3>
+<h3> You finished the challenge "{{ challenge }}" </h3>
+<h4> Score: {{ points }}/10 Points</h4>
+<br><br>
+<a href="{% url 'challenges' %}">Back to Challenges</a>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends '../../../rallyetool/templates/base.html' %}
+
+{% block content %}
+
+<form
+    method="POST"
+    action="{% url 'rate' %}"
+>
+    {% csrf_token %}
+    {{ message }} <br> <br>
+    <h5>Group</h5>
+    <input
+        type="number"
+        name="group"
+    /> <br> <br>
+    <h5>Points</h5>
+    <input
+        type="number"
+        name="points"
+    /> <br> <br>
+    <select name="action">
+        <option value="rate">Rate</option>
+        <option value="update">Update</option>
+        <option value="delete">Delete</option>
+    </select> <br> <br>
+    <input
+        class="btn btn-lg btn-secondary"
+        type="submit"
+        value="Do it!"
+    />
+</form>
+
+{% endblock %}

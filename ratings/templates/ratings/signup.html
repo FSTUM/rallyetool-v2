@@ -1,0 +1,24 @@
+{% extends '../../../rallyetool/templates/base.html' %}
+
+{% block content %}
+
+<form
+    method="POST"
+    action="{% url 'signup' %}"
+>
+    {% csrf_token %}
+    {{ message }} <br> <br>
+    <h5>Groupname</h5>
+    <input
+        type="text"
+        name="groupname"
+        maxlength="50"
+    /> <br> <br>
+    <input
+        class="btn btn-lg btn-secondary"
+        type="submit"
+        value="Create Group!"
+    />
+</form>
+
+{% endblock %}
