@@ -1,0 +1,32 @@
+# vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# python/django
+*.pyc
+*.pyo
+*.log
+*.pot
+
+# sphinx
+/doc/build/
+
+# upload directory
+/media/
+
+# sqlite database
+*.sqlite3
+
+# idea
+/.idea/
+/venv/
+/.mypy_cache/
+/node_modules/
+/static/
+/staging/.env
+/lib/
+/.lib/
