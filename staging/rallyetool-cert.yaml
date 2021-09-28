@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: rallye.frank.elsinga.de
+    namespace: rallyetool
+spec:
+    commonName: rallye.frank.elsinga.de
+    dnsNames:
+        - rallye.frank.elsinga.de
+    secretName: rallye.frank.elsinga.de
+    issuerRef:
+        name: letsencrypt-production
+        kind: ClusterIssuer
