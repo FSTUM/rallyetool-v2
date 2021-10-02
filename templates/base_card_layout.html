@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+{% block navigation-override-1 %}
+<div class="row">
+    <div class="col-lg-3 col-xl-2 mb-4">
+        <div class="card">
+            <div class="card-header">
+                {% trans "Navigation" %}
+            </div>
+            <div class="card-body">
+                <nav class="nav flex-column nav-pills">
+                    {% block rallye_common_navigation %}{% endblock %}
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 col-xl-10">
+        {% endblock %}
+        <div class="card">
+            <div class="card-header">
+                {% block rallye_common_headercontent %}{% endblock %}
+            </div>
+            <div class="card-body">
+                {% block rallye_common_content %}{% endblock %}
+            </div>
+        </div>
+        {% block navigation-override-2 %}
+    </div>
+</div>
+{% endblock %}
+{% endblock %}

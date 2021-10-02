@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="container">
+    <h1>{% trans "Wellcome to the Ralleytool" %}</h1>
+    <form
+        action="{% url "login" %}"
+        method="POST"
+        accept-charset="utf-8"
+        role="form"
+    >{% csrf_token %}
+        {% bootstrap_form form layout="floating" %}
+
+        <input
+            type="hidden"
+            name="next"
+            value="{{ next }}"
+        />
+        <button
+            class="btn btn-primary"
+            type="submit"
+        >Login <span class="bi bi-box-arrow-in-right"></span></button>
+    </form>
+</div>
+{% endblock %}

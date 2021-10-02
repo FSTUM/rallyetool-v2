@@ -1,0 +1,33 @@
+{% extends "ratings/base_ratings.html" %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block rallye_common_headercontent %}
+{% blocktrans trimmed %}
+Delete rating {{ rating }}
+{% endblocktrans %}
+{% endblock %}
+
+{% block rallye_common_content %}
+<form
+    method="post"
+    action=""
+>
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-xs-12 col-lg-5">
+            {% bootstrap_form form %}
+        </div>
+    </div>
+
+    <a
+        class="btn btn-secondary"
+        href="{% url "ratings:list_ratings" %}"
+    >{% trans "Cancel" %}</a>
+    <button
+        class="btn btn-danger"
+        type="submit"
+    >{% trans "Delete rating" %}</button>
+</form>
+{% endblock %}

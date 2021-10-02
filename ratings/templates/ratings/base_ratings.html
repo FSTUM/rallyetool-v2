@@ -1,0 +1,22 @@
+{% extends "base_card_layout.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% load active_link_tags %}
+
+
+{% block rallye_common_navigation %}
+<a
+    class="nav-link {% active_link "ratings:dashboard" %}"
+    href="{% url "ratings:dashboard" %}"
+>{% trans "Dashboard" %}</a>
+
+<h4 class="navbar-text">{% trans "Ratings" %}</h4>
+<a
+    class="nav-link {% active_link "ratings:list_ratings" %}"
+    href="{% url "ratings:list_ratings" %}"
+>{% trans "List previous ratings" %}</a>
+<a
+    class="nav-link {% active_link "ratings:add_rating" %}"
+    href="{% url "ratings:add_rating" %}"
+>{% trans "Add new rating" %}</a>
+{% endblock %}

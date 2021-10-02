@@ -1,0 +1,69 @@
+{% extends "ratings/base_ratings.html" %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+
+{% block head %}
+<script>
+    $(() => {
+        $('#leaderboardTable').DataTable({
+            columnDefs: [{ targets: 3, orderable: false }],
+        });
+    });
+</script>
+{% endblock %}
+
+{% block rallye_common_headercontent %}
+{% blocktrans trimmed %}
+List all rating by station {{ station }}
+{% endblocktrans %}
+{% endblock %}
+
+{% block rallye_common_content %}
+<div class='col-sm p-1 d-grid mb-4'>
+    <a
+        class="btn btn-lg btn-block btn-primary"
+        href="{% url "ratings:add_rating" %}"
+    >
+        <span class="bi bi-plus"> {% trans "Add new Rating" %}</span>
+    </a>
+</div>
+{% if ratings %}
+<div class="table-responsive">
+    <table
+        class="table dataTable"
+        id="leaderboardTable"
+    >
+        <thead>
+            <tr>
+                <th>{% trans "Last Update" %}</th>
+                <th>{% trans "Teamname" %}</th>
+                <th>{% trans "Points awarded" %}</th>
+                <th>{% trans "Actions" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rating in ratings %}
+            <tr>
+                <td data-sort="{{rating.updated_at|date:"c"}}">{{rating.updated_at|date:"H:i"}}</td>
+                <td>{{rating.group.name}}</td>
+                <td>{{rating.points}}</td>
+                <td>
+                    <a
+                        class="btn btn-warning"
+                        href="{% url "ratings:edit_rating" rating.pk %}"
+                    ><span class="bi bi-pencil-fill"></span> {% trans "Edit" %}</a>
+                    <a
+                        class="btn btn-danger"
+                        href="{% url "ratings:del_rating" rating.pk %}"
+                    ><span class="bi bi-trash-fill"></span> {% trans "Delete" %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class="text-muted">{% trans "No ratings yet." %}</p>
+{% endif %}
+{% endblock %}
