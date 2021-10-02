@@ -1,11 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_single_card_layout.html" %}
 {% load i18n %}
 {% load django_bootstrap5 %}
 
-{% block finanz_common_headercontent %}Einstellungen bearbeiten{% endblock %}
-{% block title %}Einstellungen bearbeiten{% endblock %}
+{% block rallye_common_headercontent %}Einstellungen bearbeiten{% endblock %}
 
-{% block finanz_common_content %}
+{% block rallye_common_content %}
 <form
     method="post"
     action=""
@@ -15,7 +14,7 @@
 
     <a
         class="btn btn-secondary"
-        href="{% url "common:list_mail" %}"
+        href="{% url "main-view" %}"
     >Abbrechen</a>
     <button
         class="btn btn-primary"
