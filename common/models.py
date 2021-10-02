@@ -10,9 +10,41 @@ from django.utils.translation import ugettext_lazy as _
 
 from .settings import SEMESTER_SESSION_KEY
 
+SingletonType = TypeVar("SingletonType", bound="SingletonModel")
+
+
+class SingletonModel(models.Model):
+    class Meta:
+        abstract = True
+
+    def delete(self, *args, **kwargs):
+        pass
+
+    def set_cache(self):
+        cache.set(self.__class__.__name__, self)
+
+    def save(self, *args, **kwargs):
+        self.pk = 1  # pylint: disable=invalid-name
+        super().save(*args, **kwargs)
+        self.set_cache()
+
+    @classmethod
+    def load(cls) -> SingletonType:
+        obj: SingletonType
+        obj, _ = cls.objects.get_or_create(pk=1)
+        return obj
+
+
+class LoggedModel(models.Model):
+    class Meta:
+        abstract = True
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 
 @deconstructible
-class Semester(models.Model):
+class Semester(LoggedModel):
     class Meta:
         unique_together = (("semester", "year"),)
         ordering = ["year", "semester"]
@@ -24,16 +56,9 @@ class Semester(models.Model):
         (SUMMER, _("Summer semester")),
     )
 
-    semester = models.CharField(
-        max_length=2,
-        choices=SEMESTER_CHOICES,
-        default=WINTER,
-        verbose_name=_("Semester"),
-    )
+    semester = models.CharField(max_length=2, choices=SEMESTER_CHOICES, default=WINTER, verbose_name=_("Semester"))
 
-    year = models.PositiveIntegerField(
-        verbose_name=_("Year"),
-    )
+    year = models.PositiveIntegerField(verbose_name=_("Year"))
 
     def short_form(self) -> str:
         return f"{self.semester}{str(self.year)[2:]}"
@@ -65,33 +90,6 @@ def get_semester(request: HttpRequest) -> int:
     return sem  # noqa: R504
 
 
-SingletonType = TypeVar("SingletonType", bound="SingletonModel")
-
-
-class SingletonModel(models.Model):
-    class Meta:
-        abstract = True
-
-    def delete(self, *args, **kwargs):
-        pass
-
-    def set_cache(self):
-        cache.set(self.__class__.__name__, self)
-
-    def save(self, *args, **kwargs):
-        self.pk = 1  # pylint: disable=invalid-name
-        super().save(*args, **kwargs)
-        self.set_cache()
-
-    @classmethod
-    def load(cls) -> SingletonType:
-        obj: SingletonType
-        obj, _ = cls.objects.get_or_create(pk=1)
-        return obj
-
-
-class Settings(SingletonModel):
+class Settings(SingletonModel, LoggedModel):
     station_registration_availible = models.BooleanField(verbose_name="Stations can be registered", default=False)
-    api = models.BooleanField(
-        verbose_name="Does this Tool offer an API Endpoint? (f.ex. to enable a discord bot)", default=False
-    )
+    station_rating_avialible = models.BooleanField(verbose_name="Stations rate groups", default=False)
