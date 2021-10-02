@@ -1,0 +1,49 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 6rem;
+    height: 100%;
+}
+
+/* footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    /* Set the fixed height of the footer here */
+    height: 4rem;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.choices {
+    min-width: 20rem;
+}
+
+/* Buttons on mobile should strech the whole screen */
+@media (max-width: 767px) {
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
+
+
+/* On the same level as the search bar but not overlapping */
+.datatable-title {
+    margin-bottom: -2rem
+}
+
+@media (max-width: 767px) {
+
+    .datatable-title {
+        margin-bottom: 1rem;
+    }
+}
