@@ -24,7 +24,9 @@ ADD . /code/
 
 ENV DJANGO_SETTINGS_MODULE=rallyetool.settings
 
-RUN python manage.py collectstatic --noinput --settings staging.staging_settings --force-color \
+RUN DJANGO_SECRET_KEY=not-needed-in-docker \
+    && python manage.py collectstatic --noinput --settings staging.staging_settings --force-color \
+    && unset DJANGO_SECRET_KEY \
     && rm -f *.sqlite3 \
     && python manage.py makemigrations --noinput \
     && python manage.py migrate --noinput|grep -v "... OK" \
