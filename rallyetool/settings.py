@@ -2,6 +2,7 @@ import os
 from typing import List
 
 from django.conf.locale.de import formats as de_formats
+from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -17,6 +18,7 @@ ALLOWED_HOSTS: List[str] = []
 LOGIN_URL = "/login/"
 LOGOUT_URL = "/logout/"
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Application definition
 INSTALLED_APPS = [
@@ -51,7 +53,7 @@ ROOT_URLCONF = "rallyetool.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["templates"],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -87,7 +89,11 @@ REST_FRAMEWORK = {
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = "de-de"
+LANGUAGE_CODE = "en"
+LANGUAGES = (
+    ("de", _("German")),
+    ("en", _("English")),
+)
 LOCALE_NAME = "de"
 TIME_ZONE = "Europe/Berlin"
 
