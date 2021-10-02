@@ -6,12 +6,7 @@ FROM python:3.7-slim
 # We need to recreate the /usr/share/man/man{1..8} directories first because
 # they were clobbered by a parent image.
 RUN set -ex \
-    && RUN_DEPS=" \
-    mime-support \
-    python3-pip python3-venv \
-    texlive-base texlive-lang-german texlive-fonts-recommended texlive-latex-extra \
-    postgresql-client \
-    " \
+    && RUN_DEPS="mime-support python3-pip" \
     && seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} \
     && apt-get update && apt-get install -y --no-install-recommends $RUN_DEPS \
     && rm -rf /var/lib/apt/lists/*
@@ -29,15 +24,11 @@ ADD . /code/
 
 ENV DJANGO_SETTINGS_MODULE=rallyetool.settings
 
-RUN python manage.py collectstatic --noinput \
+RUN python manage.py collectstatic --noinput --settings staging.staging_settings --force-color \
     && rm -f *.sqlite3 \
-    && rm -f ./getraenke/migrations/0001_initial.py \
-    && sed -i '/managed = False/d' ./getraenke/models.py \
     && python manage.py makemigrations --noinput \
-    && python manage.py migrate --noinput --database=getraenke getraenke|grep -v "... OK" \
     && python manage.py migrate --noinput|grep -v "... OK" \
-    && echo "import common.fixture as fixture;fixture.showroom_fixture_state_no_confirmation_staging()"|python manage.py shell
-
+    && echo "import common.fixture as fixture;fixture.showroom_fixture_state_no_confirmation()"|python manage.py shell
 
 ENV DJANGO_SETTINGS_MODULE=staging.staging_settings
 
