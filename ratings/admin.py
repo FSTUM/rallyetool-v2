@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Group, Rating
+from .models import Group, Rating, Station
 
-# Register your models here.
 admin.site.register(Group)
 admin.site.register(Rating)
+admin.site.register(Station)
