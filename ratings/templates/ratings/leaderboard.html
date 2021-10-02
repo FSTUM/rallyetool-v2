@@ -12,27 +12,27 @@
 {% block rallye_common_headercontent %}{% trans "Leaderboard" %}{% endblock %}
 
 {% block rallye_common_content %}
-    <div class="table-responsive">
-        <table
-            class="table dataTable"
-            id="leaderboardTable"
-        >
-            <thead>
-                <tr>
-                    <th>{% trans "Place" %}</th>
-                    <th>{% trans "Name of your Team" %}</th>
-                    <th>{% trans "Points" %}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for place, group in place_and_groups %}
-                <tr>
-                    <td>{{place}}</td>
-                    <td>{{group.name}}</td>
-                    <td>{{group.total_points}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+<div class="table-responsive">
+    <table
+        class="table dataTable"
+        id="leaderboardTable"
+    >
+        <thead>
+            <tr>
+                <th>{% trans "Place" %}</th>
+                <th>{% trans "Name of your Team" %}</th>
+                <th>{% trans "Points" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for place, group in place_and_groups %}
+            <tr>
+                <td>{{place}}</td>
+                <td>{{group.name}}</td>
+                <td>{{group.total_points}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
