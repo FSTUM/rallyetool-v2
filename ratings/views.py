@@ -1,144 +1,107 @@
-from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-from django.shortcuts import render
-from rest_framework import status, viewsets
-from rest_framework.parsers import JSONParser
+from typing import Callable
 
-from .models import Group, Rating
-from .serializers import TeamSerializer
+from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
+from django.core.handlers.wsgi import WSGIRequest
+from django.db.models import QuerySet
+from django.forms import forms
+from django.http import HttpResponse, HttpResponseForbidden
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import ugettext_lazy as _
 
+from common.models import Settings
+from common.views import AuthWSGIRequest, rallye_login_required
 
-@login_required(login_url="/accounts/login/")
-def rate(request):
-    context = {"rate": True}
+from .forms import EditRatingForm, RatingForm
+from .models import Group, Rating, Station
 
-    if request.method == "POST":
-
-        # Variables of the request
-        selected_meth = request.POST["action"]
-        group_str = request.POST["group"]
-        points_str = request.POST["points"]
-        station = request.user
-        # Cast the request variables if possible, otherwise return to rating page and display error.
-        try:
-            group, points = check_values(selected_meth, group_str, points_str)
-        except Exception as error:  # pylint: disable=broad-except
-            context["error"] = str(error)
-            return render(request, "ratings/rate.html", context)
-
-        # Handle the request if variables were inserted properly.
-        if request.POST["action"] == "rate":
-            # Check whether record in db already exists
-            try:
-                Rating.objects.get(gr_id=group, station=station)
-                context["error"] = (
-                    "This group has already been rated by you. "
-                    'Please use "update" if you want to change the number of points.'
-                )
-            except Rating.DoesNotExist:
-                rating = Rating(gr_id=group, station=station, points=points)
-                rating.save()
-                # Update total points of group
-                group.total_points += points
-                group.save()
-                context["message"] = f"You rated group {group} with {points} points!"
-
-        elif request.POST["action"] == "update":
-            try:
-                rating = Rating.objects.get(gr_id=group, station=station)
-                group.total_points -= rating.points
-                rating.points = points
-                rating.save()
-                group.total_points += points
-                group.save()
-                context["message"] = f"You updated rating of group {group} to {points} points!"
-            except Rating.MultipleObjectsReturned:
-                context["error"] = "Too many ratings for one group. Contact Flo!"
-            except Rating.DoesNotExist:
-                context["error"] = 'You did not rate this group yet. Please use "rate" first.'
-
-        elif request.POST["action"] == "delete":
-            try:
-                rating = Rating.objects.get(gr_id=group, station=station)
-                group.total_points -= rating.points
-                group.save()
-                rating.delete()
-                context["message"] = f"You deleted rating of group {group}!"
-            except Rating.MultipleObjectsReturned:
-                context["error"] = "Too many ratings for one group. Contact Flo!"
-            except Rating.DoesNotExist:
-                context["error"] = "You did not rate this group yet."
-
-    return render(request, "ratings/rate.html", context)
+user_has_stand_required: Callable = user_passes_test(lambda u: bool(u.station))  # type: ignore
 
 
-def results(request):
-    context = {"results": True, "groups": Group.objects.order_by("total_points").reverse()}
-    return render(request, "ratings/results.html", context)
+def leaderboard(request: WSGIRequest) -> HttpResponse:
+    groups = Group.objects.order_by("total_points").reverse()
+    place_and_groups = []
+    if groups:
+        previous_min = groups[0].total_points
+        last_printed_place = 1
+        for counter, group in enumerate(groups):
+            if group.total_points < previous_min:
+                place_and_groups.append((counter, group))
+                last_printed_place = counter
+                previous_min = group.total_points
+            else:
+                place_and_groups.append((last_printed_place, group))
+
+    context = {"results": True, "place_and_groups": place_and_groups}
+    return render(request, "ratings/leaderboard.html", context)
 
 
-def signup(request):
-    context = {}
-    if request.method == "POST":
-        group_str = request.POST["groupname"]
-        group = Group(group_name=group_str)
-        group.save()
-        context["message"] = f'You successfully created Group "{group_str}"'
-    return render(request, "ratings/signup.html", context)
+@rallye_login_required
+@user_has_stand_required
+def list_ratings(request: AuthWSGIRequest) -> HttpResponse:
+    settings: Settings = Settings.load()
+    if not settings.station_rating_avialible:
+        messages.error(request, _("The organisers have ended this event."))
+    station: Station = request.user.station
+    ratings: QuerySet[Rating] = Rating.objects.filter(station=request.user.station).all()
+
+    context = {"ratings": ratings, "station": station}
+    return render(request, "ratings/rating/list_ratings.html", context)
 
 
-def crypto_challenge(request):
-    context = {"message": ""}
-    if request.method == "POST":
-        pass
+@rallye_login_required
+@user_has_stand_required
+def add_rating(request: AuthWSGIRequest) -> HttpResponse:
+    settings: Settings = Settings.load()
+    if not settings.station_rating_avialible:
+        messages.error(request, _("Unabele to add a Rating. The organisers have ended this event."))
+        redirect("main-view")
 
-    return render(request, "ratings/crypto-challenge.html", context)
+    station = request.user.station
+    form = RatingForm(request.POST or None, station=station)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect("ratings:list_ratings")
 
+    context = {"form": form}
 
-def check_values(meth, group, points=None):
-    if meth in ["rate", "update"]:
-        if not group or not points:
-            raise Exception("Please set both values, group and points!")
-        try:
-            group_obj = Group.objects.get(group_number=int(group))
-            points_int = int(points)
-            if not 0 < points_int < 10:
-                raise Exception("Points must be between 0 and 10!")
-            return group_obj, points_int
-        except ValueError as error:
-            raise Exception("Group number and points should be numbers!") from error
-        except Group.DoesNotExist as error:
-            raise Exception(f"Typo! Group {group} does not exist.") from error
-
-    elif meth == "delete":
-        if not group:
-            raise Exception("Please set the group number!")
-        try:
-            group_obj = Group.objects.get(group_number=int(group))
-            return group_obj, None
-        except ValueError as error:
-            raise Exception("Group number and points should be numbers!") from error
-        except Group.DoesNotExist as error:
-            raise Exception(f"Typo! Group {group} does not exist.") from error
-    raise Exception("I have no idea where I am...please contact Flo!")
+    return render(request, "ratings/rating/add_rating.html", context)
 
 
-class TeamsViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors
-    queryset = Group.objects.all()
-    serializer_class = TeamSerializer
+@rallye_login_required
+@user_has_stand_required
+def edit_rating(request: AuthWSGIRequest, rating_pk: int) -> HttpResponse:
+    settings: Settings = Settings.load()
+    if not settings.station_rating_avialible:
+        messages.error(request, _("Unabele to edit a Rating. The organisers have ended this event."))
+        redirect("main-view")
+    rating = get_object_or_404(Rating, pk=rating_pk)
+    form = EditRatingForm(request.POST or None, instance=rating)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect("ratings:list_ratings")
 
-    def get(self, request, format=None):  # pylint: disable=redefined-builtin,unused-argument
-        queryset = Group.objects.all().order_by("group_number")
-        serializer_class = TeamSerializer(data=queryset)
-        return JsonResponse(serializer_class.data, safe=False)
+    context = {"form": form, "rating": rating}
 
-    def post(self, request, format=None):  # pylint: disable=redefined-builtin,unused-argument
-        data = JSONParser().parse(request)
-        serializer = TeamSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return render(request, "ratings/rating/edit_rating.html", context)
 
-    def delete(self, request, id, format=None):  # pylint: disable=redefined-builtin,invalid-name,unused-argument
-        pass
+
+@rallye_login_required
+@user_has_stand_required
+def del_rating(request: AuthWSGIRequest, rating_pk: int) -> HttpResponse:
+    settings: Settings = Settings.load()
+    if not settings.station_rating_avialible:
+        messages.error(request, _("Unabele to delete a Rating. The organisers have ended this event."))
+        redirect("main-view")
+    rating: Rating = get_object_or_404(Rating, pk=rating_pk)
+    messages.warning(request, _("Deletion is permanent."))
+
+    if request.user.station != rating.station:
+        return HttpResponseForbidden(_("You cant delete ratings of stations that are not your own"))
+
+    form = forms.Form(request.POST or None)
+    if form.is_valid():
+        rating.delete()
+        return redirect("ratings:list_ratings")
+    context = {"form": form, "rating": rating}
+    return render(request, "ratings/rating/del_rating.html", context)
