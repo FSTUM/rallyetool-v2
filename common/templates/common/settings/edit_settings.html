@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+
+{% block finanz_common_headercontent %}Einstellungen bearbeiten{% endblock %}
+{% block title %}Einstellungen bearbeiten{% endblock %}
+
+{% block finanz_common_content %}
+<form
+    method="post"
+    action=""
+>{% csrf_token %}
+
+    {% bootstrap_form form %}
+
+    <a
+        class="btn btn-secondary"
+        href="{% url "common:list_mail" %}"
+    >Abbrechen</a>
+    <button
+        class="btn btn-primary"
+        type="submit"
+    >Einstellungen bearbeiten</button>
+</form>
+{% endblock %}

@@ -1,5 +1,7 @@
 import datetime
+from typing import TypeVar
 
+from django.core.cache import cache
 from django.db import models
 from django.http import HttpRequest
 from django.utils import timezone
@@ -61,3 +63,35 @@ def get_semester(request: HttpRequest) -> int:
         sem = current_semester().pk
         request.session[SEMESTER_SESSION_KEY] = sem
     return sem  # noqa: R504
+
+
+SingletonType = TypeVar("SingletonType", bound="SingletonModel")
+
+
+class SingletonModel(models.Model):
+    class Meta:
+        abstract = True
+
+    def delete(self, *args, **kwargs):
+        pass
+
+    def set_cache(self):
+        cache.set(self.__class__.__name__, self)
+
+    def save(self, *args, **kwargs):
+        self.pk = 1  # pylint: disable=invalid-name
+        super().save(*args, **kwargs)
+        self.set_cache()
+
+    @classmethod
+    def load(cls) -> SingletonType:
+        obj: SingletonType
+        obj, _ = cls.objects.get_or_create(pk=1)
+        return obj
+
+
+class Settings(SingletonModel):
+    station_registration_availible = models.BooleanField(verbose_name="Stations can be registered", default=False)
+    api = models.BooleanField(
+        verbose_name="Does this Tool offer an API Endpoint? (f.ex. to enable a discord bot)", default=False
+    )
