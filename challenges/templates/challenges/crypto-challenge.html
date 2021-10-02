@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 
 <h1>Encrypted Text: asdf</h1>
 <form
     method="POST"
-    action="{% url 'crypto' %}"
+    action="{% url "crypto" %}"
 >
     {% csrf_token %}
     <h5>Team Number</h5>
