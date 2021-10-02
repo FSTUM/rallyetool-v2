@@ -1,149 +1,249 @@
-<!doctype html>
-<html lang="en">
+{% load titles %}
+{% load active_link_tags %}
+{% load static %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% load semester %}
+<!DOCTYPE html>
+<html lang="de">
 
 <head>
-    {% load static %}
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta
-        name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        name="viewport"
     >
-    <meta
-        name="description"
-        content="Campus Rallye Tool"
-    >
-    <meta
-        name="author"
-        content="Florian Angermeir"
-    >
-
-    <title>Campus Rallye</title>
-
-    <!-- Bootstrap core CSS -->
+    {% include "snippets/favoticons.html" %}
     <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous"
+        href='{% static "bootstrap/dist/css/bootstrap.min.css" %}'
+        rel='stylesheet'
+    >
+    <link
+        href='{% static "bootstrap-icons/font/bootstrap-icons.css" %}'
+        rel='stylesheet'
     >
 
-    <!-- Custom styles for this template -->
+    <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
+    <script src="{% static "bootstrap/dist/js/bootstrap.bundle.min.js" %}"></script>
     <link
-        rel="stylesheet"
-        type="text/css"
-        href="{% static 'cover.css' %}"
+        href='{% static "css/style.css" %}'
+        rel='stylesheet'
     >
+    <link
+        href='{% static "datatables.net-bs5/css/dataTables.bootstrap5.min.css" %}'
+        rel='stylesheet'
+    >
+    <script src="{% static "datatables.net/js/jquery.dataTables.min.js" %}"></script>
+    <script src="{% static "datatables.net-bs5/js/dataTables.bootstrap5.min.js" %}"></script>
+
+    <title>{% random_title %}</title>
+
+    {% block head %}{% endblock %}
+    {% block extrahead %} {# Extra Resources Start #}
+    {{ form.media }} {# Form required JS and CSS #}
+    {% endblock %} {# Extra Resources End #}
 </head>
 
-<body class="text-center">
+<body>
+    <header>
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark mb-4">
+            <div class="container-fluid">
+                <a
+                    class="navbar-brand"
+                    href={% url "main-view" %}
+                >LOGO</a>
+                {# button to show menu on small devices#}
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div
+                    class="collapse navbar-collapse"
+                    id="navbarNav"
+                >
+                    {# links to the apps' index pages #}
+                    <nav class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <a
+                            class="nav-link {% active_link 'fahrt:main_index' %}"
+                            href="{% url "fahrt:main_index" %}"
+                        >{% trans "SET-Fahrt" %}</a>
+                        {% if user.is_authenticated %}
+                        <a
+                            class="nav-link {% active_link 'settings_main_index' %}"
+                            href="{% url "settings_main_index" %}"
+                        >{% trans "Settings" %}</a>
+                        {% endif %}
+                    </nav>
+                    <div class="d-flex">
 
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-        <header class="masthead mb-auto">
-            <div class="inner">
-                <h3 class="masthead-brand">Rallye</h3>
-                <nav class="nav nav-masthead justify-content-center">
-                    {% if user.is_authenticated and rate %}
-                    <a
-                        class="nav-link active"
-                        href="{% url 'rate' %}"
-                    >Rate</a>
-                    <a
-                        class="nav-link"
-                        href="javascript:{document.getElementById('logout').submit()}"
-                        onclick=""
-                    >Logout</a>
-                    <form
-                        id="logout"
-                        method="POST"
-                        action="{% url 'logout' %}"
-                    >
-                        {% csrf_token %}
-                        <input type="hidden" />
-                    </form>
-                    {% elif user.is_authenticated %}
-                    <a
-                        class="nav-link"
-                        href="{% url 'rate' %}"
-                    >Rate</a>
-                    <a
-                        class="nav-link active"
-                        href="javascript:{document.getElementById('logout').submit()}"
-                        onclick=""
-                    >Logout</a>
-                    <form
-                        id="logout"
-                        method="POST"
-                        action="{% url 'logout' %}"
-                    >
-                        {% csrf_token %}
-                        <input type="hidden" />
-                    </form>
-                    {% elif login %}
-                    <a
-                        class="nav-link"
-                        href="{% url 'results' %}"
-                    >Results</a>
-                    <a
-                        class="nav-link active"
-                        href="{% url 'login' %}"
-                    >Login</a>
-                    {% elif results %}
-                    <a
-                        class="nav-link active"
-                        href="{% url 'results' %}"
-                    >Results</a>
-                    <a
-                        class="nav-link"
-                        href="{% url 'login' %}"
-                    >Login</a>
-                    {% endif %}
-                </nav>
+                        <nav class="navbar-nav me-2">
+                            {# choose semester #}
+                            {% if user.is_authenticated %}
+                            <form
+                                action="{% url 'set_semester' %}"
+                                method="post"
+                                role="form"
+                            >
+                                <div>
+                                    {% csrf_token %}
+                                    <input
+                                        name="next"
+                                        type="hidden"
+                                        value=""
+                                    />
+
+                                    <select
+                                        class="form-control no-automatic-choicejs"
+                                        name="semester"
+                                        id="semester_selection_form"
+                                        onchange="this.form.submit()"
+                                    >
+                                        {% get_semester as SEMESTER_PK %}
+                                        {% get_available_semesters as semesters %}
+                                        {% for semester in semesters %}
+                                        <option
+                                            value="{{ semester.pk }}"
+                                            {% if semester.pk == SEMESTER_PK %}selected="selected"
+                                            {% endif %}
+                                        >
+                                            {{ semester }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                    <label
+                                        for="semester_selection_form"
+                                        style="display: none;"
+                                    >{% trans "Select your semester" %}</label>
+                                </div>
+                                <noscript>
+                                    <button
+                                        type="submit"
+                                        class="btn btn-secondary"
+                                    >{% trans "Switch" %}</button>
+                                </noscript>
+                            </form>
+                            {% endif %}
+                            {# end choose semester #}
+                            {# login #}
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{% url "logout" %}"
+                                >
+                                    {# provide a Useful name, even if the User has not specified his first name #}
+                                    {% if user.first_name %}
+                                    {% blocktranslate trimmed with username=user.first_name|capfirst %}
+                                    Log out {{ username }}
+                                    {% endblocktranslate %}
+                                    {% else %}
+                                    {% blocktranslate trimmed with username=user.username|capfirst %}
+                                    Log out {{ username }}
+                                    {% endblocktranslate %}
+                                    {% endif %}
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{% url "login" %}"
+                                >{% trans "Login" %}</a>
+                            </li>
+                            {% endif %}
+                            {# end login #}
+                            {# language chooser #}
+                            <li class="nav-item dropdown">
+                                <a
+                                    aria-expanded="false"
+                                    class="dropdown-toggle nav-link"
+                                    data-bs-toggle="dropdown"
+                                    type="button"
+                                >
+                                    <span class="bi bi-globe"></span>
+                                </a>
+                                <form
+                                    action="{% url 'set_language' %}"
+                                    aria-labelledby="languageDropdown"
+                                    class="dropdown-menu dropdown-menu-end"
+                                    method="post"
+                                >
+                                    {% csrf_token %}
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+
+                                    {% for language in languages %}
+                                    <button
+                                        name="language"
+                                        class="dropdown-item {% if language.code == LANGUAGE_CODE %} active{% endif %}"
+                                        type="submit"
+                                        value="{{ language.code }}"
+                                    >
+                                        {{ language.name_local }}
+                                    </button>
+                                    {% endfor %}
+                                </form>
+                            </li>
+                            {# end language chooser #}
+                        </nav>
+                    </div>
+                </div>
             </div>
-        </header>
+        </nav>
+    </header>
 
-        <main
-            role="main"
-            class="inner cover"
-        >
-            <p class="lead">
+    <main
+        role="main"
+        class="container-fluid"
+    >
+        {% if messages %}
+        {% bootstrap_messages messages %}
+        {% endif %}
 
-                {% block content %}
+        {% block content %}{% endblock %}
+    </main>
+    {% block after_content %}{% endblock %}
+    <footer class="footer navbar navbar-expand navbar-dark bg-dark">
+        <div class="container-md">
+            <ul class="navbar-nav text-nowrap overflow-auto mx-auto">
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="http://fs.tum.de/datenschutz/"
+                    >{% trans "Data protection" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="http://fs.tum.de/impressum/"
+                    >{% trans "Imprint" %}</a>
+                </li>
+                <li class="nav-item">
+                {% blocktrans trimmed %}
+                    Originally by <a href="https://twitter.com/angrymeir">@angrymeir</a> and <a href="https://twitter.com/mdo">@mdo</a>.
+                {% endblocktrans %}
+                </li>
+            </ul>
+        </div>
+    </footer>
 
-                {% endblock %}
-                <br>
-            <p style="color: red">{{ error }}</font>
-            </p>
-
-            </p>
-        </main>
-
-        <footer class="mastfoot mt-auto">
-            <div class="inner">
-                <p>By <a href="https://twitter.com/angrymeir">@angrymeir</a> and <a href="https://twitter.com/mdo">@mdo</a>.</p>
-            </div>
-        </footer>
-    </div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"
-    ></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"
-    ></script>
-    <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"
-    ></script>
-
+    <script type="text/javascript">
+    /* global Choices */
+    /* eslint no-new: off */
+    const elemnts = document.getElementsByTagName('select');
+    for (let i = 0; i < elemnts.length; i += 1) {
+        if (!elemnts[i].classList.contains('no-automatic-choicejs')) new Choices(elemnts[i], { removeItemButton: true });
+    }
+</script>
+    {% block defered_script %} {% endblock %}
 </body>
 
 </html>

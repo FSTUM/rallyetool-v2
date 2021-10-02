@@ -13,8 +13,12 @@ DEBUG = True
 
 ALLOWED_HOSTS: List[str] = []
 
-# Application definition
+# Login URLs
+LOGIN_URL = "/login/"
+LOGOUT_URL = "/logout/"
+LOGIN_REDIRECT_URL = "/"
 
+# Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -22,13 +26,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.humanize",
-    "rest_framework",
     "django_bootstrap5",
     "active_link",
-    "accounts.apps.AccountsConfig",
-    "ratings.apps.RatingsConfig",
-    "challenges.apps.ChallengesConfig",
+    "django.contrib.humanize",
+    "rest_framework",
+    "accounts",
+    "ratings",
+    "challenges",
+    "common",
 ]
 
 MIDDLEWARE = [
@@ -100,6 +105,7 @@ de_formats.SHORT_DATE_FORMAT = "d.m."
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles/"),
+    os.path.join(BASE_DIR, "node_modules/"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = "/static/"

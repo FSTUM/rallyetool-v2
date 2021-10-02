@@ -4,7 +4,7 @@ from django.urls import include, path
 import ratings.views as ratingsviews
 
 urlpatterns = [
-    path("adminnurfueruns/", admin.site.urls),
+    path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),
     path("", ratingsviews.results, name="results"),
     path("ratings/", include("ratings.urls")),
