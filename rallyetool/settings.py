@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     "active_link",
     "django.contrib.humanize",
     "rest_framework",
-    "accounts",
     "ratings",
     "challenges",
     "common",
@@ -76,6 +75,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+API = False
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
