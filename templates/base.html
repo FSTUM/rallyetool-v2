@@ -104,6 +104,10 @@
                         {% endif %}
                         {% if user.is_superuser %}
                         <a
+                            class="nav-link {% active_link "ratings:list_stations" %}"
+                            href="{% url "ratings:list_stations" %}"
+                        >{% trans "Administration" %}</a>
+                        <a
                             class="nav-link {% active_link "common:edit_settings" %}"
                             href="{% url "common:edit_settings" %}"
                         >{% trans "Settings" %}</a>

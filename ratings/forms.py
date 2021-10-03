@@ -1,3 +1,5 @@
+from typing import List
+
 from django import forms
 
 from ratings.models import Group, Rating, Station
@@ -27,3 +29,9 @@ class RatingForm(forms.ModelForm):
         if commit:
             rating.save()
         return rating
+
+
+class StationForm(forms.ModelForm):
+    class Meta:
+        model = Station
+        exclude: List[str] = []

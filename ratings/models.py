@@ -1,4 +1,5 @@
 from typing import Dict, Tuple
+import uuid
 
 from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -62,3 +63,8 @@ class Rating(LoggedModel):
 
     def __str__(self):
         return f"{self.group} - {self.station}"
+
+
+class RegistrationToken(LoggedModel):
+    semester = models.OneToOneField(Semester, on_delete=models.CASCADE)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

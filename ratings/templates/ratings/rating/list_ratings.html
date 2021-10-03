@@ -6,7 +6,7 @@
 {% block head %}
 <script>
     $(() => {
-        $('#leaderboardTable').DataTable({
+        $('#ratingsTable').DataTable({
             columnDefs: [{ targets: 3, orderable: false }],
         });
     });
@@ -32,7 +32,7 @@ List all rating by station {{ station }}
 <div class="table-responsive">
     <table
         class="table dataTable"
-        id="leaderboardTable"
+        id="ratingsTable"
     >
         <thead>
             <tr>

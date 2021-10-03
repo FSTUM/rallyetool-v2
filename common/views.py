@@ -4,10 +4,10 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User  # pylint: disable=imported-auth-user
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.http import is_safe_url
 
-from common.models import Semester, Settings
+from common.models import Semester, Settings, get_semester
 
 from .forms import SettingsForm
 from .settings import SEMESTER_SESSION_KEY
@@ -41,8 +41,9 @@ def set_semester(request: AuthWSGIRequest) -> HttpResponse:
 
 @superuser_required
 def edit_settings(request: AuthWSGIRequest) -> HttpResponse:
+    semester: Semester = get_object_or_404(Semester, pk=get_semester(request))
     settings: Settings = Settings.load()
-    form = SettingsForm(request.POST or None, instance=settings)
+    form = SettingsForm(request.POST or None, instance=settings, semester=semester)
     if form.is_valid():
         form.save()
         return redirect("main-view")

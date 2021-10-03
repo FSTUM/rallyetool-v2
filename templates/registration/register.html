@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="container">
+	<h1>{% trans "Wellcome to the Ralleytool" %}</h1>
+    <p>{% trans "Please choose an email and passwort that you can remember." %}</p>
+    <p>{% trans "Please choose an Username, that the organisers can recognise you by. The Username will be used on station-distribution." %}</p>
+
+	<form method="POST">
+		{% csrf_token %}
+		{% bootstrap_form form layout="floating" %}
+		<button class="btn btn-primary" type="submit">{% trans "Register for the Ralleytool" %}</button>
+	</form>
+    {% url "login" as login_url %}
+	<p class="text-muted mt-3">
+        {% blocktrans trimmed %}
+        If you already have an account, <a href="{{ login_url }}">login</a> instead.
+        {% endblocktrans %}
+    </p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base_card_layout.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% load active_link_tags %}
+
+
+{% block rallye_common_navigation %}
+<h4 class="navbar-text">{% trans "Stations" %}</h4>
+<a
+    class="nav-link {% active_link "ratings:list_stations" %}"
+    href="{% url "ratings:list_stations" %}"
+>{% trans "List stations" %}</a>
+<a
+    class="nav-link {% active_link "ratings:add_station" %}"
+    href="{% url "ratings:add_station" %}"
+>{% trans "Add new station" %}</a>
+{% endblock %}
