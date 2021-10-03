@@ -16,7 +16,7 @@ jobs:
             - name: git-sync
               uses: wei/git-sync@v3
               with:
-                  source_repo: 'CommanderStorm/rallyetool-v2'
+                  source_repo: 'FSTUM/rallyetool-v2'
                   source_branch: 'main'
                   destination_repo: 'git@git.fs.tum.de:elsinga/rallye.git'
                   destination_branch: 'main'

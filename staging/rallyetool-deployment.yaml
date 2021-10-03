@@ -29,7 +29,7 @@ spec:
                       - name: shared-mediafiles
                         mountPath: /usr/share/nginx/html/media
                 - name: rallyetool
-                  image: ghcr.io/commanderstorm/rallyetool-v2-staging:main
+                  image: ghcr.io/fstum/rallyetool-v2-staging:main
                   imagePullPolicy: Always
                   envFrom:
                       - secretRef:
