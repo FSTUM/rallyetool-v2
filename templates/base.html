@@ -34,7 +34,6 @@
         rel='stylesheet'
     />
     <script
-        defer
         src='{% static "choices.js/public/assets/scripts/choices.min.js" %}'
     ></script>
     {% endif %}
@@ -270,7 +269,7 @@
     for (let i = 0; i < elemnts.length; i += 1) {
         if (!elemnts[i].classList.contains('no-automatic-choicejs')) new Choices(elemnts[i], { removeItemButton: true });
     }
-</script>
+    </script>
     {% block defered_script %} {% endblock %}
 </body>
 
