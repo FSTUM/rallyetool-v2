@@ -19,14 +19,18 @@ urlpatterns = [
                 path("add/", views.add_rating, name="add_rating"),
                 path("edit/<int:rating_pk>/", views.edit_rating, name="edit_rating"),
                 path("del/<int:rating_pk>/", views.del_rating, name="del_rating"),
-            ]
+            ],
         ),
     ),
     path(
         "administration/",
         include(
             [
-                path("registration/<int:semester_pk>/<uuid:registration_uuid>",views.register_user,name="register_user"),
+                path(
+                    "registration/<int:semester_pk>/<uuid:registration_uuid>",
+                    views.register_user,
+                    name="register_user",
+                ),
                 path(
                     "station/",
                     include(
@@ -35,10 +39,10 @@ urlpatterns = [
                             path("add/", views.add_station, name="add_station"),
                             path("edit/<int:station_pk>/", views.edit_station, name="edit_station"),
                             path("del/<int:station_pk>/", views.del_station, name="del_station"),
-                        ]
+                        ],
                     ),
-                )
-            ]
+                ),
+            ],
         ),
     ),
 ]

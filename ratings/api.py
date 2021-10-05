@@ -12,7 +12,7 @@ from .models import Group
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
-        fields: List[str] = ("group_name", "group_number")
+        fields: List[str] = ["group_name", "group_number"]
 
 
 class TeamsViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors

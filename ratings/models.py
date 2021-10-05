@@ -11,7 +11,7 @@ from common.models import LoggedModel, Semester
 
 alphanumeric_validator = RegexValidator(
     r"^[A-Za-z0-9@#$€<>%^&+=_- äüö]{4,}$",
-    "Only alphanumeric characters, @#$€<>%^&+=_-, space and äöü are allowed"
+    "Only alphanumeric characters, @#$€<>%^&+=_-, space and äöü are allowed",
 )
 
 

@@ -4,10 +4,10 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User  # pylint: disable=imported-auth-user
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.http import is_safe_url
 
-from common.models import Semester, Settings, get_semester
+from common.models import get_semester, Semester, Settings
 
 from .forms import SettingsForm
 from .settings import SEMESTER_SESSION_KEY

@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext_lazy as _
 
-from common.models import Settings, Semester
+from common.models import Semester, Settings
 from ratings.models import RegistrationToken
 
 
@@ -47,33 +47,38 @@ class SettingsForm(SemesterBasedForm):
 
 
 class NewUserForm(UserCreationForm):
-    email = forms.EmailField(label=_("Email, you want to log in with"),
-                             help_text=_("<ul>"
-                                         "<li>Please choose an (syntactically valid) email that you can remember. "
-                                         "150 characters or fewer.</li>"
-                                         "<li>The email does not have to belong to you. Use a fake-email.</li>"
-                                         "<li>We dont sent mails to this address.</li>"
-                                         "<li><b>No Personal information!</b></li>"
-                                         "</ul>"),
-                             max_length=150,
-                             required=True)
+    email = forms.EmailField(
+        label=_("Email, you want to log in with"),
+        help_text=_(
+            "<ul>"
+            "<li>Please choose an (syntactically valid) email that you can remember. "
+            "150 characters or fewer.</li>"
+            "<li>The email does not have to belong to you. Use a fake-email.</li>"
+            "<li>We dont sent mails to this address.</li>"
+            "<li><b>No Personal information!</b></li>"
+            "</ul>",
+        ),
+        max_length=150,
+        required=True,
+    )
 
     class Meta:
         model = get_user_model()
-        fields: List[str] = ("username", "email", "password1", "password2")
+        fields: List[str] = ["username", "email", "password1", "password2"]
         labels = {"username": _("Username, you can tell to the organisers")}
         help_texts = {
-            'username': _("<ul>"
-                          "<li>Please choose an Username you can tell to the organisers. </li>"
-                          "<li>150 characters or fewer. Letters, digits and @/./+/-/_ only.</li>"
-                          "<li><b>No Personal information!</b></li>"
-                          "</ul>")
-            ,
+            "username": _(
+                "<ul>"
+                "<li>Please choose an Username you can tell to the organisers. </li>"
+                "<li>150 characters or fewer. Letters, digits and @/./+/-/_ only.</li>"
+                "<li><b>No Personal information!</b></li>"
+                "</ul>",
+            ),
         }
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
+        user.email = self.cleaned_data["email"]
         if commit:
             user.save()
         return user

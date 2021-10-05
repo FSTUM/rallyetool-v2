@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Dict, Union
 from uuid import UUID
 
 from django.contrib import messages
@@ -13,11 +13,11 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from common.forms import NewUserForm
-from common.models import Settings, Semester, get_semester
+from common.models import get_semester, Semester, Settings
 from common.views import AuthWSGIRequest, rallye_login_required, superuser_required
 
-from .forms import EditRatingForm, RatingForm, StationForm
-from .models import Group, Rating, Station, RegistrationToken
+from .forms import EditRatingForm, GroupForm, RatingForm, StationForm
+from .models import Group, Rating, RegistrationToken, Station
 
 user_has_stand_required: Callable = user_passes_test(lambda u: bool(u.station))  # type: ignore
 
@@ -114,7 +114,7 @@ def del_rating(request: AuthWSGIRequest, rating_pk: int) -> HttpResponse:
 @superuser_required
 def list_stations(request: AuthWSGIRequest) -> HttpResponse:
     stations: QuerySet[Station] = Station.objects.all()
-    context = {"stations": stations}
+    context: Dict[str, Union[str, QuerySet[Station]]] = {"stations": stations}
     settings: Settings = Settings.load()
     if settings.station_registration_availible:
         semester_pk: int = get_semester(request)
@@ -165,15 +165,19 @@ def del_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
     return render(request, "ratings/administration/del_station.html", context)
 
 
-def register_user(request, semester_pk: int, registration_uuid: UUID):
+def register_user(request: WSGIRequest, semester_pk: int, registration_uuid: UUID) -> HttpResponse:
     settings: Settings = Settings.load()
     if not settings.station_registration_availible:
-        messages.error(request, _("User Registration is disabeled in the settings. "
-                                  "Please contact the organisers if you think that this is an error."))
+        messages.error(
+            request,
+            _(
+                "User Registration is disabeled in the settings. "
+                "Please contact the organisers if you think that this is an error.",
+            ),
+        )
         return redirect("main-view")
-    _registration_token: RegistrationToken = get_object_or_404(RegistrationToken, uuid=registration_uuid,
-                                                               semester=semester_pk)
-    _semester: Semester = get_object_or_404(Semester, pk=semester_pk)
+    get_object_or_404(RegistrationToken, uuid=registration_uuid, semester=semester_pk)
+    get_object_or_404(Semester, pk=semester_pk)
 
     form = NewUserForm(request.POST or None)
     if form.is_valid():
@@ -184,4 +188,4 @@ def register_user(request, semester_pk: int, registration_uuid: UUID):
     if request.POST:
         messages.error(request, _("Unsuccessful registration. Invalid information."))
 
-    return render(request=request, template_name="registration/register.html", context={"form": form})
+    return render(request=request, template_name="registration/register_user.html", context={"form": form})
