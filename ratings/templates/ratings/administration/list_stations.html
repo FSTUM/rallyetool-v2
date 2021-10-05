@@ -7,6 +7,7 @@
 <script>
     $(() => {
         $('#stationTable').DataTable({
+            order: [[0, 'desc']],
             columnDefs: [{ targets: 4, orderable: false }],
             paging: false,
         });
