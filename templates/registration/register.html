@@ -7,13 +7,36 @@
 
 <div class="container">
 	<h1>{% trans "Wellcome to the Ralleytool" %}</h1>
-    <p>{% trans "Please choose an email and passwort that you can remember." %}</p>
+
     <p>{% trans "Please choose an Username, that the organisers can recognise you by. The Username will be used on station-distribution." %}</p>
 
 	<form method="POST">
 		{% csrf_token %}
-		{% bootstrap_form form layout="floating" %}
-		<button class="btn btn-primary" type="submit">{% trans "Register for the Ralleytool" %}</button>
+		{% bootstrap_field form.username layout="floating" %}
+		{% bootstrap_field form.email layout="floating" %}
+		{% bootstrap_field form.password1 layout="floating" %}
+		{% bootstrap_field form.password2 layout="floating" %}
+		<button class="btn btn-primary"  data-bs-target="#confrimationModal" data-bs-toggle="modal" type="button">{% trans "Register for the Ralleytool" %}</button>
+    <div class="modal" id="confrimationModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{% trans "Confirm ralleytool registration" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans "Close" %}"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+            {% trans "I confirm that neither my username, nor email does contain personal identifing information." %}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+        <button type="submit" class="btn btn-primary">{% trans "Confirm ralleytool registration" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 	</form>
     {% url "login" as login_url %}
 	<p class="text-muted mt-3">
