@@ -18,6 +18,6 @@ jobs:
               with:
                   source_repo: 'FSTUM/rallyetool-v2'
                   source_branch: 'main'
-                  destination_repo: 'git@git.fs.tum.de:elsinga/rallye.git'
+                  destination_repo: 'git@git.fs.tum.de:elsinga/rallyetool.git'
                   destination_branch: 'main'
                   ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
