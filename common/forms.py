@@ -4,19 +4,31 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.translation import ugettext_lazy as _
 
 from common.models import Settings, Semester
 from ratings.models import RegistrationToken
 
 
-class SettingsForm(forms.ModelForm):
-    class Meta:
-        model = Settings
-        exclude: List[str] = []
-
+class SemesterBasedForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.semester: Semester = kwargs.pop("semester")
         super().__init__(*args, **kwargs)
+
+
+class SemesterBasedModelForm(SemesterBasedForm, forms.ModelForm):
+    def save(self, commit=True):
+        instance = super().save(False)
+        instance.semester = self.semester
+        if commit:
+            instance.save()
+        return instance
+
+
+class SettingsForm(SemesterBasedForm):
+    class Meta:
+        model = Settings
+        exclude: List[str] = []
 
     def save(self, commit=True):
         settings: Settings = super().save(commit=False)

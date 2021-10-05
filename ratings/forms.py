@@ -2,19 +2,20 @@ from typing import List
 
 from django import forms
 
+from common.forms import SemesterBasedModelForm
 from ratings.models import Group, Rating, Station
 
 
 class EditRatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields = ["points"]
+        fields: List[str] = ["points"]
 
 
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields = ["group", "points"]
+        fields: List[str] = ["group", "points"]
 
     def __init__(self, *args, **kwargs):
         self.station: Station = kwargs.pop("station")

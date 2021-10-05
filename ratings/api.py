@@ -1,3 +1,5 @@
+from typing import List
+
 from django.http import JsonResponse
 from rest_framework import serializers, status, viewsets
 from rest_framework.parsers import JSONParser
@@ -10,7 +12,7 @@ from .models import Group
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
-        fields = ("group_name", "group_number")
+        fields: List[str] = ("group_name", "group_number")
 
 
 class TeamsViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors
