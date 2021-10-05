@@ -77,15 +77,16 @@
                 <td>{{station.user|default:"-"}}</td>
                 <td>{{station.name}}</td>
                 <td>{{station.description}}</td>
-                <td>
+                <td><div class='d-grid'>
                     <a
-                        class="btn btn-warning"
+                        class="btn btn-warning btn-block"
                         href="{% url "ratings:edit_station" station.pk %}"
                     ><span class="bi bi-pencil-fill"></span> {% trans "Edit" %}</a>
                     <a
-                        class="btn btn-danger"
+                        class="btn btn-danger btn-block"
                         href="{% url "ratings:del_station" station.pk %}"
                     ><span class="bi bi-trash-fill"></span> {% trans "Delete" %}</a>
+                    </div>
                 </td>
             </tr>
             {% endfor %}
