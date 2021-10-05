@@ -25,7 +25,7 @@ class SemesterBasedModelForm(SemesterBasedForm, forms.ModelForm):
         return instance
 
 
-class SettingsForm(SemesterBasedForm):
+class SettingsForm(SemesterBasedForm, forms.ModelForm):
     class Meta:
         model = Settings
         exclude: List[str] = []
