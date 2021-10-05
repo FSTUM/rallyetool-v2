@@ -1,13 +1,18 @@
-from typing import Dict, Tuple
 import uuid
+from typing import Dict, Tuple
 
 from django.contrib.auth import get_user_model
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models, transaction
 from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 
 from common.models import LoggedModel, Semester
+
+alphanumeric_validator = RegexValidator(
+    r"^[A-Za-z0-9@#$€<>%^&+=_- äüö]{4,}$",
+    "Only alphanumeric characters, @#$€<>%^&+=_-, space and äöü are allowed"
+)
 
 
 class Group(LoggedModel):
@@ -15,7 +20,12 @@ class Group(LoggedModel):
         unique_together = ["name", "semester"]
 
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
-    name = models.CharField(_("Name of your Team"), max_length=20, help_text=_("Visible on a public leaderboard"))
+    name = models.CharField(
+        _("Name of your Team"),
+        max_length=30,
+        help_text=_("Visible on a public leaderboard"),
+        validators=[alphanumeric_validator],
+    )
     total_points = models.IntegerField(default=0)
 
     def __str__(self):
