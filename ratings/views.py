@@ -20,6 +20,8 @@ from .forms import EditRatingForm, GroupForm, RatingForm, StationForm
 from .models import Group, Rating, RegistrationToken, Station
 
 user_has_stand_required: Callable = user_passes_test(lambda u: bool(u.station))  # type: ignore
+
+
 def register_group(request: WSGIRequest) -> HttpResponse:
     semester: Semester = get_object_or_404(Semester, pk=get_semester(request))
 
