@@ -38,20 +38,25 @@ def register_group(request: WSGIRequest) -> HttpResponse:
 
 
 def leaderboard(request: WSGIRequest) -> HttpResponse:
-    groups = Group.objects.order_by("total_points").reverse()
+    semester: Semester = get_object_or_404(Semester, pk=get_semester(request))
+    groups = list(Group.objects.filter(semester=semester).order_by("total_points").reverse())
     place_and_groups = []
     if groups:
-        previous_min = groups[0].total_points
+        first = groups.pop(0)
+        place_and_groups.append((1, first))
+
+        previous_min = first.total_points
         last_printed_place = 1
         for counter, group in enumerate(groups):
             if group.total_points < previous_min:
-                place_and_groups.append((counter, group))
-                last_printed_place = counter
+                # +2 because of 0 based index and because we have popped one already
+                place_and_groups.append((counter + 2, group))
+                last_printed_place = counter + 2
                 previous_min = group.total_points
             else:
                 place_and_groups.append((last_printed_place, group))
 
-    context = {"results": True, "place_and_groups": place_and_groups}
+    context = {"place_and_groups": place_and_groups}
     return render(request, "ratings/leaderboard.html", context)
 
 
