@@ -11,6 +11,7 @@ urlpatterns = [
     path("", RedirectView.as_view(pattern_name="ratings:view_leaderboard"), name="main-view"),
     path("dashboard/", RedirectView.as_view(pattern_name="ratings:view_leaderboard"), name="dashboard"),
     path("leaderboard/", views.leaderboard, name="view_leaderboard"),
+    path("register/", views.register_group, name="register_group"),
     path(
         "ratings/",
         include(

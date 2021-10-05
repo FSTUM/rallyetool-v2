@@ -20,6 +20,18 @@ from .forms import EditRatingForm, GroupForm, RatingForm, StationForm
 from .models import Group, Rating, RegistrationToken, Station
 
 user_has_stand_required: Callable = user_passes_test(lambda u: bool(u.station))  # type: ignore
+def register_group(request: WSGIRequest) -> HttpResponse:
+    semester: Semester = get_object_or_404(Semester, pk=get_semester(request))
+
+    form = GroupForm(request.POST or None, semester=semester)
+    if form.is_valid():
+        group: Group = form.save()
+        messages.success(request, _("Registration of group '%s' successful.").format(group.name))
+        return redirect("main-view")
+    if request.POST:
+        messages.error(request, _("Unsuccessful registration. Invalid information."))
+
+    return render(request=request, template_name="registration/register_group.html", context={"form": form})
 
 
 def leaderboard(request: WSGIRequest) -> HttpResponse:

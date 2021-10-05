@@ -92,6 +92,10 @@
                             class="nav-link {% active_link "ratings:view_leaderboard" %}"
                             href="{% url "ratings:view_leaderboard" %}"
                         >{% trans "Leaderboard" %}</a>
+                        <a
+                            class="nav-link {% active_link "ratings:register_group" %}"
+                            href="{% url "ratings:register_group" %}"
+                        >{% trans "Register" %}</a>
                         {% if user.is_authenticated %}
                         {% if user.station %}
                         <a

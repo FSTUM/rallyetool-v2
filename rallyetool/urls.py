@@ -15,6 +15,8 @@ urlpatterns = [
     path("", include("common.urls")),
     # Ratings
     path("ratings/", include("ratings.urls")),
+    path("r/", RedirectView.as_view(pattern_name="ratings:register_group")),
+    path("register/", RedirectView.as_view(pattern_name="ratings:register_group")),
     # Challenges
     path("challenges/", include("challenges.urls")),
     # Admin
