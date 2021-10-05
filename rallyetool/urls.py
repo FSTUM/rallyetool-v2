@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import include, path
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 
 urlpatterns = [
     # Auth
@@ -23,5 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # Index
     path("", RedirectView.as_view(pattern_name="ratings:main-view"), name="main-view"),
+    # Map
+    path("map/", TemplateView.as_view(template_name="map.html"), name="overview-map"),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -4,8 +4,12 @@
 {% load i18n %}
 {% load django_bootstrap5 %}
 {% load semester %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{ LANGUAGE_CODE }}">
 
 <head>
     <meta charset="UTF-8">
@@ -95,7 +99,11 @@
                         <a
                             class="nav-link {% active_link "ratings:register_group" %}"
                             href="{% url "ratings:register_group" %}"
-                        >{% trans "Register" %}</a>
+                        >{% trans "Register Team" %}</a>
+                        <a
+                            class="nav-link {% active_link "overview-map" %}"
+                            href="{% url "overview-map" %}"
+                        >{% trans "Map" %}</a>
                         {% if user.is_authenticated %}
                         {% if user.station %}
                         <a
@@ -210,9 +218,6 @@
                                     method="post"
                                 >
                                     {% csrf_token %}
-                                    {% get_current_language as LANGUAGE_CODE %}
-                                    {% get_available_languages as LANGUAGES %}
-                                    {% get_language_info_list for LANGUAGES as languages %}
 
                                     {% for language in languages %}
                                     <button
