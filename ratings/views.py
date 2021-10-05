@@ -5,11 +5,12 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import user_passes_test
 from django.core.handlers.wsgi import WSGIRequest
-from django.db.models import QuerySet
+from django.db.models import ProtectedError, QuerySet
 from django.forms import forms
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from common.forms import NewUserForm
@@ -28,7 +29,7 @@ def register_group(request: WSGIRequest) -> HttpResponse:
     form = GroupForm(request.POST or None, semester=semester)
     if form.is_valid():
         group: Group = form.save()
-        messages.success(request, _("Registration of group '%s' successful.").format(group.name))
+        messages.success(request, _("Registration of group '{}' successful.").format(group.name))
         return redirect("main-view")
     if request.POST:
         messages.error(request, _("Unsuccessful registration. Invalid information."))
@@ -78,7 +79,8 @@ def add_rating(request: AuthWSGIRequest) -> HttpResponse:
     station = request.user.station
     form = RatingForm(request.POST or None, station=station)
     if request.POST and form.is_valid():
-        form.save()
+        rating: Rating = form.save()
+        messages.success(request, _("Rating {} was successfully added").format(rating))
         return redirect("ratings:list_ratings")
 
     context = {"form": form}
@@ -97,6 +99,7 @@ def edit_rating(request: AuthWSGIRequest, rating_pk: int) -> HttpResponse:
     form = EditRatingForm(request.POST or None, instance=rating)
     if request.POST and form.is_valid():
         form.save()
+        messages.success(request, _("Rating {} was successfully edited").format(rating))
         return redirect("ratings:list_ratings")
 
     context = {"form": form, "rating": rating}
@@ -112,7 +115,6 @@ def del_rating(request: AuthWSGIRequest, rating_pk: int) -> HttpResponse:
         messages.error(request, _("Unabele to delete a Rating. The organisers have ended this event."))
         redirect("main-view")
     rating: Rating = get_object_or_404(Rating, pk=rating_pk)
-    messages.warning(request, _("Deletion is permanent."))
 
     if request.user.station != rating.station:
         return HttpResponseForbidden(_("You cant delete ratings of stations that are not your own"))
@@ -120,7 +122,9 @@ def del_rating(request: AuthWSGIRequest, rating_pk: int) -> HttpResponse:
     form = forms.Form(request.POST or None)
     if form.is_valid():
         rating.delete()
+        messages.success(request, _("Rating {} was permanently deleted.").format(rating))
         return redirect("ratings:list_ratings")
+    messages.warning(request, _("Deletion is permanent."))
     context = {"form": form, "rating": rating}
     return render(request, "ratings/rating/del_rating.html", context)
 
@@ -148,7 +152,8 @@ def list_stations(request: AuthWSGIRequest) -> HttpResponse:
 def add_station(request: AuthWSGIRequest) -> HttpResponse:
     form = StationForm(request.POST or None)
     if form.is_valid():
-        form.save()
+        station: Station = form.save()
+        messages.success(request, _("Station {} was successfully added.").format(station))
         return redirect("ratings:list_stations")
     context = {"form": form}
     return render(request, "ratings/administration/add_station.html", context)
@@ -161,6 +166,7 @@ def edit_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
     form = StationForm(request.POST or None, instance=station)
     if form.is_valid():
         form.save()
+        messages.success(request, _("Station {} was successfully edited.").format(station))
         return redirect("ratings:list_stations")
     context = {"form": form, "station": station}
     return render(request, "ratings/administration/edit_station.html", context)
@@ -169,12 +175,25 @@ def edit_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
 @superuser_required
 def del_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
     station: Station = get_object_or_404(Station, pk=station_pk)
-    messages.warning(request, _("Deletion is permanent."))
 
     form = forms.Form(request.POST or None)
     if form.is_valid():
-        station.delete()
+        try:
+            station.delete()
+        except ProtectedError as error:
+            ratings = error.args[1]
+            formatted_ratings = "; ".join([f"{rating.group} ({rating.points}p)" for rating in ratings])
+            messages.error(
+                request,
+                mark_safe(  # nosec: fully defined
+                    _(
+                        "Unable to delete the station '{}'.<br/>" "It is currently protected by its ratings:<br/>" "{}",
+                    ).format(station, formatted_ratings),
+                ),
+            )
+        messages.success(request, _("station {} was permanently deleted.").format(station))
         return redirect("ratings:list_stations")
+    messages.warning(request, _("Deletion is permanent."))
     context = {"form": form, "station": station}
     return render(request, "ratings/administration/del_station.html", context)
 

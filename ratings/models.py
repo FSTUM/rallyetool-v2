@@ -72,7 +72,7 @@ class Rating(LoggedModel):
         self.group.save()
 
     def __str__(self):
-        return f"{self.group} - {self.station}"
+        return f"{self.group} ({self.points}) at {self.station}"
 
 
 class RegistrationToken(LoggedModel):
