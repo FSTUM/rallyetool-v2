@@ -2,17 +2,18 @@ import uuid
 from typing import Dict, Tuple
 
 from django.contrib.auth import get_user_model
-from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
+from django.core.validators import (
+    MaxLengthValidator,
+    MaxValueValidator,
+    MinLengthValidator,
+    MinValueValidator,
+    RegexValidator,
+)
 from django.db import models, transaction
 from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 
 from common.models import LoggedModel, Semester
-
-alphanumeric_validator = RegexValidator(
-    r"^[A-Za-z0-9@#$€<>%^&+=_- äüö]{4,}$",
-    "Only alphanumeric characters, @#$€<>%^&+=_-, space and äöü are allowed",
-)
 
 
 class Group(LoggedModel):
@@ -24,7 +25,14 @@ class Group(LoggedModel):
         _("Name of your Team"),
         max_length=30,
         help_text=_("Visible on a public leaderboard"),
-        validators=[alphanumeric_validator],
+        validators=[
+            MinLengthValidator(4),
+            MaxLengthValidator(30),
+            RegexValidator(
+                r"^[A-Za-z0-9@#$€<>%^&+=_\- äüöß]+$",
+                _("Only alphanumeric characters, @#$€<>%^&+=_-, space and äöüß are allowed"),
+            ),
+        ],
     )
     total_points = models.IntegerField(default=0)
 
