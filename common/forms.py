@@ -55,7 +55,7 @@ class NewUserForm(UserCreationForm):
             "150 characters or fewer.</li>"
             "<li>The email does not have to belong to you. Use a fake-email.</li>"
             "<li>We dont sent mails to this address.</li>"
-            "<li><b>No Personal information!</b></li>"
+            "<li><b>No personally identifying information!</b></li>"
             "</ul>",
         ),
         max_length=150,
@@ -71,7 +71,7 @@ class NewUserForm(UserCreationForm):
                 "<ul>"
                 "<li>Please choose an Username you can tell to the organisers. </li>"
                 "<li>150 characters or fewer. Letters, digits and @/./+/-/_ only.</li>"
-                "<li><b>No Personal information!</b></li>"
+                "<li><b>No personally identifying information!</b></li>"
                 "</ul>",
             ),
         }

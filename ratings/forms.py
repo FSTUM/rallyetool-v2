@@ -47,7 +47,7 @@ class GroupForm(SemesterBasedModelForm):
             "name": _(
                 "<ul>"
                 "<li>Required.</li>"
-                "<li>Only alphanumeric characters, @#$€<>%^&+=_-, space and äöü are allowed.</li>"
+                "<li>Only alphanumeric characters, @#$€<>%^&+=_-, space and äöüß are allowed.</li>"
                 "<li>Minimum of 4 characters</li>"
                 "<li>Maximum of 30 characters</li>"
                 "</ul>",

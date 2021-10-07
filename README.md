@@ -108,6 +108,30 @@ If you want to add a dependency that is in `pip` add it to the appropriate `requ
 If you want to add a dependency that is in `npm` run `npm i DEPENDENCY`. **Make shure that you do only commit the
 nessesary files to git.**
 
+# Translation
+
+1. Update the `.po`-files with
+
+```bash
+python manage.py makemessages -a
+```
+
+2. Edit the `.po`-file. [Poedit](https://poedit.net) is an excellent GUI for this!
+
+    In the Settings please change:
+
+    |        Setting | to value |
+    | -------------: | -------- |
+    |           name | `$NAME`  |
+    |          email | `$EMAIL` |
+    |   Line endings | `Unix`   |
+    |        Wrap at | `120`    |
+    | check-spelling | `True`   |
+
+3. Edit the `.po`-files, e.g. `guidedtours/locale/de/LC_MESSAGES/django.po`.
+
+Note that `pre-commit` will automatically compile the translations for you.
+
 # Staging
 
 An staging environment is offered at rallye.frank.elsinga.de

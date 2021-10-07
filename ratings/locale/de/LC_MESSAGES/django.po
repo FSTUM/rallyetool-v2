@@ -1,0 +1,288 @@
+msgid ""
+msgstr ""
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: ratings/forms.py:48
+msgid ""
+"<ul><li>Required.</li><li>Only alphanumeric characters, @#$€<>%^&+=_-, space "
+"and äöüß are allowed.</li><li>Minimum of 4 characters</li><li>Maximum of 30 "
+"characters</li></ul>"
+msgstr ""
+"<ul><li>Notwendig.</li><li>Erlaubt sind nur alphanumerische Zeichen, @#$€<>"
+"%^&+=_-, Leerzeichen und äöü.</li><li>Minimum von 4 Zeichen</li><li>Maximum "
+"von 30 Zeichen</li></ul>"
+
+#: ratings/models.py:25 ratings/templates/ratings/leaderboard.html:23
+msgid "Name of your Team"
+msgstr "Teamname"
+
+#: ratings/models.py:27
+msgid "Visible on a public leaderboard"
+msgstr "Sichtbar in einer öffentlichen Rangliste"
+
+#: ratings/models.py:33
+msgid "Only alphanumeric characters, @#$€<>%^&+=_-, space and äöüß are allowed"
+msgstr ""
+"Nur alphanumerische Zeichen, @#$€<>%^&+=_-, Leerzeichen und äöüß sind erlaubt"
+
+#: ratings/models.py:44
+msgid "Name of the Station"
+msgstr "Stationsname"
+
+#: ratings/models.py:44 ratings/models.py:48
+msgid "Only internally visible"
+msgstr "Nur intern sichtbar"
+
+#: ratings/models.py:46
+msgid "Description of the Station"
+msgstr "Stationsbeschreibung"
+
+#: ratings/templates/ratings/administration/add_station.html:5
+#: ratings/templates/ratings/administration/add_station.html:22
+msgid "Add station"
+msgstr "Station hinzufügen"
+
+#: ratings/templates/ratings/administration/add_station.html:18
+#: ratings/templates/ratings/administration/del_station.html:18
+#: ratings/templates/ratings/administration/edit_station.html:18
+#: ratings/templates/ratings/rating/add_rating.html:18
+#: ratings/templates/ratings/rating/del_rating.html:27
+#: ratings/templates/ratings/rating/edit_rating.html:27
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ratings/templates/ratings/administration/del_station.html:5
+#: ratings/templates/ratings/administration/del_station.html:22
+msgid "Delete station"
+msgstr "Station löschen"
+
+#: ratings/templates/ratings/administration/edit_station.html:5
+#: ratings/templates/ratings/administration/edit_station.html:22
+msgid "Edit station"
+msgstr "Station bearbeiten"
+
+#: ratings/templates/ratings/administration/list_stations.html:18
+msgid "List all stations"
+msgstr "Alle Station auflisten"
+
+#: ratings/templates/ratings/administration/list_stations.html:26
+msgid "Add new Station"
+msgstr "Neue Station hinzufügen"
+
+#: ratings/templates/ratings/administration/list_stations.html:37
+msgid "Show link for user registration"
+msgstr "Link zur Benutzerregistrierung anzeigen"
+
+#: ratings/templates/ratings/administration/list_stations.html:40
+msgid "User registration is disabled in the Settings"
+msgstr "Die Benutzerregistrierung ist in den Einstellungen deaktiviert"
+
+#: ratings/templates/ratings/administration/list_stations.html:67
+#: ratings/templates/ratings/rating/list_ratings.html:39
+msgid "Last Update"
+msgstr "Letzes Update"
+
+#: ratings/templates/ratings/administration/list_stations.html:68
+msgid "User"
+msgstr "Benutzer"
+
+#: ratings/templates/ratings/administration/list_stations.html:69
+msgid "Name"
+msgstr "Name"
+
+#: ratings/templates/ratings/administration/list_stations.html:70
+msgid "Description"
+msgstr "Beschreibung"
+
+#: ratings/templates/ratings/administration/list_stations.html:71
+#: ratings/templates/ratings/rating/list_ratings.html:42
+msgid "Actions"
+msgstr "Aktionen"
+
+#: ratings/templates/ratings/administration/list_stations.html:86
+#: ratings/templates/ratings/rating/list_ratings.html:55
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: ratings/templates/ratings/administration/list_stations.html:90
+#: ratings/templates/ratings/rating/list_ratings.html:59
+msgid "Delete"
+msgstr "Löschen"
+
+#: ratings/templates/ratings/administration/list_stations.html:99
+msgid "No stations yet."
+msgstr "Noch keine Stationen."
+
+#: ratings/templates/ratings/base_administration.html:8
+msgid "Stations"
+msgstr "Stationen"
+
+#: ratings/templates/ratings/base_administration.html:12
+msgid "List stations"
+msgstr "Stationen auflisten"
+
+#: ratings/templates/ratings/base_administration.html:16
+msgid "Add new station"
+msgstr "Neue Station hinzufügen"
+
+#: ratings/templates/ratings/base_ratings.html:11
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: ratings/templates/ratings/base_ratings.html:13
+msgid "Ratings"
+msgstr "Bewertungen"
+
+#: ratings/templates/ratings/base_ratings.html:17
+msgid "List previous ratings"
+msgstr "Vorherige bewertungen auflisten"
+
+#: ratings/templates/ratings/base_ratings.html:21
+msgid "Add new rating"
+msgstr "Neue Bewertung hinzufügen"
+
+#: ratings/templates/ratings/leaderboard.html:12
+msgid "Leaderboard"
+msgstr "Rangliste"
+
+#: ratings/templates/ratings/leaderboard.html:22
+msgid "Place"
+msgstr "Platz"
+
+#: ratings/templates/ratings/leaderboard.html:24
+msgid "Points"
+msgstr "Punkte"
+
+#: ratings/templates/ratings/rating/add_rating.html:5
+#: ratings/templates/ratings/rating/add_rating.html:22
+msgid "Add rating"
+msgstr "Bewertung hinzufügen"
+
+#: ratings/templates/ratings/rating/del_rating.html:6
+#, python-format
+msgid "Delete rating %(rating)s"
+msgstr "Bewertung %(rating)s löschen"
+
+#: ratings/templates/ratings/rating/del_rating.html:31
+msgid "Delete rating"
+msgstr "Bewertung löschen"
+
+#: ratings/templates/ratings/rating/edit_rating.html:6
+#, python-format
+msgid "Edit rating %(rating)s"
+msgstr "Bewertung %(rating)s bearbeiten"
+
+#: ratings/templates/ratings/rating/edit_rating.html:31
+msgid "Edit rating"
+msgstr "Bewertung bearbeiten"
+
+#: ratings/templates/ratings/rating/list_ratings.html:17
+#, python-format
+msgid "List all rating by station %(station)s"
+msgstr "Alle Bewertungen von Station %(station)s auflisten"
+
+#: ratings/templates/ratings/rating/list_ratings.html:28
+msgid "Add new Rating"
+msgstr "Neues Bewertung hinzufügen"
+
+#: ratings/templates/ratings/rating/list_ratings.html:40
+msgid "Teamname"
+msgstr "Teamname"
+
+#: ratings/templates/ratings/rating/list_ratings.html:41
+msgid "Points awarded"
+msgstr "Vergebene Punkte"
+
+#: ratings/templates/ratings/rating/list_ratings.html:67
+msgid "No ratings yet."
+msgstr "Noch keine Bewertungen."
+
+#: ratings/views.py:32
+msgid "Registration of group '{}' successful."
+msgstr "Registrierung der Gruppe '{}' erfolgreich."
+
+#: ratings/views.py:35 ratings/views.py:227
+msgid "Unsuccessful registration. Invalid information."
+msgstr "Die Registrierung ist fehlgeschlagen. Ungültige Informationen."
+
+#: ratings/views.py:68
+msgid "The organisers have ended this event."
+msgstr "Die Organisatoren haben diese Veranstaltung beendet."
+
+#: ratings/views.py:81
+msgid "Unable to add a Rating. The organisers have ended this event."
+msgstr ""
+"Leider kannst du keine Bewertungen mehr abgeben. Die Organisatoren haben "
+"diese Veranstaltung beendet."
+
+#: ratings/views.py:88
+msgid "Rating {} was successfully added"
+msgstr "Bewertung {} wurde erfolgreich hinzugefügt"
+
+#: ratings/views.py:101
+msgid "Unable to edit a Rating. The organisers have ended this event."
+msgstr ""
+"Es ist nicht möglich, eine Bewertung zu bearbeiten. Die Organisatoren haben "
+"diese Veranstaltung beendet."
+
+#: ratings/views.py:107
+msgid "Rating {} was successfully edited"
+msgstr "Bewertung {} wurde erfolgreich bearbeitet"
+
+#: ratings/views.py:120
+msgid "Unable to delete a Rating. The organisers have ended this event."
+msgstr ""
+"Leider ist es nicht möglich, eine Bewertung zu löschen. Die Organisatoren "
+"haben diese Veranstaltung beendet."
+
+#: ratings/views.py:125
+msgid "You cant delete ratings of stations that are not your own"
+msgstr ""
+"Sie können keine Bewertungen von Stationen löschen, die nicht Ihre eigenen "
+"sind"
+
+#: ratings/views.py:130
+msgid "Rating {} was permanently deleted."
+msgstr "Die Bewertung {} wurde endgültig gelöscht."
+
+#: ratings/views.py:132 ratings/views.py:201
+msgid "Deletion is permanent."
+msgstr "Löschen ist endgültig."
+
+#: ratings/views.py:161
+msgid "Station {} was successfully added."
+msgstr "Station {} wurde erfolgreich hinzugefügt."
+
+#: ratings/views.py:174
+msgid "Station {} was successfully edited."
+msgstr "Station {} wurde erfolgreich bearbeitet."
+
+#: ratings/views.py:195
+msgid ""
+"Unable to delete the station '{}'.<br/>It is currently protected by its "
+"ratings:<br/>{}"
+msgstr ""
+"Es ist nicht möglich, die Station '{}' zu löschen.<br/>Er ist derzeit durch "
+"seine Bewertungen geschützt:<br/>{}"
+
+#: ratings/views.py:199
+msgid "station {} was permanently deleted."
+msgstr "Station {} wurde permanent gelöscht."
+
+#: ratings/views.py:212
+msgid ""
+"User Registration is disabeled in the settings. Please contact the "
+"organisers if you think that this is an error."
+msgstr ""
+"Die Benutzerregistrierung ist in den Einstellungen deaktiviert. Bitte "
+"kontaktieren Sie die Organisatoren, wenn Sie glauben, dass dies ein Fehler "
+"ist."
+
+#: ratings/views.py:224
+msgid "Registration successful."
+msgstr "Die Benutzerregistrierung war erfolgreich."

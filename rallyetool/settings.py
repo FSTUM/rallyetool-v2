@@ -96,11 +96,11 @@ LANGUAGES = (
 )
 LOCALE_NAME = "de"
 TIME_ZONE = "Europe/Berlin"
-
-USE_I18N = False
+USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 USE_THOUSAND_SEPARATOR = True
+LOCALE_PATHS = ["locale"]
 
 de_formats.DATETIME_FORMAT = "d.m.Y H:i:s"
 de_formats.DATE_FORMAT = "d.m.Y"

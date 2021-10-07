@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: common/forms.py:51
+msgid "Email, you want to log in with"
+msgstr "Email, mit der du dich einloggen willst"
+
+#: common/forms.py:53
+msgid ""
+"<ul><li>Please choose an (syntactically valid) email that you can remember. "
+"150 characters or fewer.</li><li>The email does not have to belong to you. "
+"Use a fake-email.</li><li>We dont sent mails to this address.</li><li><b>No "
+"personally identifying information!</b></li></ul>"
+msgstr ""
+"<ul><li>Bitte wählen Sie eine (syntaktisch gültige) E-Mail, die Du dir "
+"merken können. 150 Zeichen oder weniger.</li><li>Die E-Mail muss nicht zu "
+"Ihnen gehören. Verwenden Sie eine fiktive E-Mail.</li><li>Wir senden keine "
+"Emails an diese Adresse.</li><li><b>Keine personenbezogenen Daten!</b></"
+"li></ul>"
+
+#: common/forms.py:68
+msgid "Username, you can tell to the organisers"
+msgstr "Benutzername, den Du den Organisatoren mitteilen kannst"
+
+#: common/forms.py:71
+msgid ""
+"<ul><li>Please choose an Username you can tell to the organisers. </"
+"li><li>150 characters or fewer. Letters, digits and @/./+/-/_ only.</"
+"li><li><b>No personally identifying information!</b></li></ul>"
+msgstr ""
+"<ul><li>Bitte wählen Sie einen Benutzernamen, den Du den Organisatoren "
+"mitteilen kannst. </li><li>150 Zeichen oder weniger. Nur Buchstaben, Ziffern "
+"und @/./+/-/_.</li><li><b>Keine personenbezogenen Daten!</b></li></ul>"
+
+#: common/models.py:55
+msgid "Winter semester"
+msgstr "Wintersemester"
+
+#: common/models.py:56
+msgid "Summer semester"
+msgstr "Wintersemester"
+
+#: common/models.py:59
+msgid "Semester"
+msgstr "Semester"
+
+#: common/models.py:61
+msgid "Year"
+msgstr "Jahr"
