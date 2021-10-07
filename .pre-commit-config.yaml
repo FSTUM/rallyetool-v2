@@ -16,6 +16,13 @@ repos:
           - id: mixed-line-ending
             args: [--fix=lf]
           - id: requirements-txt-fixer
+    - repo: local
+      hooks:
+          - id: django-makemigrations
+            name: django-migrations
+            entry: ./manage.py makemigrations
+            language: system
+            pass_filenames: false
     - repo: https://github.com/paulhfischer/pre-commit-hooks
       rev: v1.2.14
       hooks:
@@ -66,11 +73,6 @@ repos:
                 - flake8-django
     - repo: local
       hooks:
-          - id: django-makemigrations
-            name: django-migrations
-            entry: ./manage.py makemigrations
-            language: system
-            pass_filenames: false
           - id: django-check
             name: django-check
             entry: ./manage.py check --fail-level=INFO
