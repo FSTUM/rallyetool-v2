@@ -1,9 +1,12 @@
 from typing import List
 
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from common.forms import SemesterBasedModelForm
+from common.models import Settings
 from ratings.models import Group, Rating, Station
 
 
@@ -53,3 +56,15 @@ class GroupForm(SemesterBasedModelForm):
                 "</ul>",
             ),
         }
+
+
+class CaptchaGroupForm(GroupForm):
+    _settings: Settings = Settings.load()
+    captcha = ReCaptchaField(
+        widget=ReCaptchaV3(attrs={"required_score": _settings.recaptcha_required_score}),
+        public_key=_settings.recaptcha_public_key,
+        private_key=_settings.recaptcha_private_key,
+    )
+
+    class Meta(GroupForm.Meta):
+        fields: List[str] = ["name", "captcha"]

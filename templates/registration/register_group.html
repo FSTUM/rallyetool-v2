@@ -44,6 +44,9 @@
                     </div>
                     <div class="modal-body">
                         <p>{% trans "I confirm that our group-name does not contain personal identifing information." %}</p>
+                        {% if form.captcha %}
+                        <p>{{ form.captcha }}</p>
+                        {% endif %}
                     </div>
                     <div class="modal-footer">
                         <button
