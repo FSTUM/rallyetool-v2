@@ -93,3 +93,17 @@ def get_semester(request: HttpRequest) -> int:
 class Settings(SingletonModel, LoggedModel):
     station_registration_availible = models.BooleanField(verbose_name="Stations can be registered", default=False)
     station_rating_avialible = models.BooleanField(verbose_name="Stations rate groups", default=False)
+
+    group_registration_available = models.BooleanField(verbose_name="Groups can be registered", default=True)
+    recaptcha_required_score = models.FloatField(
+        verbose_name="reCAPTCHA required score. "
+        "(see https://developers.google.com/recaptcha/docs/v3#interpreting_the_score)",
+        default=0.5,
+    )
+    recaptcha_private_key = models.CharField(
+        max_length=200,
+        default="",
+        blank=True,
+        verbose_name="reCAPTCHA PRIVATE_KEY",
+    )
+    recaptcha_public_key = models.CharField(max_length=200, default="", blank=True, verbose_name="reCAPTCHA PUBLIC_KEY")
