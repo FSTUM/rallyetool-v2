@@ -1,6 +1,7 @@
 from typing import List
 
 from django import forms
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
@@ -31,9 +32,9 @@ class SettingsForm(SemesterBasedForm, forms.ModelForm):
         exclude: List[str] = []
 
     def save(self, commit=True):
-        settings: Settings = super().save(commit=False)
+        setting: Settings = super().save(commit=False)
         # if station_registration is active a RegistrationToken should exist. else not
-        if settings.station_registration_availible:
+        if setting.station_registration_availible:
             RegistrationToken.objects.get_or_create(semester=self.semester)
         else:
             try:
@@ -79,6 +80,8 @@ class NewUserForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data["email"]
+        if getattr(settings, "AUTHENTICATION_BACKENDS", None) and len(settings.AUTHENTICATION_BACKENDS) > 1:
+            user.backend = settings.AUTHENTICATION_BACKENDS[-1]
         if commit:
             user.save()
         return user
