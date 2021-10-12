@@ -233,4 +233,9 @@ def register_user(request: WSGIRequest, semester_pk: int, registration_uuid: UUI
     if request.POST:
         messages.error(request, _("Unsuccessful registration. Invalid information."))
 
-    return render(request=request, template_name="registration/register_user.html", context={"form": form})
+    return render(request, "registration/register_user.html", {"form": form})
+
+
+def overview_map(request):
+    stations: QuerySet[Station] = list(Station.objects.all())
+    return render(request, "registration/map.html", {"stations": stations})

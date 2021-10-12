@@ -41,12 +41,18 @@ class Group(LoggedModel):
 
 
 class Station(LoggedModel):
-    name = models.CharField(_("Name of the Station"), max_length=150, help_text=_("Only internally visible"))
-    description = models.CharField(
+    _visible_on = _("Visible on the map")
+    name = models.CharField(_("Name of the Station"), max_length=150, help_text=_visible_on)
+
+    location_description = models.CharField(
         _("Description of the Station"),
         max_length=500,
-        help_text=_("Only internally visible"),
+        default="Location unknown",
+        help_text=_visible_on,
     )
+    longitude = models.FloatField(verbose_name=_("Longitude of the sation"), default=11.671, help_text=_visible_on)
+    latitude = models.FloatField(verbose_name=_("Latitude of the sation"), default=48.265, help_text=_visible_on)
+
     user = models.OneToOneField(
         get_user_model(),
         on_delete=models.SET_NULL,

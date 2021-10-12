@@ -1,0 +1,106 @@
+{% extends "base_single_card_layout.html" %}
+{% load l10n %}
+{% load static %}
+{% load i18n %}
+
+{% block rallye_common_headercontent %}{% trans "Map showing where the stations are" %}{% endblock %}
+
+{% block extrahead %}
+<script src="{% static "maplibre-gl/dist/maplibre-gl.js" %}"></script>
+<link
+    href="{% static "maplibre-gl/dist/maplibre-gl.css" %}"
+    rel="stylesheet"
+/>
+{% endblock %}
+
+{% block rallye_common_content %}
+<style>
+    .map {
+        width: calc(100% + 2rem);
+        height: 60rem;
+        margin: -1rem;
+        padding: 1rem;
+    }
+</style>
+<div
+    class="map"
+    id="map"
+></div>
+<script>
+    /* global maplibregl */
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: 'https://api.maptiler.com/maps/f37dd045-7438-4fff-9bc2-73fce2ba974f/style.json?key=qMbPTihz6isJJ483G8aF',
+        antialias: true, // create the gl context with MSAA antialiasing, so custom layers are antialiased
+        center: [11.671, 48.265],
+        zoom: 15,
+        locale: '{{ LANGUAGE_CODE }}',
+    });
+
+    map.on('load', () => {
+        map.addSource('places', {
+            type: 'geojson',
+            data: {
+                type: 'FeatureCollection',
+                features: [
+                    {% for station in stations %}
+                    {
+                        type: 'Feature',
+                        properties: {
+                            description: '<strong>{{station.name}}</strong><p>{{station.location_description}}</p>',
+                        },
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [{{ station.longitude|unlocalize }}, {{ station.latitude|unlocalize }}],
+                        },
+                    },
+                    {% endfor %}
+                ],
+            },
+        });
+        // Add a layer showing the places.
+        map.addLayer({
+            id: 'places',
+            type: 'circle',
+            source: 'places',
+            paint: {
+                'circle-color': '#fb4242',
+                'circle-radius': 6,
+                'circle-stroke-width': 1,
+                'circle-stroke-color': '#ffffff',
+            },
+        });
+
+        // Create a popup, but don't add it to the map yet.
+        const popup = new maplibregl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+        });
+
+        map.on('mouseenter', 'places', (e) => {
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = 'pointer';
+
+            // Copy coordinates array.
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const description = e.features[0].properties.description;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            // Populate the popup and set its coordinates
+            // based on the feature found.
+            popup.setLngLat(coordinates).setHTML(description).addTo(map);
+        });
+
+        map.on('mouseleave', 'places', () => {
+            map.getCanvas().style.cursor = '';
+            popup.remove(); /* eslint prefer-destructuring: off */
+        });
+    });
+    </script>
+{% endblock %}

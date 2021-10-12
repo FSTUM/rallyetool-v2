@@ -46,6 +46,7 @@ urlpatterns = [
             ],
         ),
     ),
+    path("map/", views.overview_map, name="overview-map"),
 ]
 if settings.API:
     router = routers.DefaultRouter()
