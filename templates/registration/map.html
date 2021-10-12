@@ -4,6 +4,8 @@
 {% load i18n %}
 
 {% block rallye_common_headercontent %}{% trans "Map showing where the stations are" %}{% endblock %}
+{% block rallye_card-body-override %} style="padding: 0;"{% endblock %}
+{% block rallye_common_content_card_override %} {% endblock %}
 
 {% block extrahead %}
 <script src="{% static "maplibre-gl/dist/maplibre-gl.js" %}"></script>
@@ -16,10 +18,8 @@
 {% block rallye_common_content %}
 <style>
     .map {
-        width: calc(100% + 2rem);
+        width: 100%;
         height: 60rem;
-        margin: -1rem;
-        padding: 1rem;
     }
 </style>
 <div

@@ -5,7 +5,10 @@
     <div class="card-header">
         {% block rallye_common_headercontent %}{% endblock %}
     </div>
-    <div class="card-body">
+    <div
+        class="card-body"
+        {% block rallye_card-body-override %}{% endblock %}
+    >
         {% block rallye_common_content %}{% endblock %}
     </div>
 </div>
