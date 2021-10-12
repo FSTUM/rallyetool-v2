@@ -37,32 +37,69 @@
         locale: '{{ LANGUAGE_CODE }}',
     });
 
-    map.on('load', () => {
-        map.addSource('places', {
-            type: 'geojson',
-            data: {
-                type: 'FeatureCollection',
-                features: [
-                    {% for station in stations %}
-                    {
-                        type: 'Feature',
-                        properties: {
-                            description: '<strong>{{station.name}}</strong><p>{{station.location_description}}</p>',
-                        },
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [{{ station.longitude|unlocalize }}, {{ station.latitude|unlocalize }}],
-                        },
-                    },
-                    {% endfor %}
-                ],
+    const stations = {
+        type: 'FeatureCollection',
+        features: [
+            {% for station in stations %}
+            {
+                type: 'Feature',
+                properties: {
+                    description: '<strong>{{station.name}}</strong><p>{{station.location_description}}</p>',
+                },
+                geometry: {
+                    type: 'Point',
+                    coordinates: [{{ station.longitude|unlocalize }}, {{ station.latitude|unlocalize }}],
+                },
             },
+            {% endfor %}
+        ],
+    };
+
+    const ubahn = {
+        type: 'FeatureCollection',
+        features: [
+            {
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [11.6714, 48.26479],
+                },
+            },
+        ],
+    };
+
+    map.on('load', () => {
+        map.addSource('ubahn', {
+            type: 'geojson',
+            data: ubahn,
         });
+        map.addSource('stations', {
+            type: 'geojson',
+            data: stations,
+        });
+
+        map.loadImage(
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/U-Bahn.svg/200px-U-Bahn.svg.png',
+            (error, image) => {
+                if (error) throw error;
+                map.addImage('ubahn', image);
+                map.addLayer({
+                    id: 'ubahn',
+                    type: 'symbol',
+                    source: 'ubahn',
+                    layout: {
+                        'icon-image': 'ubahn',
+                        'icon-size': 0.1,
+                    },
+                });
+            },
+        );
+
         // Add a layer showing the places.
         map.addLayer({
-            id: 'places',
+            id: 'stations',
             type: 'circle',
-            source: 'places',
+            source: 'stations',
             paint: {
                 'circle-color': '#fb4242',
                 'circle-radius': 6,
