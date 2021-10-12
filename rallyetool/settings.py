@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     "active_link",
     "django.contrib.humanize",
     "rest_framework",
-    "captcha",
     "ratings",
     "challenges",
     "common",
@@ -68,9 +67,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "rallyetool.wsgi.application"
-
-# RECAPTCHA
-SILENCED_SYSTEM_CHECKS = ["captcha.recaptcha_test_key_error"]
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

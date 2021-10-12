@@ -17,29 +17,16 @@ from common.forms import NewUserForm
 from common.models import get_semester, Semester, Settings
 from common.views import AuthWSGIRequest, rallye_login_required, superuser_required
 
-from .forms import CaptchaGroupForm, EditRatingForm, GroupForm, RatingForm, StationForm
+from .forms import EditRatingForm, GroupForm, RatingForm, StationForm
 from .models import Group, Rating, RegistrationToken, Station
 
 user_has_stand_required: Callable = user_passes_test(lambda u: bool(u.station))  # type: ignore
 
 
 def register_group(request: WSGIRequest) -> HttpResponse:
-    settings: Settings = Settings.load()
-    if not settings.group_registration_available:
-        messages.error(
-            request,
-            _(
-                "Registration of new groups is closed. " "Contact the Organisers if you think this is a mistake.",
-            ),
-        )
-        return redirect("main-view")
     semester: Semester = get_object_or_404(Semester, pk=get_semester(request))
 
-    setting: Settings = Settings.load()
-    if setting.recaptcha_private_key and setting.recaptcha_public_key:
-        form: Union[CaptchaGroupForm, GroupForm] = CaptchaGroupForm(request.POST or None, semester=semester)
-    else:
-        form = GroupForm(request.POST or None, semester=semester)
+    form = GroupForm(request.POST or None, semester=semester)
     if form.is_valid():
         group: Group = form.save()
         messages.success(request, _("Registration of group '{}' successful.").format(group.name))
