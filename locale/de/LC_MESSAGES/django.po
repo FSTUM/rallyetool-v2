@@ -6,12 +6,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-
-#: rallyetool/settings.py:94
+#: rallyetool/settings.py:93
 msgid "German"
 msgstr "Deutsch"
 
-#: rallyetool/settings.py:95
+#: rallyetool/settings.py:94
 msgid "English"
 msgstr "Englisch"
 
@@ -60,7 +59,7 @@ msgstr "Einloggen"
 msgid "Data protection"
 msgstr "Datenschutz"
 
-#: templates/base.html:266
+#: templates/base.html:272
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -68,14 +67,26 @@ msgstr "Impressum"
 msgid "Navigation"
 msgstr "Navigation"
 
-#: templates/map.html:5
-msgid "Map showing where the stations are"
-msgstr "Karte mit den Standorten der Stationen"
-
 #: templates/registration/login.html:8
 #: templates/registration/register_user.html:9
 msgid "Wellcome to the Rallyetool"
 msgstr "Willkommen beim Rallyetool"
+
+#: templates/registration/map.html:6
+msgid "Map showing where the stations are"
+msgstr "Karte mit den Standorten der Stationen"
+
+#: templates/registration/map.html:84
+msgid "Chemistry"
+msgstr "Chemie"
+
+#: templates/registration/map.html:94
+msgid "Physics"
+msgstr "Physik"
+
+#: templates/registration/map.html:104
+msgid "Canteen"
+msgstr "Mensa"
 
 #: templates/registration/register_group.html:9
 msgid "Group-name registration"
@@ -132,8 +143,7 @@ msgid ""
 "I confirm that our group-name does not contain personal identifing "
 "information."
 msgstr ""
-"Ich bestätige, dass unser Gruppenname keine personenbezogenen Daten "
-"enthält."
+"Ich bestätige, dass unser Gruppenname keine personenbezogenen Daten enthält."
 
 #: templates/registration/register_group.html:57
 msgid "Confirm registration"
@@ -171,6 +181,11 @@ msgid ""
 msgstr ""
 "Wenn Sie bereits ein Konto haben, <a href=\"%(login_url)s\">melde dich sich "
 "stattdessen an</a>."
+
+#: venv/lib/python3.9/site-packages/captcha/fields.py:26
+#: venv/lib/python3.9/site-packages/captcha/fields.py:27
+msgid "Error verifying reCAPTCHA, please try again."
+msgstr "Fehler bei der Überprüfung des reCAPTCHA, bitte versuchen Sie es erneut."
 
 #: venv/lib/python3.9/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"

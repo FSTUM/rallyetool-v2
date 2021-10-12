@@ -55,6 +55,72 @@
         ],
     };
 
+    const labels = {
+        type: 'FeatureCollection',
+        features: [
+            {
+                type: 'Feature',
+                properties: {
+                    description: 'MI',
+                },
+                geometry: {
+                    type: 'Point',
+                    coordinates: [11.66857, 48.26241],
+                },
+            },
+            {
+                type: 'Feature',
+                properties: {
+                    description: 'MW',
+                },
+                geometry: {
+                    type: 'Point',
+                    coordinates: [11.66903, 48.2657],
+                },
+            },
+            {
+                type: 'Feature',
+                properties: {
+                    description: '{% trans "Chemistry" %}',
+                },
+                geometry: {
+                    type: 'Point',
+                    coordinates: [11.66934, 48.26884],
+                },
+            },
+            {
+                type: 'Feature',
+                properties: {
+                    description: '{% trans "Physics" %}',
+                },
+                geometry: {
+                    type: 'Point',
+                    coordinates: [11.67563, 48.26729],
+                },
+            },
+            {
+                type: 'Feature',
+                properties: {
+                    description: '{% trans "Canteen" %}',
+                },
+                geometry: {
+                    type: 'Point',
+                    coordinates: [11.67203, 48.26838],
+                },
+            },
+            {
+                type: 'Feature',
+                properties: {
+                    description: 'Galileo',
+                },
+                geometry: {
+                    type: 'Point',
+                    coordinates: [11.67229, 48.26537],
+                },
+            },
+        ],
+    };
+
     const ubahn = {
         type: 'FeatureCollection',
         features: [
@@ -69,6 +135,10 @@
     };
 
     map.on('load', () => {
+        map.addSource('labels', {
+            type: 'geojson',
+            data: labels,
+        });
         map.addSource('ubahn', {
             type: 'geojson',
             data: ubahn,
@@ -94,6 +164,24 @@
                 });
             },
         );
+
+        map.addLayer({
+            id: 'labels',
+            type: 'symbol',
+            source: 'labels',
+            layout: {
+                'text-field': ['get', 'description'],
+                'text-variable-anchor': ['center'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+            },
+            paint: {
+                'text-color': '#ffffff',
+                'text-halo-blur': 1,
+                'text-halo-width': 1,
+                'text-halo-color': '#000000',
+            },
+        });
 
         // Add a layer showing the places.
         map.addLayer({

@@ -6,12 +6,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-
-#: common/forms.py:51
+#: common/forms.py:52
 msgid "Email, you want to log in with"
 msgstr "Email, mit der du dich einloggen willst"
 
-#: common/forms.py:53
+#: common/forms.py:54
 msgid ""
 "<ul><li>Please choose an (syntactically valid) email that you can remember. "
 "150 characters or fewer.</li><li>The email does not have to belong to you. "
@@ -21,14 +20,14 @@ msgstr ""
 "<ul><li>Bitte wählen Sie eine (syntaktisch gültige) E-Mail, die Du dir "
 "merken können. 150 Zeichen oder weniger.</li><li>Die E-Mail muss nicht zu "
 "Ihnen gehören. Verwenden Sie eine fiktive E-Mail.</li><li>Wir senden keine "
-"Emails an diese Adresse.</li><li><b>Keine personenbezogenen Daten!</b></"
-"li></ul>"
+"Emails an diese Adresse.</li><li><b>Keine personenbezogenen Daten!</b></li></"
+"ul>"
 
-#: common/forms.py:68
+#: common/forms.py:69
 msgid "Username, you can tell to the organisers"
 msgstr "Benutzername, den Du den Organisatoren mitteilen kannst"
 
-#: common/forms.py:71
+#: common/forms.py:72
 msgid ""
 "<ul><li>Please choose an Username you can tell to the organisers. </"
 "li><li>150 characters or fewer. Letters, digits and @/./+/-/_ only.</"

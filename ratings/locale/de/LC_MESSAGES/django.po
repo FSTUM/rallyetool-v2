@@ -6,7 +6,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-
 #: ratings/forms.py:48
 msgid ""
 "<ul><li>Required.</li><li>Only alphanumeric characters, @#$€<>%^&+=_-, space "
@@ -31,16 +30,24 @@ msgstr ""
 "Nur alphanumerische Zeichen, @#$€<>%^&+=_-, Leerzeichen und äöüß sind erlaubt"
 
 #: ratings/models.py:44
+msgid "Visible on the map"
+msgstr "Auf der Karte sichtbar"
+
+#: ratings/models.py:45
 msgid "Name of the Station"
 msgstr "Stationsname"
 
-#: ratings/models.py:44 ratings/models.py:48
-msgid "Only internally visible"
-msgstr "Nur intern sichtbar"
-
-#: ratings/models.py:46
+#: ratings/models.py:48
 msgid "Description of the Station"
 msgstr "Stationsbeschreibung"
+
+#: ratings/models.py:53
+msgid "Longitude of the sation"
+msgstr "Stations-Längengrad"
+
+#: ratings/models.py:54
+msgid "Latitude of the sation"
+msgstr "Stations-Breitengrad"
 
 #: ratings/templates/ratings/administration/add_station.html:5
 #: ratings/templates/ratings/administration/add_station.html:22
@@ -202,67 +209,74 @@ msgstr "Vergebene Punkte"
 msgid "No ratings yet."
 msgstr "Noch keine Bewertungen."
 
-#: ratings/views.py:32
+#: ratings/views.py:31
+msgid ""
+"Registration of new groups is closed. Contact the Organisers if you think "
+"this is a mistake."
+msgstr ""
+"Die Anmeldung neuer Gruppen ist geschlossen. Kontaktieren Sie die Organisatoren, wenn du glaubst, dass dies ein Fehler ist."
+
+#: ratings/views.py:39
 msgid "Registration of group '{}' successful."
 msgstr "Registrierung der Gruppe '{}' erfolgreich."
 
-#: ratings/views.py:35 ratings/views.py:227
+#: ratings/views.py:42 ratings/views.py:234
 msgid "Unsuccessful registration. Invalid information."
 msgstr "Die Registrierung ist fehlgeschlagen. Ungültige Informationen."
 
-#: ratings/views.py:68
+#: ratings/views.py:75
 msgid "The organisers have ended this event."
 msgstr "Die Organisatoren haben diese Veranstaltung beendet."
 
-#: ratings/views.py:81
+#: ratings/views.py:88
 msgid "Unable to add a Rating. The organisers have ended this event."
 msgstr ""
 "Leider kannst du keine Bewertungen mehr abgeben. Die Organisatoren haben "
 "diese Veranstaltung beendet."
 
-#: ratings/views.py:88
+#: ratings/views.py:95
 msgid "Rating {} was successfully added"
 msgstr "Bewertung {} wurde erfolgreich hinzugefügt"
 
-#: ratings/views.py:101
+#: ratings/views.py:108
 msgid "Unable to edit a Rating. The organisers have ended this event."
 msgstr ""
 "Es ist nicht möglich, eine Bewertung zu bearbeiten. Die Organisatoren haben "
 "diese Veranstaltung beendet."
 
-#: ratings/views.py:107
+#: ratings/views.py:114
 msgid "Rating {} was successfully edited"
 msgstr "Bewertung {} wurde erfolgreich bearbeitet"
 
-#: ratings/views.py:120
+#: ratings/views.py:127
 msgid "Unable to delete a Rating. The organisers have ended this event."
 msgstr ""
 "Leider ist es nicht möglich, eine Bewertung zu löschen. Die Organisatoren "
 "haben diese Veranstaltung beendet."
 
-#: ratings/views.py:125
+#: ratings/views.py:132
 msgid "You cant delete ratings of stations that are not your own"
 msgstr ""
 "Sie können keine Bewertungen von Stationen löschen, die nicht Ihre eigenen "
 "sind"
 
-#: ratings/views.py:130
+#: ratings/views.py:137
 msgid "Rating {} was permanently deleted."
 msgstr "Die Bewertung {} wurde endgültig gelöscht."
 
-#: ratings/views.py:132 ratings/views.py:201
+#: ratings/views.py:139 ratings/views.py:208
 msgid "Deletion is permanent."
 msgstr "Löschen ist endgültig."
 
-#: ratings/views.py:161
+#: ratings/views.py:168
 msgid "Station {} was successfully added."
 msgstr "Station {} wurde erfolgreich hinzugefügt."
 
-#: ratings/views.py:174
+#: ratings/views.py:181
 msgid "Station {} was successfully edited."
 msgstr "Station {} wurde erfolgreich bearbeitet."
 
-#: ratings/views.py:195
+#: ratings/views.py:202
 msgid ""
 "Unable to delete the station '{}'.<br/>It is currently protected by its "
 "ratings:<br/>{}"
@@ -270,11 +284,11 @@ msgstr ""
 "Es ist nicht möglich, die Station '{}' zu löschen.<br/>Er ist derzeit durch "
 "seine Bewertungen geschützt:<br/>{}"
 
-#: ratings/views.py:199
+#: ratings/views.py:206
 msgid "station {} was permanently deleted."
 msgstr "Station {} wurde permanent gelöscht."
 
-#: ratings/views.py:212
+#: ratings/views.py:219
 msgid ""
 "User Registration is disabeled in the settings. Please contact the "
 "organisers if you think that this is an error."
@@ -283,6 +297,6 @@ msgstr ""
 "kontaktieren Sie die Organisatoren, wenn Sie glauben, dass dies ein Fehler "
 "ist."
 
-#: ratings/views.py:224
+#: ratings/views.py:231
 msgid "Registration successful."
 msgstr "Die Benutzerregistrierung war erfolgreich."
