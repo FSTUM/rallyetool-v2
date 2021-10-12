@@ -92,7 +92,7 @@ def add_rating(request: AuthWSGIRequest) -> HttpResponse:
     settings: Settings = Settings.load()
     if not settings.station_rating_avialible:
         messages.error(request, _("Unable to add a Rating. The organisers have ended this event."))
-        redirect("main-view")
+        return redirect("main-view")
 
     station = request.user.station
     form = RatingForm(request.POST or None, station=station)
@@ -112,7 +112,7 @@ def edit_rating(request: AuthWSGIRequest, rating_pk: int) -> HttpResponse:
     settings: Settings = Settings.load()
     if not settings.station_rating_avialible:
         messages.error(request, _("Unable to edit a Rating. The organisers have ended this event."))
-        redirect("main-view")
+        return redirect("main-view")
     rating = get_object_or_404(Rating, pk=rating_pk)
     form = EditRatingForm(request.POST or None, instance=rating)
     if request.POST and form.is_valid():
@@ -131,7 +131,7 @@ def del_rating(request: AuthWSGIRequest, rating_pk: int) -> HttpResponse:
     settings: Settings = Settings.load()
     if not settings.station_rating_avialible:
         messages.error(request, _("Unable to delete a Rating. The organisers have ended this event."))
-        redirect("main-view")
+        return redirect("main-view")
     rating: Rating = get_object_or_404(Rating, pk=rating_pk)
 
     if request.user.station != rating.station:
