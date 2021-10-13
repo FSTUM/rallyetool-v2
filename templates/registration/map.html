@@ -183,7 +183,7 @@
             },
         });
 
-        // Add a layer showing the places.
+        // Add a layer showing the stations.
         map.addLayer({
             id: 'stations',
             type: 'circle',
@@ -202,7 +202,7 @@
             closeOnClick: false,
         });
 
-        map.on('mouseenter', 'places', (e) => {
+        map.on('mouseenter', 'stations', (e) => {
             // Change the cursor style as a UI indicator.
             map.getCanvas().style.cursor = 'pointer';
 
@@ -222,7 +222,7 @@
             popup.setLngLat(coordinates).setHTML(description).addTo(map);
         });
 
-        map.on('mouseleave', 'places', () => {
+        map.on('mouseleave', 'stations', () => {
             map.getCanvas().style.cursor = '';
             popup.remove(); /* eslint prefer-destructuring: off */
         });
