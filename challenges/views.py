@@ -12,6 +12,16 @@ from .forms import ScavengerForm
 
 def scavenger_hunt(request: AuthWSGIRequest) -> HttpResponse:
     setting: Settings = Settings.load()
+    if not setting.station_rating_avialible:
+        messages.error(
+            request,
+            _(
+                "Unable to add a Rating. The organisers have ended this event. "
+                "Thus The Scavenger Hunt is also not availible, since this could change the "
+                "leaderboard and we dont want this after the end of the event.",
+            ),
+        )
+        return redirect("main-view")
     if not setting.scavenger_hunt_secret:
         messages.error(
             request,
