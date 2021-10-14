@@ -22,6 +22,7 @@ LOGOUT_REDIRECT_URL = "/"
 
 # Application definition
 INSTALLED_APPS = [
+    "modeltranslation",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -104,6 +105,8 @@ LOCALE_PATHS = ["locale"]
 de_formats.DATETIME_FORMAT = "d.m.Y H:i:s"
 de_formats.DATE_FORMAT = "d.m.Y"
 de_formats.SHORT_DATE_FORMAT = "d.m."
+
+MODELTRANSLATION_TRANSLATION_FILES = ("ratings.translation",)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
