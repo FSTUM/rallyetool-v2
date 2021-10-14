@@ -6,23 +6,40 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ratings', '0007_auto_20211014_1703'),
+        ("ratings", "0007_auto_20211014_1703"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='station',
-            name='name',
-            field=models.CharField(default='Station-name unknown', help_text='Visible on the map', max_length=150, verbose_name='Name of the Station'),
+            model_name="station",
+            name="name",
+            field=models.CharField(
+                default="Station-name unknown",
+                help_text="Visible on the map",
+                max_length=150,
+                verbose_name="Name of the Station",
+            ),
         ),
         migrations.AlterField(
-            model_name='station',
-            name='name_de',
-            field=models.CharField(default='Station-name unknown', help_text='Visible on the map', max_length=150, null=True, verbose_name='Name of the Station'),
+            model_name="station",
+            name="name_de",
+            field=models.CharField(
+                default="Station-name unknown",
+                help_text="Visible on the map",
+                max_length=150,
+                null=True,
+                verbose_name="Name of the Station",
+            ),
         ),
         migrations.AlterField(
-            model_name='station',
-            name='name_en',
-            field=models.CharField(default='Station-name unknown', help_text='Visible on the map', max_length=150, null=True, verbose_name='Name of the Station'),
+            model_name="station",
+            name="name_en",
+            field=models.CharField(
+                default="Station-name unknown",
+                help_text="Visible on the map",
+                max_length=150,
+                null=True,
+                verbose_name="Name of the Station",
+            ),
         ),
     ]

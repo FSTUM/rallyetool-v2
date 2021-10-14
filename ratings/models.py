@@ -43,7 +43,10 @@ class Group(LoggedModel):
 class Station(LoggedModel):
     _visible_on = _("Visible on the map")
     name = models.CharField(
-        _("Name of the Station"), default=_("Station-name unknown"), max_length=150, help_text=_visible_on
+        _("Name of the Station"),
+        default=_("Station-name unknown"),
+        max_length=150,
+        help_text=_visible_on,
     )
 
     location_description = models.CharField(
