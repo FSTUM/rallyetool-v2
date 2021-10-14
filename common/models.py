@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.utils.deconstruct import deconstructible
 from django.utils.translation import ugettext_lazy as _
 
+from ratings.models import Station
+
 from .settings import SEMESTER_SESSION_KEY
 
 SingletonType = TypeVar("SingletonType", bound="SingletonModel")
@@ -95,6 +97,13 @@ class Settings(SingletonModel, LoggedModel):
     station_rating_avialible = models.BooleanField(verbose_name="Stations rate groups", default=False)
 
     group_registration_available = models.BooleanField(verbose_name="Groups can be registered", default=True)
+    
+    #challanges
+    scavenger_hunt_secret = models.CharField(max_length=10, default="SET", verbose_name=_("Scavenger hunt secret"))
+    scavenger_hunt_station = models.OneToOneField(Station, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_("Scavenger hunt station. If not present a warning will be caused (i.e. scavenger hunt wont be availible)"))
+    scavenger_hunt_points = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)], default=10)
+
+    # recaptcha
     recaptcha_required_score = models.FloatField(
         verbose_name="reCAPTCHA required score. "
         "(see https://developers.google.com/recaptcha/docs/v3#interpreting_the_score)",
