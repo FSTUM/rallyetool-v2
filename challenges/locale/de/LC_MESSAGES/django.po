@@ -5,3 +5,87 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: challenges/forms.py:9
+msgid "Result of the scavenger hunt, you got and want to validate"
+msgstr ""
+"Ergebnis der Schnitzeljagd, das Sie erhalten haben und bestätigen möchten"
+
+#: challenges/forms.py:11
+msgid ""
+"Please enter the scavenger hunt secret you got by running around on the "
+"campus here."
+msgstr ""
+"Bitte gib das Ergebnis der Schnitzeljagd, das du beim Herumlaufen auf dem "
+"Campus erhalten hast, hier ein."
+
+#: challenges/forms.py:16
+msgid ""
+"Please select your group here. If you select another group, the points will "
+"be awarded to them, instead you you."
+msgstr ""
+"Bitte wählt hier eure Gruppe aus. Wenn irh eine andere Gruppe auswählt, "
+"werden die Punkte an diese Gruppe vergeben, nicht an euch selbst."
+
+#: challenges/forms.py:28
+#, python-format
+msgid "The secret %(value)s is invalid"
+msgstr "Das Geheimnis %(value)s ist ungültig"
+
+#: challenges/templates/challenges/scavenger_hunt.html:5
+msgid "Scavenger hunt solution submission"
+msgstr "Einreichung von Schnitzeljagd-Lösungen"
+
+#: challenges/templates/challenges/scavenger_hunt.html:15
+#, python-format
+msgid "In this challange you can achieve up to %(max_points)s points."
+msgstr ""
+"In dieser Herausforderung können Sie bis zu %(max_points)s Punkte erreichen."
+
+#: challenges/templates/challenges/scavenger_hunt.html:28
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: challenges/templates/challenges/scavenger_hunt.html:32
+msgid "Check solution"
+msgstr "Lösung prüfen"
+
+#: challenges/views.py:17
+msgid ""
+"Unable to add a Rating. The organisers have ended this event. Thus The "
+"Scavenger Hunt is also not availible, since this could change the "
+"leaderboard and we dont want this after the end of the event."
+msgstr ""
+"Ihr könnet keine Bewertungen mehr hinzufügen. Die Organisatoren haben diese "
+"Veranstaltung beendet. Somit ist auch die Schnitzeljagd nicht verfügbar, da "
+"dies die Rangliste verändern könnte und wir dies nach dem Ende der "
+"Veranstaltung nicht wollen."
+
+#: challenges/views.py:25
+msgid ""
+"The organisers have not provided a Scavenger hunt secret. Contact Them for "
+"more information. This might indicate, that this station is not offered"
+msgstr ""
+"Die Organisatoren haben kein Geheimnis für die Schnitzeljagd bereitgestellt. "
+"Kontaktieren Sie sie für weitere Informationen. Dies könnte darauf "
+"hinweisen, dass diese Station nicht angeboten wird"
+
+#: challenges/views.py:34
+msgid ""
+"The organisers have not provided a Scavenger hunt station. This might "
+"indicate, that this station is not offered."
+msgstr ""
+"Die Organisatoren haben keine Station für eine Schnitzeljagd vorgesehen. "
+"Dies könnte darauf hinweisen, dass diese Station nicht angeboten wird."
+
+#: challenges/views.py:53
+msgid ""
+"You have already earned the points for the scavenger hunt. You can’t eat the "
+"same food twice. No points have been added"
+msgstr ""
+"Du hast die Punkte für die Schnitzeljagd bereits verdient. Man kann den "
+"selben Kuchen nicht zweimal essen. Es wurden keine Punkte hinzugefügt"
+
+#: challenges/views.py:60
+msgid "Success. {} points have been added to group {}."
+msgstr "{} Punkte wurden erfolgreich der Gruppe {} hinzugefügt."

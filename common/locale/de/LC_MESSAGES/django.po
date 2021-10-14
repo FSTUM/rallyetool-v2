@@ -37,18 +37,30 @@ msgstr ""
 "mitteilen kannst. </li><li>150 Zeichen oder weniger. Nur Buchstaben, Ziffern "
 "und @/./+/-/_.</li><li><b>Keine personenbezogenen Daten!</b></li></ul>"
 
-#: common/models.py:55
+#: common/models.py:56
 msgid "Winter semester"
 msgstr "Wintersemester"
 
-#: common/models.py:56
+#: common/models.py:57
 msgid "Summer semester"
 msgstr "Wintersemester"
 
-#: common/models.py:59
+#: common/models.py:60
 msgid "Semester"
 msgstr "Semester"
 
-#: common/models.py:61
+#: common/models.py:62
 msgid "Year"
 msgstr "Jahr"
+
+#: common/models.py:101
+msgid "Scavenger hunt secret"
+msgstr "Schnitzeljagd-Geheimnis"
+
+#: common/models.py:108
+msgid ""
+"Scavenger hunt station. If not present a warning will be caused (i.e. "
+"scavenger hunt wont be availible)"
+msgstr ""
+"Schnitzeljagd-Station. Bei Nichtgesetztheit wird eine Warnung ausgelöst (d."
+"h. die Schnitzeljagd ist nicht möglich)."

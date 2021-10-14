@@ -16,36 +16,44 @@ msgstr ""
 "%^&+=_-, Leerzeichen und äöü.</li><li>Minimum von 4 Zeichen</li><li>Maximum "
 "von 30 Zeichen</li></ul>"
 
-#: ratings/models.py:25 ratings/templates/ratings/leaderboard.html:23
+#: ratings/models.py:26 ratings/templates/ratings/leaderboard.html:23
 msgid "Name of your Team"
 msgstr "Teamname"
 
-#: ratings/models.py:27
+#: ratings/models.py:28
 msgid "Visible on a public leaderboard"
 msgstr "Sichtbar in einer öffentlichen Rangliste"
 
-#: ratings/models.py:33
+#: ratings/models.py:34
 msgid "Only alphanumeric characters, @#$€<>%^&+=_-, space and äöüß are allowed"
 msgstr ""
 "Nur alphanumerische Zeichen, @#$€<>%^&+=_-, Leerzeichen und äöüß sind erlaubt"
 
-#: ratings/models.py:44
+#: ratings/models.py:45
 msgid "Visible on the map"
 msgstr "Auf der Karte sichtbar"
 
-#: ratings/models.py:45
+#: ratings/models.py:47
 msgid "Name of the Station"
 msgstr "Stationsname"
 
 #: ratings/models.py:48
+msgid "Station-name unknown"
+msgstr "unbekannter Stationsname"
+
+#: ratings/models.py:54
 msgid "Description of the Station"
 msgstr "Stationsbeschreibung"
 
-#: ratings/models.py:53
+#: ratings/models.py:56
+msgid "Location unknown"
+msgstr "unbekannter Standort"
+
+#: ratings/models.py:59
 msgid "Longitude of the sation"
 msgstr "Stations-Längengrad"
 
-#: ratings/models.py:54
+#: ratings/models.py:60
 msgid "Latitude of the sation"
 msgstr "Stations-Breitengrad"
 
@@ -214,7 +222,8 @@ msgid ""
 "Registration of new groups is closed. Contact the Organisers if you think "
 "this is a mistake."
 msgstr ""
-"Die Anmeldung neuer Gruppen ist geschlossen. Kontaktieren Sie die Organisatoren, wenn du glaubst, dass dies ein Fehler ist."
+"Die Anmeldung neuer Gruppen ist geschlossen. Kontaktieren Sie die "
+"Organisatoren, wenn du glaubst, dass dies ein Fehler ist."
 
 #: ratings/views.py:39
 msgid "Registration of group '{}' successful."

@@ -6,11 +6,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: rallyetool/settings.py:93
+#: rallyetool/settings.py:94
 msgid "German"
 msgstr "Deutsch"
 
-#: rallyetool/settings.py:94
+#: rallyetool/settings.py:95
 msgid "English"
 msgstr "Englisch"
 
@@ -26,40 +26,44 @@ msgstr "Team registrieren"
 msgid "Map"
 msgstr "Karte"
 
-#: templates/base.html:112
+#: templates/base.html:110
+msgid "Scavenger Hunt"
+msgstr "Schnitzeljagt"
+
+#: templates/base.html:116
 msgid "Rate"
 msgstr "Bewerten"
 
-#: templates/base.html:118
+#: templates/base.html:122
 msgid "Administration"
 msgstr "Administation"
 
-#: templates/base.html:122
+#: templates/base.html:126
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: templates/base.html:165
+#: templates/base.html:169
 msgid "Select your semester"
 msgstr "Semester auswählen"
 
-#: templates/base.html:171
+#: templates/base.html:175
 msgid "Switch semester"
 msgstr "Semester wechseln"
 
-#: templates/base.html:185 templates/base.html:189
+#: templates/base.html:189 templates/base.html:193
 #, python-format
 msgid "Log out %(username)s"
 msgstr "%(username)s ausloggen"
 
-#: templates/base.html:200
+#: templates/base.html:204
 msgid "Login"
 msgstr "Einloggen"
 
-#: templates/base.html:260
+#: templates/base.html:264
 msgid "Data protection"
 msgstr "Datenschutz"
 
-#: templates/base.html:272
+#: templates/base.html:276
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -185,7 +189,8 @@ msgstr ""
 #: venv/lib/python3.9/site-packages/captcha/fields.py:26
 #: venv/lib/python3.9/site-packages/captcha/fields.py:27
 msgid "Error verifying reCAPTCHA, please try again."
-msgstr "Fehler bei der Überprüfung des reCAPTCHA, bitte versuchen Sie es erneut."
+msgstr ""
+"Fehler bei der Überprüfung des reCAPTCHA, bitte versuchen Sie es erneut."
 
 #: venv/lib/python3.9/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
@@ -1390,6 +1395,10 @@ msgstr ""
 #: venv/lib/python3.9/site-packages/isort/main.py:157
 msgid "show this help message and exit"
 msgstr ""
+
+#: venv/lib/python3.9/site-packages/modeltranslation/widgets.py:25
+msgid "None"
+msgstr "Keine"
 
 #: venv/lib/python3.9/site-packages/mypy/main.py:368
 #, python-format
