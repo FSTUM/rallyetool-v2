@@ -11,6 +11,7 @@ from django.core.validators import (
 )
 from django.db import models, transaction
 from django.db.models import Sum
+from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 
 from common.models import LoggedModel, Semester
@@ -66,7 +67,7 @@ class Station(LoggedModel):
     )
 
     def __str__(self):
-        return self.name
+        return ugettext(self.name)
 
 
 class Rating(LoggedModel):

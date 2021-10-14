@@ -104,6 +104,10 @@
                             class="nav-link {% active_link "overview-map" %}"
                             href="{% url "overview-map" %}"
                         >{% trans "Map" %}</a>
+                        <a
+                            class="nav-link {% active_link "challanges:scavenger_hunt" %}"
+                            href="{% url "challanges:scavenger_hunt" %}"
+                        >{% trans "Scavenger Hunt" %}</a>
                         {% if user.is_authenticated %}
                         {% if user.station %}
                         <a

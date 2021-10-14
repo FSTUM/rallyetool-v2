@@ -123,3 +123,6 @@ class Settings(SingletonModel, LoggedModel):
         verbose_name="reCAPTCHA PRIVATE_KEY",
     )
     recaptcha_public_key = models.CharField(max_length=200, default="", blank=True, verbose_name="reCAPTCHA PUBLIC_KEY")
+
+    def __str__(self):
+        return f"Settings {self.pk}"

@@ -43,8 +43,8 @@ class SettingsForm(SemesterBasedForm, forms.ModelForm):
             except ObjectDoesNotExist:
                 pass
         if commit:
-            settings.save()
-        return settings
+            setting.save()
+        return setting
 
 
 class NewUserForm(UserCreationForm):

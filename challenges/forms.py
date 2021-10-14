@@ -6,17 +6,19 @@ from django.utils.translation import ugettext_lazy as _
 
 class ScavengerForm(forms.Form):
     group_secret = forms.CharField(
+        label=_("Result of the scavenger hunt, you got and want to validate"),
         max_length=10,
         help_text=_("Please enter the scavenger hunt secret you got by running around on the campus here."),
     )
     group = forms.ModelChoiceField(
         Group.objects.all(),
         help_text=_(
-            "Please select your group here. If you select another group, the points will be awarded to them, instead you you.",
+            "Please select your group here. "
+            "If you select another group, the points will be awarded to them, instead you you.",
         ),
     )
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args, **kwargs):
         self.secret: str = kwargs.pop("secret")
         super().__init__(*args, **kwargs)
 

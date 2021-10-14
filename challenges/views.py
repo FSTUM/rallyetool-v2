@@ -16,7 +16,8 @@ def scavenger_hunt(request: AuthWSGIRequest) -> HttpResponse:
         messages.error(
             request,
             _(
-                "The organisers have not provided a Scavenger hunt secret. Contact Them for more information. This might indicate, that this station is not offered",
+                "The organisers have not provided a Scavenger hunt secret. Contact Them for more information. "
+                "This might indicate, that this station is not offered",
             ),
         )
         return redirect("main-view")
@@ -24,7 +25,8 @@ def scavenger_hunt(request: AuthWSGIRequest) -> HttpResponse:
         messages.warning(
             request,
             _(
-                "The organisers have not provided a Scavenger hunt station. This might indicate, that this station is not offered.",
+                "The organisers have not provided a Scavenger hunt station. "
+                "This might indicate, that this station is not offered.",
             ),
         )
         return redirect("main-view")
@@ -42,7 +44,8 @@ def scavenger_hunt(request: AuthWSGIRequest) -> HttpResponse:
             messages.error(
                 request,
                 _(
-                    "You have already earned the points for the scavenger hunt. You can’t eat the same food twice. No points have been added",
+                    "You have already earned the points for the scavenger hunt. "
+                    "You can’t eat the same food twice. No points have been added",
                 ),
             )
             return redirect("main-view")
