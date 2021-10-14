@@ -42,12 +42,14 @@ class Group(LoggedModel):
 
 class Station(LoggedModel):
     _visible_on = _("Visible on the map")
-    name = models.CharField(_("Name of the Station"), max_length=150, help_text=_visible_on)
+    name = models.CharField(
+        _("Name of the Station"), default=_("Station-name unknown"), max_length=150, help_text=_visible_on
+    )
 
     location_description = models.CharField(
         _("Description of the Station"),
         max_length=500,
-        default="Location unknown",
+        default=_("Location unknown"),
         help_text=_visible_on,
     )
     longitude = models.FloatField(verbose_name=_("Longitude of the sation"), default=11.671, help_text=_visible_on)
