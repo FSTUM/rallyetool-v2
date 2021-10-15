@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext_lazy as _
 
-from common.models import Settings
+from common.models import current_semester, Settings
 from common.views import AuthWSGIRequest
 from ratings.models import Group, Rating, Station
 
@@ -42,7 +42,7 @@ def scavenger_hunt(request: AuthWSGIRequest) -> HttpResponse:
         return redirect("main-view")
     station: Station = setting.scavenger_hunt_station
 
-    form = ScavengerForm(request.POST or None, secret=setting.scavenger_hunt_secret)
+    form = ScavengerForm(request.POST or None, secret=setting.scavenger_hunt_secret, semester=current_semester())
     if form.is_valid():
         group: Group = form.cleaned_data["group"]
         (__, created) = Rating.objects.get_or_create(

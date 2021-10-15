@@ -1,10 +1,14 @@
+import re
+
 from django import forms
-from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+from common.forms import SemesterBasedForm
+from ratings.models import Group
 
-class ScavengerForm(forms.Form):
+
+class ScavengerForm(SemesterBasedForm):
     group_secret = forms.CharField(
         label=_("Result of the scavenger hunt, you got and want to validate"),
         max_length=10,
@@ -14,7 +18,7 @@ class ScavengerForm(forms.Form):
         ),
     )
     group = forms.ModelChoiceField(
-        Group.objects.all(),
+        queryset=Group.objects.none(),
         help_text=_(
             "Please select your group here. "
             "If you select another group, the points will be awarded to them, instead you you.",
@@ -24,9 +28,11 @@ class ScavengerForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.secret: str = kwargs.pop("secret")
         super().__init__(*args, **kwargs)
+        self.fields["group"].queryset = Group.objects.filter(semester=self.semester).all()
 
     def clean_group_secret(self):
-        if not self.secret.lower() == self.cleaned_data["group_secret"].lower():
+        group_secret: str = self.cleaned_data["group_secret"]
+        if not self.secret.lower() == re.sub(r"[^a-z]", "", self.cleaned_data["group_secret"].lower()):
             raise ValidationError(
                 _("The secret %(value)s is invalid"),
                 params={"value": group_secret},
