@@ -2,7 +2,13 @@ import datetime
 from typing import TypeVar
 
 from django.core.cache import cache
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import (
+    MaxLengthValidator,
+    MaxValueValidator,
+    MinLengthValidator,
+    MinValueValidator,
+    RegexValidator,
+)
 from django.db import models
 from django.http import HttpRequest
 from django.utils import timezone
@@ -98,21 +104,37 @@ class Settings(SingletonModel, LoggedModel):
     group_registration_available = models.BooleanField(verbose_name="Groups can be registered", default=True)
 
     # challanges
-    scavenger_hunt_secret = models.CharField(max_length=10, default="SET", verbose_name=_("Scavenger hunt secret"))
+    scavenger_hunt_secret = models.CharField(
+        max_length=30,
+        default="SET",
+        verbose_name=_("Scavenger hunt secret"),
+        validators=[
+            MinLengthValidator(4),
+            MaxLengthValidator(30),
+            RegexValidator(
+                r"[A-Za-z]+$",
+                _("Only alphabetic characters, capitalisation is ignored"),
+            ),
+        ],
+    )
     scavenger_hunt_station = models.OneToOneField(
         "ratings.Station",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         verbose_name=_(
-            "Scavenger hunt station. If not present a warning will be caused (i.e. scavenger hunt wont be availible)",
+            "Scavenger hunt station. If not present a warning will be caused (i.e. scavenger hunt wont be available)",
         ),
     )
-    scavenger_hunt_points = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)], default=10)
+    scavenger_hunt_points = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+        default=10,
+        verbose_name=_("Reward for correctly submitting the scavenger hunt secret"),
+    )
 
     # recaptcha
     recaptcha_required_score = models.FloatField(
-        verbose_name="reCAPTCHA required score. "
+        verbose_name="reCAPTCHA v3 required score. "
         "(see https://developers.google.com/recaptcha/docs/v3#interpreting_the_score)",
         default=0.5,
     )
@@ -120,9 +142,14 @@ class Settings(SingletonModel, LoggedModel):
         max_length=200,
         default="",
         blank=True,
-        verbose_name="reCAPTCHA PRIVATE_KEY",
+        verbose_name="reCAPTCHA v3 PRIVATE_KEY",
     )
-    recaptcha_public_key = models.CharField(max_length=200, default="", blank=True, verbose_name="reCAPTCHA PUBLIC_KEY")
+    recaptcha_public_key = models.CharField(
+        max_length=200,
+        default="",
+        blank=True,
+        verbose_name="reCAPTCHA v3 PUBLIC_KEY",
+    )
 
     def __str__(self):
         return f"Settings {self.pk}"

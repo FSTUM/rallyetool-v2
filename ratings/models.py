@@ -37,8 +37,11 @@ class Group(LoggedModel):
     )
     total_points = models.IntegerField(default=0)
 
-    def __str__(self):
+    def __repr__(self):
         return f"{str(self.id)} - {self.name}"
+
+    def __str__(self):
+        return self.name
 
 
 class Station(LoggedModel):
@@ -98,3 +101,6 @@ class Rating(LoggedModel):
 class RegistrationToken(LoggedModel):
     semester = models.OneToOneField(Semester, on_delete=models.CASCADE)
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    def __str__(self):
+        return f"{self.semester}: {self.uuid}"

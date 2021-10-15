@@ -29,31 +29,31 @@ msgid "Only alphanumeric characters, @#$€<>%^&+=_-, space and äöüß are all
 msgstr ""
 "Nur alphanumerische Zeichen, @#$€<>%^&+=_-, Leerzeichen und äöüß sind erlaubt"
 
-#: ratings/models.py:45
+#: ratings/models.py:48
 msgid "Visible on the map"
 msgstr "Auf der Karte sichtbar"
 
-#: ratings/models.py:47
+#: ratings/models.py:50
 msgid "Name of the Station"
 msgstr "Stationsname"
 
-#: ratings/models.py:48
+#: ratings/models.py:51
 msgid "Station-name unknown"
 msgstr "unbekannter Stationsname"
 
-#: ratings/models.py:54
+#: ratings/models.py:57
 msgid "Description of the Station"
 msgstr "Stationsbeschreibung"
 
-#: ratings/models.py:56
+#: ratings/models.py:59
 msgid "Location unknown"
 msgstr "unbekannter Standort"
 
-#: ratings/models.py:59
+#: ratings/models.py:62
 msgid "Longitude of the sation"
 msgstr "Stations-Längengrad"
 
-#: ratings/models.py:60
+#: ratings/models.py:63
 msgid "Latitude of the sation"
 msgstr "Stations-Breitengrad"
 

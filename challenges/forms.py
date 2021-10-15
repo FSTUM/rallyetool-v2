@@ -8,7 +8,10 @@ class ScavengerForm(forms.Form):
     group_secret = forms.CharField(
         label=_("Result of the scavenger hunt, you got and want to validate"),
         max_length=10,
-        help_text=_("Please enter the scavenger hunt secret you got by running around on the campus here."),
+        help_text=_(
+            "Please enter the scavenger hunt secret you got by running around on the campus here. "
+            "Capitalisation and letters not between a-z are ignored.",
+        ),
     )
     group = forms.ModelChoiceField(
         Group.objects.all(),
@@ -26,6 +29,6 @@ class ScavengerForm(forms.Form):
         if not self.secret.lower() == self.cleaned_data["group_secret"].lower():
             raise ValidationError(
                 _("The secret %(value)s is invalid"),
-                params={"value": "42"},
+                params={"value": group_secret},
                 code="invalid_secret",
             )

@@ -80,15 +80,15 @@ msgstr "Willkommen beim Rallyetool"
 msgid "Map showing where the stations are"
 msgstr "Karte mit den Standorten der Stationen"
 
-#: templates/registration/map.html:84
+#: templates/registration/map.html:85
 msgid "Chemistry"
 msgstr "Chemie"
 
-#: templates/registration/map.html:94
+#: templates/registration/map.html:95
 msgid "Physics"
 msgstr "Physik"
 
-#: templates/registration/map.html:104
+#: templates/registration/map.html:105
 msgid "Canteen"
 msgstr "Mensa"
 

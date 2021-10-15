@@ -6,20 +6,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: challenges/forms.py:9
+#: challenges/forms.py:13
 msgid "Result of the scavenger hunt, you got and want to validate"
 msgstr ""
 "Ergebnis der Schnitzeljagd, das Sie erhalten haben und bestätigen möchten"
 
-#: challenges/forms.py:11
+#: challenges/forms.py:16
 msgid ""
 "Please enter the scavenger hunt secret you got by running around on the "
-"campus here."
+"campus here. Capitalisation and letters not between a-z are ignored."
 msgstr ""
 "Bitte gib das Ergebnis der Schnitzeljagd, das du beim Herumlaufen auf dem "
-"Campus erhalten hast, hier ein."
+"Campus erhalten hast, hier ein.  Groß- und Kleinschreibung sowie Buchstaben, die nicht zwischen a-z stehen, werden ignoriert."
 
-#: challenges/forms.py:16
+#: challenges/forms.py:23
 msgid ""
 "Please select your group here. If you select another group, the points will "
 "be awarded to them, instead you you."
@@ -27,7 +27,7 @@ msgstr ""
 "Bitte wählt hier eure Gruppe aus. Wenn irh eine andere Gruppe auswählt, "
 "werden die Punkte an diese Gruppe vergeben, nicht an euch selbst."
 
-#: challenges/forms.py:28
+#: challenges/forms.py:37
 #, python-format
 msgid "The secret %(value)s is invalid"
 msgstr "Das Geheimnis %(value)s ist ungültig"
@@ -50,7 +50,7 @@ msgstr "Abbrechen"
 msgid "Check solution"
 msgstr "Lösung prüfen"
 
-#: challenges/views.py:17
+#: challenges/views.py:19
 msgid ""
 "Unable to add a Rating. The organisers have ended this event. Thus The "
 "Scavenger Hunt is also not availible, since this could change the "
@@ -61,7 +61,7 @@ msgstr ""
 "dies die Rangliste verändern könnte und wir dies nach dem Ende der "
 "Veranstaltung nicht wollen."
 
-#: challenges/views.py:25
+#: challenges/views.py:29
 msgid ""
 "The organisers have not provided a Scavenger hunt secret. Contact Them for "
 "more information. This might indicate, that this station is not offered"
@@ -70,7 +70,7 @@ msgstr ""
 "Kontaktieren Sie sie für weitere Informationen. Dies könnte darauf "
 "hinweisen, dass diese Station nicht angeboten wird"
 
-#: challenges/views.py:34
+#: challenges/views.py:38
 msgid ""
 "The organisers have not provided a Scavenger hunt station. This might "
 "indicate, that this station is not offered."
@@ -78,7 +78,7 @@ msgstr ""
 "Die Organisatoren haben keine Station für eine Schnitzeljagd vorgesehen. "
 "Dies könnte darauf hinweisen, dass diese Station nicht angeboten wird."
 
-#: challenges/views.py:53
+#: challenges/views.py:57
 msgid ""
 "You have already earned the points for the scavenger hunt. You can’t eat the "
 "same food twice. No points have been added"
@@ -86,6 +86,6 @@ msgstr ""
 "Du hast die Punkte für die Schnitzeljagd bereits verdient. Man kann den "
 "selben Kuchen nicht zweimal essen. Es wurden keine Punkte hinzugefügt"
 
-#: challenges/views.py:60
+#: challenges/views.py:64
 msgid "Success. {} points have been added to group {}."
 msgstr "{} Punkte wurden erfolgreich der Gruppe {} hinzugefügt."

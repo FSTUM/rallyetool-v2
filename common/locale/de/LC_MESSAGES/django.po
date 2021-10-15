@@ -37,30 +37,38 @@ msgstr ""
 "mitteilen kannst. </li><li>150 Zeichen oder weniger. Nur Buchstaben, Ziffern "
 "und @/./+/-/_.</li><li><b>Keine personenbezogenen Daten!</b></li></ul>"
 
-#: common/models.py:56
+#: common/models.py:62
 msgid "Winter semester"
 msgstr "Wintersemester"
 
-#: common/models.py:57
+#: common/models.py:63
 msgid "Summer semester"
 msgstr "Wintersemester"
 
-#: common/models.py:60
+#: common/models.py:66
 msgid "Semester"
 msgstr "Semester"
 
-#: common/models.py:62
+#: common/models.py:68
 msgid "Year"
 msgstr "Jahr"
 
-#: common/models.py:101
+#: common/models.py:110
 msgid "Scavenger hunt secret"
 msgstr "Schnitzeljagd-Geheimnis"
 
-#: common/models.py:108
+#: common/models.py:116
+msgid "Only alphabetic characters, capitalisation is ignored"
+msgstr "Nur alphabetische Zeichen, Groß- und Kleinschreibung wird ignoriert"
+
+#: common/models.py:126
 msgid ""
 "Scavenger hunt station. If not present a warning will be caused (i.e. "
-"scavenger hunt wont be availible)"
+"scavenger hunt wont be available)"
 msgstr ""
 "Schnitzeljagd-Station. Bei Nichtgesetztheit wird eine Warnung ausgelöst (d."
 "h. die Schnitzeljagd ist nicht möglich)."
+
+#: common/models.py:132
+msgid "Reward for correctly submitting the scavenger hunt secret"
+msgstr "Belohnung für das richtige Abschicken des Schnitzeljagdgeheimnisses"
