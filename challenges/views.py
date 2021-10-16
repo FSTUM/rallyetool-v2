@@ -66,7 +66,7 @@ def scavenger_hunt(request: AuthWSGIRequest) -> HttpResponse:
         return redirect("main-view")
 
     context = {
-        "max_points": setting.scavenger_hunt_secret,
+        "max_points": setting.scavenger_hunt_points,
         "form": form,
     }
     return render(request, "challenges/scavenger_hunt.html", context)
