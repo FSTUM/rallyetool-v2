@@ -28,7 +28,7 @@ msgstr "Karte"
 
 #: templates/base.html:110
 msgid "Scavenger Hunt"
-msgstr "Schnitzeljagt"
+msgstr "Schnitzeljagd"
 
 #: templates/base.html:116
 msgid "Rate"
