@@ -57,9 +57,15 @@ def _generate_stations():  # nosec: this is only used in a fixture
         user = None
         if random.choice((True, True, False)) and users:
             user = users.pop()
+        name = lorem.sentence()
+        location_description = lorem.sentence()
         ratings_m.Station.objects.create(
-            name=lorem.sentence(),
-            location_description=lorem.sentence(),
+            name=name,
+            name_de=name,
+            name_en=name,
+            location_description=location_description,
+            location_description_de=location_description,
+            location_description_en=location_description,
             longitude=11.671 + random.choice((1, -1)) * random.randint(0, 1000) / 1000 / 500,
             latitude=48.265 + random.choice((1, -1)) * random.randint(0, 1000) / 1000 / 500,
             user=user,
