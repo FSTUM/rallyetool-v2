@@ -44,8 +44,14 @@
             {
                 type: 'Feature',
                 properties: {
-                    description:
-                        '<p><strong>{{station.name}}</strong>{% if user.is_staff %}<a href="{% url "ratings:edit_station" station.pk %}"><span class="bi bi-pencil-fill"></span></a>{% endif %}</p><p>{{station.location_description}}</p>',
+                    description: `
+                        {% if user.is_authenticated %}
+                            <p>
+                                <strong>{{station.name}}</strong>
+                                {% if user.is_staff %}<a href="{% url "ratings:edit_station" station.pk %}"><span class="bi bi-pencil-fill"></span></a>{% endif %}
+                            </p>
+                        {% endif %}
+                        <p>{{station.location_description}}</p>`,
                 },
                 geometry: {
                     type: 'Point',
