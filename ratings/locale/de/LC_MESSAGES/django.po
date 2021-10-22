@@ -25,9 +25,9 @@ msgid "Visible on a public leaderboard"
 msgstr "Sichtbar in einer öffentlichen Rangliste"
 
 #: ratings/models.py:34
-msgid "Only alphanumeric characters, @#$€<>%^&+=_-, space and äöüß are allowed"
+msgid "Only alphanumeric characters, @#$€<>%%^&+=_-, space and äöüß are allowed"
 msgstr ""
-"Nur alphanumerische Zeichen, @#$€<>%^&+=_-, Leerzeichen und äöüß sind erlaubt"
+"Nur alphanumerische Zeichen, @#$€<>%%^&+=_-, Leerzeichen und äöüß sind erlaubt"
 
 #: ratings/models.py:48
 msgid "Visible on the map"

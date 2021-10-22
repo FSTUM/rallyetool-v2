@@ -30,8 +30,8 @@ class Group(LoggedModel):
             MinLengthValidator(4),
             MaxLengthValidator(30),
             RegexValidator(
-                r"^[A-Za-z0-9@#$€<>%^&+=_\- äüöß]+$",
-                _("Only alphanumeric characters, @#$€<>%^&+=_-, space and äöüß are allowed"),
+                r"^[A-Za-z0-9@#$€<>%\^&+=_\- äüöß]+$",
+                _("Only alphanumeric characters, @#$€<>%%^&+=_-, space and äöüß are allowed"),
             ),
         ],
     )
