@@ -17,7 +17,8 @@ msgid ""
 "campus here. Capitalisation and letters not between a-z are ignored."
 msgstr ""
 "Bitte gib das Ergebnis der Schnitzeljagd, das du beim Herumlaufen auf dem "
-"Campus erhalten hast, hier ein.  Groß- und Kleinschreibung sowie Buchstaben, die nicht zwischen a-z stehen, werden ignoriert."
+"Campus erhalten hast, hier ein.  Groß- und Kleinschreibung sowie Buchstaben, "
+"die nicht zwischen a-z stehen, werden ignoriert."
 
 #: challenges/forms.py:23
 msgid ""

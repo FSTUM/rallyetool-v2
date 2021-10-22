@@ -35,6 +35,24 @@ def register_group(request: WSGIRequest) -> HttpResponse:
 
     form = GroupForm(request.POST or None, semester=semester)
     if form.is_valid():
+        group_name = form.cleaned_data["name"]
+        poss_matching_groups = list(Group.objects.filter(name__iexact=group_name))
+        if poss_matching_groups:
+            if len(poss_matching_groups) > 1:
+                similar_groups = str(group.name for group in poss_matching_groups)
+            else:
+                similar_groups = poss_matching_groups[0].name
+            messages.error(
+                request,
+                _(
+                    "Registration of group '{group_name}' failed. "
+                    "A group with a very similar name already exists. "
+                    "The contender is: {similar_groups}",
+                ).format(
+                    {"group_name": group_name, "similar_groups": similar_groups},
+                ),
+            )
+            return redirect("ratings:register_group")
         group: Group = form.save()
         messages.success(request, _("Registration of group '{}' successful.").format(group.name))
         return redirect("main-view")
