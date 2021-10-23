@@ -59,6 +59,9 @@ def _generate_stations():  # nosec: this is only used in a fixture
             user = users.pop()
         name = lorem.sentence()
         location_description = lorem.sentence()
+        setup_instructions = lorem.paragraph()
+        station_game_instructions = lorem.paragraph()
+        scoring_instructions = lorem.paragraph()
         ratings_m.Station.objects.create(
             name=name,
             name_de=name,
@@ -66,8 +69,20 @@ def _generate_stations():  # nosec: this is only used in a fixture
             location_description=location_description,
             location_description_de=location_description,
             location_description_en=location_description,
+            setup_instructions=setup_instructions,
+            setup_instructions_de=setup_instructions,
+            setup_instructions_en=setup_instructions,
+            station_game_instructions=station_game_instructions,
+            station_game_instructions_de=station_game_instructions,
+            station_game_instructions_en=station_game_instructions,
+            scoring_instructions=scoring_instructions,
+            scoring_instructions_de=scoring_instructions,
+            scoring_instructions_en=scoring_instructions,
+            contact_person=lorem.sentence()[:20],
+            setup_tools=lorem.sentence(),
             longitude=11.671 + random.choice((1, -1)) * random.randint(0, 1000) / 1000 / 500,
             latitude=48.265 + random.choice((1, -1)) * random.randint(0, 1000) / 1000 / 500,
+            tutor_amount=random.choice((1, 2, 2, 2, 3, 3, 5, 6, 9)),
             user=user,
         )
 
