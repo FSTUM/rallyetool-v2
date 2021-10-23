@@ -148,8 +148,8 @@ msgid "Name"
 msgstr "Name"
 
 #: ratings/templates/ratings/administration/list_stations.html:70
-msgid "Description"
-msgstr "Beschreibung"
+msgid "Tutors"
+msgstr "Tutoren"
 
 #: ratings/templates/ratings/administration/list_stations.html:71
 #: ratings/templates/ratings/rating/list_ratings.html:44
