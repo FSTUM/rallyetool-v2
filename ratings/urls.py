@@ -50,6 +50,7 @@ urlpatterns = [
                     "station/",
                     include(
                         [
+                            path("import/", views.import_stations, name="import_stations"),
                             path("export/", views.export_stations, name="export_stations"),
                             path("sanitise/", views.sanitise_stations, name="sanitise_stations"),
                             path("list/", views.list_stations, name="list_stations"),

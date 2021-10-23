@@ -1,0 +1,40 @@
+{% extends "ratings/base_administration.html" %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block rallye_common_headercontent %}{% trans "Import stations from Json" %}{% endblock %}
+
+{% block rallye_common_content %}
+
+
+<div class="row mb-4">
+    <div class='col-sm p-1 d-grid'>
+        <a
+            class="btn btn-warning"
+            href="{% url "ratings:sanitise_stations" %}"
+        ><span class="bi bi-person-dash-fill"> {% trans "Sanitise Stations" %}</span></a>
+    </div>
+    <div class='col-sm p-1 d-grid'>
+        <a
+            class="btn btn-secondary"
+            href="{% url "ratings:export_stations" %}"
+        ><span class="bi bi-file-text-fill"> {% trans "Export Stations" %}</span></a>
+    </div>
+</div>
+<form
+    method="post"
+    action=""
+>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    <a
+        class="btn btn-secondary"
+        href="{% url "ratings:list_stations" %}"
+    >{% trans "Cancel" %}</a>
+    <button
+        class="btn btn-danger"
+        type="submit"
+    >{% trans "Import stations-updates and maybe override current status" %}</button>
+</form>
+{% endblock %}

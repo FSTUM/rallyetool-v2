@@ -14,4 +14,8 @@
     class="nav-link {% active_link "ratings:add_station" %}"
     href="{% url "ratings:add_station" %}"
 >{% trans "Add new station" %}</a>
+<a
+    class="nav-link {% active_link "ratings:import_stations" %}"
+    href="{% url "ratings:import_stations" %}"
+>{% trans "Stations management" %}</a>
 {% endblock %}

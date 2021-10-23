@@ -59,3 +59,7 @@ class GroupForm(SemesterBasedModelForm):
                 "</ul>",
             ),
         }
+
+
+class JsonStationUpdateForm(forms.Form):
+    json_update = forms.JSONField(required=True)

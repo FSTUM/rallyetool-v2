@@ -17,7 +17,7 @@ from common.forms import NewUserForm
 from common.models import get_semester, Semester, Settings
 from common.views import AuthWSGIRequest, rallye_login_required, superuser_required
 
-from .forms import EditRatingForm, GroupForm, RatingForm, StationForm
+from .forms import EditRatingForm, GroupForm, JsonStationUpdateForm, RatingForm, StationForm
 from .models import Group, Rating, RegistrationToken, Station
 
 user_has_stand_required: Callable = user_passes_test(lambda u: bool(u.station))  # type: ignore
@@ -203,7 +203,7 @@ def edit_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
 
 
 @superuser_required
-def sanitise_stations(request):
+def sanitise_stations(request: AuthWSGIRequest) -> HttpResponse:
     stations: List[Station] = list(Station.objects.exclude(user=None).all())
 
     form = forms.Form(request.POST or None)
@@ -228,7 +228,43 @@ def sanitise_stations(request):
 
 
 @superuser_required
-def export_stations(request):
+def import_stations(request: AuthWSGIRequest) -> HttpResponse:
+    form = JsonStationUpdateForm(request.POST or None)
+    if form.is_valid():
+        json_update = form.cleaned_data["json_update"]
+        if not isinstance(json_update, list):
+            messages.error(request, _("json is not of type `List[Dict[str, Union[int, float, str]]]`"))
+            return redirect("ratings:import_stations")
+        for update in json_update:
+            if not isinstance(update, dict) or not update:
+                messages.error(request, _("json is not of type `List[Dict[str, Union[int, float, str]]]`"))
+                return redirect("ratings:import_stations")
+            if "pk" not in update:
+                station: Station = Station.objects.create()
+            else:
+                station = Station.objects.get_or_create(pk=update.pop("pk"))[0]
+            unpacked_update = update.items()
+            for key, value in unpacked_update:
+                if not isinstance(value, (float, int, str)):
+                    messages.error(request, _("json is not of type `List[Dict[str, Union[int, float, str]]]`"))
+                    return redirect("ratings:import_stations")
+                station.__setattr__(key, value)
+            station.save()
+        messages.success(request, _("All updates have been successfully written"))
+        return redirect("ratings:import_stations")
+    context = {"form": form}
+    messages.warning(
+        request,
+        _(
+            "Importing is risky. Overriding with this import method is non-reversible. "
+            "Do this only if you have made an export bevore and and are shure what you are doing.",
+        ),
+    )
+    return render(request, "ratings/administration/import_stations.html", context)
+
+
+@superuser_required
+def export_stations(request: AuthWSGIRequest) -> HttpResponse:
     stations_qs = Station.objects.all()
     stations: List[Dict[str, Union[int, float, str]]] = [_serialise_station(station) for station in stations_qs]
 
