@@ -1,3 +1,4 @@
+{% load settings %}
 {% load titles %}
 {% load active_link_tags %}
 {% load static %}
@@ -8,6 +9,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 {% get_language_info_list for LANGUAGES as languages %}
+{% get_settings as settings %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 
@@ -96,18 +98,22 @@
                             class="nav-link {% active_link "ratings:view_leaderboard" %}"
                             href="{% url "ratings:view_leaderboard" %}"
                         >{% trans "Leaderboard" %}</a>
+                        {% if settings.group_registration_available %}
                         <a
                             class="nav-link {% active_link "ratings:register_group" %}"
                             href="{% url "ratings:register_group" %}"
                         >{% trans "Register Team" %}</a>
+                        {% endif %}
                         <a
                             class="nav-link {% active_link "overview-map" %}"
                             href="{% url "overview-map" %}"
                         >{% trans "Map" %}</a>
+                        {% if settings.scavenger_hunt_station and settings.scavenger_hunt_secret %}
                         <a
                             class="nav-link {% active_link "challanges:scavenger_hunt" %}"
                             href="{% url "challanges:scavenger_hunt" %}"
                         >{% trans "Scavenger Hunt" %}</a>
+                        {% endif %}
                         {% if user.is_authenticated %}
                         {% if user.station %}
                         <a
