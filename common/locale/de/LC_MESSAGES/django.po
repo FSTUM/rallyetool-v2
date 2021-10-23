@@ -57,19 +57,22 @@ msgstr "Jahr"
 msgid ""
 "Introductory Text displayed on the landingpage. Full HTML styling is "
 "availible. Disabled if blank."
-msgstr "Einleitender Text, der auf der Landingpage angezeigt wird. Vollständiges HTML-Styling ist möglich. Deaktiviert, wenn leer."
+msgstr ""
+"Einleitender Text, der auf der Landingpage angezeigt wird. Vollständiges "
+"HTML-Styling ist möglich. Deaktiviert, wenn leer."
 
 #: common/models.py:120
 msgid "Scavenger hunt secret"
 msgstr "Schnitzeljagd-Geheimnis"
 
 #: common/models.py:126
-msgid "Only alphabetic characters, capitalisation is ignored"
+msgid "Only alphabetic characters, Capitalisation is ignored"
 msgstr "Nur alphabetische Zeichen, Groß- und Kleinschreibung wird ignoriert"
 
 #: common/models.py:136
 msgid "Scavenger hunt station. Scavenger hunt is disabled if blank."
-msgstr "Schnitzeljagd-Station. Die Schnitzeljagd ist deaktiviert, wenn sie leer ist."
+msgstr ""
+"Schnitzeljagd-Station. Die Schnitzeljagd ist deaktiviert, wenn sie leer ist."
 
 #: common/models.py:142
 msgid "Reward for correctly submitting the scavenger hunt secret"

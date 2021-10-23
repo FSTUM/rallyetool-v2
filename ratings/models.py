@@ -87,18 +87,18 @@ class Station(LoggedModel):
         help_text=_("Visible on the map"),
     )
     longitude = models.FloatField(
-        verbose_name=_("Longitude of the sation"),
+        verbose_name=_("Longitude of the station"),
         default=11.671,
         help_text=_("Visible on the map"),
     )
     latitude = models.FloatField(
-        verbose_name=_("Latitude of the sation"),
+        verbose_name=_("Latitude of the station"),
         default=48.265,
         help_text=_("Visible on the map"),
     )
 
     # management
-    tutor_amount = models.PositiveSmallIntegerField(verbose_name=_("Longitude of the sation"), default=11.671)
+    tutor_amount = models.PositiveSmallIntegerField(verbose_name=_("Amount of tutors needed"), default=2)
     user = models.OneToOneField(
         get_user_model(),
         on_delete=models.SET_NULL,

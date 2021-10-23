@@ -30,7 +30,9 @@ urlpatterns = [
                 ),
                 path("view/<int:station_pk>/", views.view_station, name="view_station"),
                 path(
-                    "view/", RedirectView.as_view(pattern_name="ratings:list_ratings"), name="view_station-active_link"
+                    "view/",
+                    RedirectView.as_view(pattern_name="ratings:list_ratings"),
+                    name="view_station-active_link",
                 ),
             ],
         ),

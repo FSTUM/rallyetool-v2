@@ -123,7 +123,7 @@ class Settings(SingletonModel, LoggedModel):
             MaxLengthValidator(30),
             RegexValidator(
                 r"[A-Za-z]+$",
-                _("Only alphabetic characters, capitalisation is ignored"),
+                _("Only alphabetic characters, Capitalisation is ignored"),
             ),
         ],
     )

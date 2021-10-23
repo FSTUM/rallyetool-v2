@@ -6,7 +6,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ratings/forms.py:48
+#: ratings/forms.py:54
 msgid ""
 "<ul><li>Required.</li><li>Only alphanumeric characters, @#$€<>%^&+=_-, space "
 "and äöüß are allowed.</li><li>Minimum of 4 characters</li><li>Maximum of 30 "
@@ -32,10 +32,6 @@ msgstr ""
 "Nur alphanumerische Zeichen, @#$€<>%%^&+=_-, Leerzeichen und äöüß sind "
 "erlaubt"
 
-#: ratings/models.py:48
-msgid "Visible on the map"
-msgstr "Auf der Karte sichtbar"
-
 #: ratings/models.py:50
 msgid "Name of the Station"
 msgstr "Stationsname"
@@ -44,21 +40,59 @@ msgstr "Stationsname"
 msgid "Station-name unknown"
 msgstr "unbekannter Stationsname"
 
-#: ratings/models.py:57
+#: ratings/models.py:53
+msgid "Visible to logged in users on the map and to tutors"
+msgstr "Sichtbar für eingeloggte Benutzer auf der Karte und für Tutoren"
+
+#: ratings/models.py:56
+msgid "Instructions, how to setup the station."
+msgstr "Anweisungen, wie die Station einzurichten ist."
+
+#: ratings/models.py:57 ratings/models.py:62 ratings/models.py:67
+#: ratings/models.py:73 ratings/models.py:78
+msgid "Displayed to the tutor."
+msgstr "Für Tutoren Angezeigt"
+
+#: ratings/models.py:61
+msgid "Instructions, how to conduct a game."
+msgstr "Anweisungen, wie ein Spiel durchzuführen ist."
+
+#: ratings/models.py:66
+msgid "Instructions, how to score a game."
+msgstr "Anweisungen, wie ein Spiel zu bewerten ist."
+
+#: ratings/models.py:72 ratings/templates/ratings/station/view_station.html:49
+#: ratings/templates/ratings/station/view_station.html:64
+msgid "Contact Person"
+msgstr "Kontaktperson"
+
+#: ratings/models.py:77 ratings/templates/ratings/station/view_station.html:53
+msgid "Utensils/tools needed for this station"
+msgstr "Für diese Station benötigte Utensilien/Werkzeuge"
+
+#: ratings/models.py:84
 msgid "Description of the Station"
 msgstr "Stationsbeschreibung"
 
-#: ratings/models.py:59
+#: ratings/models.py:86
 msgid "Location unknown"
 msgstr "unbekannter Standort"
 
-#: ratings/models.py:62
-msgid "Longitude of the sation"
+#: ratings/models.py:87 ratings/models.py:92 ratings/models.py:97
+msgid "Visible on the map"
+msgstr "Auf der Karte sichtbar"
+
+#: ratings/models.py:90
+msgid "Longitude of the station"
 msgstr "Stations-Längengrad"
 
-#: ratings/models.py:63
-msgid "Latitude of the sation"
+#: ratings/models.py:95
+msgid "Latitude of the station"
 msgstr "Stations-Breitengrad"
+
+#: ratings/models.py:101
+msgid "Amount of tutors needed"
+msgstr "Anzahl der benötigten Tutoren"
 
 #: ratings/templates/ratings/administration/add_station.html:5
 #: ratings/templates/ratings/administration/add_station.html:22
@@ -101,7 +135,7 @@ msgid "User registration is disabled in the Settings"
 msgstr "Die Benutzerregistrierung ist in den Einstellungen deaktiviert"
 
 #: ratings/templates/ratings/administration/list_stations.html:67
-#: ratings/templates/ratings/rating/list_ratings.html:39
+#: ratings/templates/ratings/rating/list_ratings.html:41
 msgid "Last Update"
 msgstr "Letzes Update"
 
@@ -118,17 +152,17 @@ msgid "Description"
 msgstr "Beschreibung"
 
 #: ratings/templates/ratings/administration/list_stations.html:71
-#: ratings/templates/ratings/rating/list_ratings.html:42
+#: ratings/templates/ratings/rating/list_ratings.html:44
 msgid "Actions"
 msgstr "Aktionen"
 
 #: ratings/templates/ratings/administration/list_stations.html:86
-#: ratings/templates/ratings/rating/list_ratings.html:55
+#: ratings/templates/ratings/rating/list_ratings.html:57
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: ratings/templates/ratings/administration/list_stations.html:90
-#: ratings/templates/ratings/rating/list_ratings.html:59
+#: ratings/templates/ratings/rating/list_ratings.html:61
 msgid "Delete"
 msgstr "Löschen"
 
@@ -152,15 +186,19 @@ msgstr "Neue Station hinzufügen"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: ratings/templates/ratings/base_ratings.html:13
+#: ratings/templates/ratings/base_ratings.html:16
+msgid "Station"
+msgstr "Station"
+
+#: ratings/templates/ratings/base_ratings.html:19
 msgid "Ratings"
 msgstr "Bewertungen"
 
-#: ratings/templates/ratings/base_ratings.html:17
+#: ratings/templates/ratings/base_ratings.html:23
 msgid "List previous ratings"
 msgstr "Vorherige bewertungen auflisten"
 
-#: ratings/templates/ratings/base_ratings.html:21
+#: ratings/templates/ratings/base_ratings.html:28
 msgid "Add new rating"
 msgstr "Neue Bewertung hinzufügen"
 
@@ -204,21 +242,57 @@ msgstr "Bewertung bearbeiten"
 msgid "List all rating by station %(station)s"
 msgstr "Alle Bewertungen von Station %(station)s auflisten"
 
-#: ratings/templates/ratings/rating/list_ratings.html:28
+#: ratings/templates/ratings/rating/list_ratings.html:29
+#: ratings/templates/ratings/station/view_station.html:21
 msgid "Add new Rating"
 msgstr "Neues Bewertung hinzufügen"
 
-#: ratings/templates/ratings/rating/list_ratings.html:40
+#: ratings/templates/ratings/rating/list_ratings.html:42
 msgid "Teamname"
 msgstr "Teamname"
 
-#: ratings/templates/ratings/rating/list_ratings.html:41
+#: ratings/templates/ratings/rating/list_ratings.html:43
 msgid "Points awarded"
 msgstr "Vergebene Punkte"
 
-#: ratings/templates/ratings/rating/list_ratings.html:67
+#: ratings/templates/ratings/rating/list_ratings.html:69
 msgid "No ratings yet."
 msgstr "Noch keine Bewertungen."
+
+#: ratings/templates/ratings/station/view_station.html:7
+#, python-format
+msgid "Station %(name)s"
+msgid_plural "Station %(name)s (%(tutor_amount)s tutors)"
+msgstr[0] "Station %(name)s"
+msgstr[1] "Station %(name)s (%(tutor_amount)s tutoren)"
+
+#: ratings/templates/ratings/station/view_station.html:25
+msgid "Instructions"
+msgstr "Anweisungen"
+
+#: ratings/templates/ratings/station/view_station.html:30
+msgid "Stations setup-instructions"
+msgstr "Stations Setup-Anweisungen"
+
+#: ratings/templates/ratings/station/view_station.html:34
+msgid "Stations game-instructions"
+msgstr "Stations Spiel-Anweisungen"
+
+#: ratings/templates/ratings/station/view_station.html:38
+msgid "Stations scoring-guidelines"
+msgstr "Stations Bewertungsleitlinien"
+
+#: ratings/templates/ratings/station/view_station.html:44
+msgid "Supporting information"
+msgstr "Unterstützende Informationen"
+
+#: ratings/templates/ratings/station/view_station.html:59
+msgid "Location"
+msgstr "Standort"
+
+#: ratings/templates/ratings/station/view_station.html:68
+msgid "latitude/ longitude"
+msgstr "latitude/ longitude"
 
 #: ratings/views.py:31
 msgid ""
