@@ -20,6 +20,7 @@ List all rating by station {{ station }}
 {% endblock %}
 
 {% block rallye_common_content %}
+{% if settings.station_rating_avialible %}
 <div class='col-sm p-1 d-grid mb-4'>
     <a
         class="btn btn-lg btn-block btn-primary"
@@ -28,6 +29,7 @@ List all rating by station {{ station }}
         <span class="bi bi-plus"> {% trans "Add new Rating" %}</span>
     </a>
 </div>
+{% endif %}
 {% if ratings %}
 <div class="table-responsive">
     <table

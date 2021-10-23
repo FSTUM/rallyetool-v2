@@ -21,8 +21,10 @@
     class="nav-link {% active_link "ratings:list_ratings" %}"
     href="{% url "ratings:list_ratings" %}"
 >{% trans "List previous ratings" %}</a>
+{% if settings.station_rating_avialible %}
 <a
     class="nav-link {% active_link "ratings:add_rating" %}"
     href="{% url "ratings:add_rating" %}"
 >{% trans "Add new rating" %}</a>
+{% endif %}
 {% endblock %}
