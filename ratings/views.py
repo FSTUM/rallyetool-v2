@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Union
+from typing import Callable, Dict, List, Union
 from uuid import UUID
 
 from django.contrib import messages
@@ -200,6 +200,31 @@ def edit_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
         return redirect("ratings:list_stations")
     context = {"form": form, "station": station}
     return render(request, "ratings/administration/edit_station.html", context)
+
+
+@superuser_required
+def sanitise_stations(request):
+    stations: List[Station] = list(Station.objects.exclude(user=None).all())
+
+    form = forms.Form(request.POST or None)
+    if form.is_valid():
+        for station in stations:
+            station.user = None
+            station.save()
+
+        messages.success(
+            request,
+            _("The users of the stations {} have been permanently removed from their stations.").format(
+                stations,
+            ),
+        )
+        return redirect("ratings:list_stations")
+    messages.warning(
+        request,
+        _("Removing people from their stations is permanent. Manually re-adding them is tedious."),
+    )
+    context = {"form": form, "stations": stations}
+    return render(request, "ratings/administration/sanitise_stations.html", context)
 
 
 @superuser_required

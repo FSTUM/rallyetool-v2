@@ -40,6 +40,12 @@
         <a class="btn btn-secondary disabled">{% trans "User registration is disabled in the Settings" %}</a>
         {% endif %}
     </div>
+    <div class='col-sm p-1 d-grid'>
+        <a
+            class="btn btn-warning"
+            href="{% url "ratings:sanitise_stations" %}"
+        ><span class="bi bi-person-dash-fill"> {% trans "Sanitise Stations" %}</span></a>
+    </div>
 </div>
 {% if registration_link %}
 <div
