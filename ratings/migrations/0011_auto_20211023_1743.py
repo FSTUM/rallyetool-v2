@@ -6,23 +6,31 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ratings', '0010_auto_20211023_0238'),
+        ("ratings", "0010_auto_20211023_0238"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='station',
-            name='latitude',
-            field=models.FloatField(default=48.265, help_text='Visible on the map', verbose_name='Latitude of the station'),
+            model_name="station",
+            name="latitude",
+            field=models.FloatField(
+                default=48.265,
+                help_text="Visible on the map",
+                verbose_name="Latitude of the station",
+            ),
         ),
         migrations.AlterField(
-            model_name='station',
-            name='longitude',
-            field=models.FloatField(default=11.671, help_text='Visible on the map', verbose_name='Longitude of the station'),
+            model_name="station",
+            name="longitude",
+            field=models.FloatField(
+                default=11.671,
+                help_text="Visible on the map",
+                verbose_name="Longitude of the station",
+            ),
         ),
         migrations.AlterField(
-            model_name='station',
-            name='tutor_amount',
-            field=models.PositiveSmallIntegerField(default=2, verbose_name='Amount of tutors needed'),
+            model_name="station",
+            name="tutor_amount",
+            field=models.PositiveSmallIntegerField(default=2, verbose_name="Amount of tutors needed"),
         ),
     ]

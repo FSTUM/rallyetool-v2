@@ -102,6 +102,7 @@ msgstr "Station hinzufügen"
 #: ratings/templates/ratings/administration/add_station.html:18
 #: ratings/templates/ratings/administration/del_station.html:18
 #: ratings/templates/ratings/administration/edit_station.html:18
+#: ratings/templates/ratings/administration/sanitise_stations.html:22
 #: ratings/templates/ratings/rating/add_rating.html:18
 #: ratings/templates/ratings/rating/del_rating.html:27
 #: ratings/templates/ratings/rating/edit_rating.html:27
@@ -134,41 +135,54 @@ msgstr "Link zur Benutzerregistrierung anzeigen"
 msgid "User registration is disabled in the Settings"
 msgstr "Die Benutzerregistrierung ist in den Einstellungen deaktiviert"
 
-#: ratings/templates/ratings/administration/list_stations.html:67
+#: ratings/templates/ratings/administration/list_stations.html:47
+msgid "Sanitise Stations"
+msgstr "Stationen reinigen"
+
+#: ratings/templates/ratings/administration/list_stations.html:73
 #: ratings/templates/ratings/rating/list_ratings.html:41
 msgid "Last Update"
 msgstr "Letzes Update"
 
-#: ratings/templates/ratings/administration/list_stations.html:68
+#: ratings/templates/ratings/administration/list_stations.html:74
 msgid "User"
 msgstr "Benutzer"
 
-#: ratings/templates/ratings/administration/list_stations.html:69
+#: ratings/templates/ratings/administration/list_stations.html:75
 msgid "Name"
 msgstr "Name"
 
-#: ratings/templates/ratings/administration/list_stations.html:70
+#: ratings/templates/ratings/administration/list_stations.html:76
 msgid "Tutors"
 msgstr "Tutoren"
 
-#: ratings/templates/ratings/administration/list_stations.html:71
+#: ratings/templates/ratings/administration/list_stations.html:77
 #: ratings/templates/ratings/rating/list_ratings.html:44
 msgid "Actions"
 msgstr "Aktionen"
 
-#: ratings/templates/ratings/administration/list_stations.html:86
+#: ratings/templates/ratings/administration/list_stations.html:92
 #: ratings/templates/ratings/rating/list_ratings.html:57
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ratings/templates/ratings/administration/list_stations.html:90
+#: ratings/templates/ratings/administration/list_stations.html:96
 #: ratings/templates/ratings/rating/list_ratings.html:61
 msgid "Delete"
 msgstr "Löschen"
 
-#: ratings/templates/ratings/administration/list_stations.html:99
+#: ratings/templates/ratings/administration/list_stations.html:105
 msgid "No stations yet."
 msgstr "Noch keine Stationen."
+
+#: ratings/templates/ratings/administration/sanitise_stations.html:6
+#, python-format
+msgid "Sanitise station %(station)s for a new semester"
+msgstr "Reinige station %(station)s für ein neues Semester"
+
+#: ratings/templates/ratings/administration/sanitise_stations.html:26
+msgid "Seperate all users from all stations"
+msgstr "Separiere alle User von ihren Stationen"
 
 #: ratings/templates/ratings/base_administration.html:8
 msgid "Stations"
@@ -316,7 +330,7 @@ msgstr ""
 msgid "Registration of group '{}' successful."
 msgstr "Registrierung der Gruppe '{}' erfolgreich."
 
-#: ratings/views.py:60 ratings/views.py:252
+#: ratings/views.py:60 ratings/views.py:277
 msgid "Unsuccessful registration. Invalid information."
 msgstr "Die Registrierung ist fehlgeschlagen. Ungültige Informationen."
 
@@ -360,7 +374,7 @@ msgstr ""
 msgid "Rating {} was permanently deleted."
 msgstr "Die Bewertung {} wurde endgültig gelöscht."
 
-#: ratings/views.py:157 ratings/views.py:226
+#: ratings/views.py:157 ratings/views.py:251
 msgid "Deletion is permanent."
 msgstr "Löschen ist endgültig."
 
@@ -372,7 +386,22 @@ msgstr "Station {} wurde erfolgreich hinzugefügt."
 msgid "Station {} was successfully edited."
 msgstr "Station {} wurde erfolgreich bearbeitet."
 
-#: ratings/views.py:220
+#: ratings/views.py:217
+msgid ""
+"The users of the stations {} have been permanently removed from their "
+"stations."
+msgstr ""
+"Die Benutzer der Stationen {} wurden dauerhaft von ihren Stationen entfernt."
+
+#: ratings/views.py:224
+msgid ""
+"Removing people from their stations is permanent. Manually re-adding them is "
+"tedious."
+msgstr ""
+"Das Entfernen von Personen aus ihren Stationen ist dauerhaft. Sie manuell "
+"wieder hinzuzufügen ist mühsam."
+
+#: ratings/views.py:245
 msgid ""
 "Unable to delete the station '{}'.<br/>It is currently protected by its "
 "ratings:<br/>{}"
@@ -380,11 +409,11 @@ msgstr ""
 "Es ist nicht möglich, die Station '{}' zu löschen.<br/>Er ist derzeit durch "
 "seine Bewertungen geschützt:<br/>{}"
 
-#: ratings/views.py:224
+#: ratings/views.py:249
 msgid "station {} was permanently deleted."
 msgstr "Station {} wurde permanent gelöscht."
 
-#: ratings/views.py:237
+#: ratings/views.py:262
 msgid ""
 "User Registration is disabeled in the settings. Please contact the "
 "organisers if you think that this is an error."
@@ -393,6 +422,6 @@ msgstr ""
 "kontaktieren Sie die Organisatoren, wenn Sie glauben, dass dies ein Fehler "
 "ist."
 
-#: ratings/views.py:249
+#: ratings/views.py:274
 msgid "Registration successful."
 msgstr "Die Benutzerregistrierung war erfolgreich."
