@@ -46,6 +46,12 @@
             href="{% url "ratings:sanitise_stations" %}"
         ><span class="bi bi-person-dash-fill"> {% trans "Sanitise Stations" %}</span></a>
     </div>
+    <div class='col-sm p-1 d-grid'>
+        <a
+            class="btn btn-secondary"
+            href="{% url "ratings:export_stations" %}"
+        ><span class="bi bi-file-text-fill"> {% trans "Export Stations" %}</span></a>
+    </div>
 </div>
 {% if registration_link %}
 <div

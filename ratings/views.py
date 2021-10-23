@@ -1,4 +1,4 @@
-from typing import Callable, Dict, List, Union
+from typing import Any, Callable, Dict, List, Union
 from uuid import UUID
 
 from django.contrib import messages
@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import ProtectedError, QuerySet
 from django.forms import forms
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -225,6 +225,35 @@ def sanitise_stations(request):
     )
     context = {"form": form, "stations": stations}
     return render(request, "ratings/administration/sanitise_stations.html", context)
+
+
+@superuser_required
+def export_stations(request):
+    stations_qs = Station.objects.all()
+    stations: List[Dict[str, Union[int, float, str]]] = [_serialise_station(station) for station in stations_qs]
+
+    return JsonResponse(stations, safe=False, json_dumps_params={"indent": 4})
+
+
+def _serialise_station(station: Any) -> Dict[str, Union[int, float, str]]:
+    return {
+        "pk": station.pk,
+        "name_de": station.name_de,
+        "name_en": station.name_en,
+        "setup_instructions_de": station.setup_instructions_de,
+        "setup_instructions_en": station.setup_instructions_en,
+        "station_game_instructions_de": station.station_game_instructions_de,
+        "station_game_instructions_en": station.station_game_instructions_en,
+        "scoring_instructions_de": station.scoring_instructions_de,
+        "scoring_instructions_en": station.scoring_instructions_en,
+        "contact_person": station.contact_person,
+        "setup_tools": station.setup_tools,
+        "location_description_de": station.location_description_de,
+        "location_description_en": station.location_description_en,
+        "longitude": station.longitude,
+        "latitude": station.latitude,
+        "tutor_amount": station.tutor_amount,
+    }
 
 
 @superuser_required
