@@ -98,10 +98,20 @@ def get_semester(request: HttpRequest) -> int:
 
 
 class Settings(SingletonModel, LoggedModel):
+    # flag register
     station_registration_availible = models.BooleanField(verbose_name="Stations can be registered", default=False)
-    station_rating_avialible = models.BooleanField(verbose_name="Stations rate groups", default=False)
+    station_rating_avialible = models.BooleanField(verbose_name="Stations can rate groups", default=False)
 
     group_registration_available = models.BooleanField(verbose_name="Groups can be registered", default=True)
+
+    # welcome page
+    welcome_text = models.TextField(
+        verbose_name=_(
+            "Introductory Text displayed on the landingpage. Full HTML styling is availible. Disabled if blank.",
+        ),
+        blank=True,
+        default="",
+    )
 
     # challanges
     scavenger_hunt_secret = models.CharField(
@@ -123,7 +133,7 @@ class Settings(SingletonModel, LoggedModel):
         blank=True,
         on_delete=models.SET_NULL,
         verbose_name=_(
-            "Scavenger hunt station. If not present a warning will be caused (i.e. scavenger hunt wont be available)",
+            "Scavenger hunt station. Scavenger hunt is disabled if blank.",
         ),
     )
     scavenger_hunt_points = models.IntegerField(

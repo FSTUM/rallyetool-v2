@@ -14,56 +14,56 @@ msgstr "Deutsch"
 msgid "English"
 msgstr "Englisch"
 
-#: templates/base.html:98
+#: templates/base.html:100
 msgid "Leaderboard"
 msgstr "Rangliste"
 
-#: templates/base.html:102
+#: templates/base.html:105
 msgid "Register Team"
 msgstr "Team registrieren"
 
-#: templates/base.html:106
+#: templates/base.html:110
 msgid "Map"
 msgstr "Karte"
 
-#: templates/base.html:110
+#: templates/base.html:115
 msgid "Scavenger Hunt"
 msgstr "Schnitzeljagd"
 
-#: templates/base.html:116
+#: templates/base.html:122
 msgid "Rate"
 msgstr "Bewerten"
 
-#: templates/base.html:122
+#: templates/base.html:128
 msgid "Administration"
 msgstr "Administation"
 
-#: templates/base.html:126
+#: templates/base.html:132
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: templates/base.html:169
+#: templates/base.html:175
 msgid "Select your semester"
 msgstr "Semester auswählen"
 
-#: templates/base.html:175
+#: templates/base.html:181
 msgid "Switch semester"
 msgstr "Semester wechseln"
 
-#: templates/base.html:189 templates/base.html:193
+#: templates/base.html:195 templates/base.html:199
 #, python-format
 msgid "Log out %(username)s"
 msgstr "%(username)s ausloggen"
 
-#: templates/base.html:204
+#: templates/base.html:210
 msgid "Login"
 msgstr "Einloggen"
 
-#: templates/base.html:264
+#: templates/base.html:270
 msgid "Data protection"
 msgstr "Datenschutz"
 
-#: templates/base.html:276
+#: templates/base.html:282
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -80,15 +80,15 @@ msgstr "Willkommen beim Rallyetool"
 msgid "Map showing where the stations are"
 msgstr "Karte mit den Standorten der Stationen"
 
-#: templates/registration/map.html:85
+#: templates/registration/map.html:91
 msgid "Chemistry"
 msgstr "Chemie"
 
-#: templates/registration/map.html:95
+#: templates/registration/map.html:101
 msgid "Physics"
 msgstr "Physik"
 
-#: templates/registration/map.html:105
+#: templates/registration/map.html:111
 msgid "Canteen"
 msgstr "Mensa"
 

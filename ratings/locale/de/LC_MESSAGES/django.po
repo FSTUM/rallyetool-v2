@@ -16,7 +16,7 @@ msgstr ""
 "%^&+=_-, Leerzeichen und äöü.</li><li>Minimum von 4 Zeichen</li><li>Maximum "
 "von 30 Zeichen</li></ul>"
 
-#: ratings/models.py:26 ratings/templates/ratings/leaderboard.html:23
+#: ratings/models.py:26 ratings/templates/ratings/leaderboard.html:29
 msgid "Name of your Team"
 msgstr "Teamname"
 
@@ -168,11 +168,11 @@ msgstr "Neue Bewertung hinzufügen"
 msgid "Leaderboard"
 msgstr "Rangliste"
 
-#: ratings/templates/ratings/leaderboard.html:22
+#: ratings/templates/ratings/leaderboard.html:28
 msgid "Place"
 msgstr "Platz"
 
-#: ratings/templates/ratings/leaderboard.html:24
+#: ratings/templates/ratings/leaderboard.html:30
 msgid "Points"
 msgstr "Punkte"
 
@@ -228,7 +228,7 @@ msgstr ""
 "Die Anmeldung neuer Gruppen ist geschlossen. Kontaktieren Sie die "
 "Organisatoren, wenn du glaubst, dass dies ein Fehler ist."
 
-#: ratings/views.py:47
+#: ratings/views.py:48
 #, python-brace-format
 msgid ""
 "Registration of group '{group_name}' failed. A group with a very similar "
@@ -238,67 +238,67 @@ msgstr ""
 "bereits eine Gruppe mit einem sehr ähnlichen Namen. Der Konkurrent ist: "
 "{similar_groups}"
 
-#: ratings/views.py:55
+#: ratings/views.py:57
 msgid "Registration of group '{}' successful."
 msgstr "Registrierung der Gruppe '{}' erfolgreich."
 
-#: ratings/views.py:58 ratings/views.py:250
+#: ratings/views.py:60 ratings/views.py:252
 msgid "Unsuccessful registration. Invalid information."
 msgstr "Die Registrierung ist fehlgeschlagen. Ungültige Informationen."
 
-#: ratings/views.py:91
+#: ratings/views.py:93
 msgid "The organisers have ended this event."
 msgstr "Die Organisatoren haben diese Veranstaltung beendet."
 
-#: ratings/views.py:104
+#: ratings/views.py:106
 msgid "Unable to add a Rating. The organisers have ended this event."
 msgstr ""
 "Leider kannst du keine Bewertungen mehr abgeben. Die Organisatoren haben "
 "diese Veranstaltung beendet."
 
-#: ratings/views.py:111
+#: ratings/views.py:113
 msgid "Rating {} was successfully added"
 msgstr "Bewertung {} wurde erfolgreich hinzugefügt"
 
-#: ratings/views.py:124
+#: ratings/views.py:126
 msgid "Unable to edit a Rating. The organisers have ended this event."
 msgstr ""
 "Es ist nicht möglich, eine Bewertung zu bearbeiten. Die Organisatoren haben "
 "diese Veranstaltung beendet."
 
-#: ratings/views.py:130
+#: ratings/views.py:132
 msgid "Rating {} was successfully edited"
 msgstr "Bewertung {} wurde erfolgreich bearbeitet"
 
-#: ratings/views.py:143
+#: ratings/views.py:145
 msgid "Unable to delete a Rating. The organisers have ended this event."
 msgstr ""
 "Leider ist es nicht möglich, eine Bewertung zu löschen. Die Organisatoren "
 "haben diese Veranstaltung beendet."
 
-#: ratings/views.py:148
+#: ratings/views.py:150
 msgid "You cant delete ratings of stations that are not your own"
 msgstr ""
 "Sie können keine Bewertungen von Stationen löschen, die nicht Ihre eigenen "
 "sind"
 
-#: ratings/views.py:153
+#: ratings/views.py:155
 msgid "Rating {} was permanently deleted."
 msgstr "Die Bewertung {} wurde endgültig gelöscht."
 
-#: ratings/views.py:155 ratings/views.py:224
+#: ratings/views.py:157 ratings/views.py:226
 msgid "Deletion is permanent."
 msgstr "Löschen ist endgültig."
 
-#: ratings/views.py:184
+#: ratings/views.py:186
 msgid "Station {} was successfully added."
 msgstr "Station {} wurde erfolgreich hinzugefügt."
 
-#: ratings/views.py:197
+#: ratings/views.py:199
 msgid "Station {} was successfully edited."
 msgstr "Station {} wurde erfolgreich bearbeitet."
 
-#: ratings/views.py:218
+#: ratings/views.py:220
 msgid ""
 "Unable to delete the station '{}'.<br/>It is currently protected by its "
 "ratings:<br/>{}"
@@ -306,11 +306,11 @@ msgstr ""
 "Es ist nicht möglich, die Station '{}' zu löschen.<br/>Er ist derzeit durch "
 "seine Bewertungen geschützt:<br/>{}"
 
-#: ratings/views.py:222
+#: ratings/views.py:224
 msgid "station {} was permanently deleted."
 msgstr "Station {} wurde permanent gelöscht."
 
-#: ratings/views.py:235
+#: ratings/views.py:237
 msgid ""
 "User Registration is disabeled in the settings. Please contact the "
 "organisers if you think that this is an error."
@@ -319,6 +319,6 @@ msgstr ""
 "kontaktieren Sie die Organisatoren, wenn Sie glauben, dass dies ein Fehler "
 "ist."
 
-#: ratings/views.py:247
+#: ratings/views.py:249
 msgid "Registration successful."
 msgstr "Die Benutzerregistrierung war erfolgreich."
