@@ -45,23 +45,60 @@ class Group(LoggedModel):
 
 
 class Station(LoggedModel):
-    _visible_on = _("Visible on the map")
+    # general information (translated)
     name = models.CharField(
         _("Name of the Station"),
         default=_("Station-name unknown"),
         max_length=150,
-        help_text=_visible_on,
+        help_text=_("Visible to logged in users on the map and to tutors"),
+    )
+    setup_instructions = models.TextField(
+        verbose_name=_("Instructions, how to setup the station."),
+        help_text=_("Displayed to the tutor."),
+        default="-",
+    )
+    station_game_instructions = models.TextField(
+        verbose_name=_("Instructions, how to conduct a game."),
+        help_text=_("Displayed to the tutor."),
+        default="-",
+    )
+    scoring_instructions = models.TextField(
+        verbose_name=_("Instructions, how to score a game."),
+        help_text=_("Displayed to the tutor."),
+        default="-",
+    )
+    # general information (non-translated)
+    contact_person = models.TextField(
+        verbose_name=_("Contact Person"),
+        help_text=_("Displayed to the tutor."),
+        default="-",
+    )
+    setup_tools = models.TextField(
+        verbose_name=_("Utensils/tools needed for this station"),
+        help_text=_("Displayed to the tutor."),
+        default="-",
     )
 
+    # map
     location_description = models.CharField(
         _("Description of the Station"),
         max_length=500,
         default=_("Location unknown"),
-        help_text=_visible_on,
+        help_text=_("Visible on the map"),
     )
-    longitude = models.FloatField(verbose_name=_("Longitude of the sation"), default=11.671, help_text=_visible_on)
-    latitude = models.FloatField(verbose_name=_("Latitude of the sation"), default=48.265, help_text=_visible_on)
+    longitude = models.FloatField(
+        verbose_name=_("Longitude of the sation"),
+        default=11.671,
+        help_text=_("Visible on the map"),
+    )
+    latitude = models.FloatField(
+        verbose_name=_("Latitude of the sation"),
+        default=48.265,
+        help_text=_("Visible on the map"),
+    )
 
+    # management
+    tutor_amount = models.PositiveSmallIntegerField(verbose_name=_("Longitude of the sation"), default=11.671)
     user = models.OneToOneField(
         get_user_model(),
         on_delete=models.SET_NULL,

@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
             field=models.TextField(
                 blank=True,
                 default="",
-                verbose_name="Introductory Text displayed on the landingpage. Full HTML styling is availible. Disabled if blank.",
+                verbose_name="Introductory Text displayed on the landingpage. "
+                "Full HTML styling is availible. Disabled if blank.",
             ),
         ),
         migrations.AlterField(

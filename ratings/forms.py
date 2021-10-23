@@ -36,7 +36,13 @@ class RatingForm(forms.ModelForm):
 class StationForm(forms.ModelForm):
     class Meta:
         model = Station
-        exclude: List[str] = ["location_description", "name"]
+        exclude: List[str] = [
+            "name",
+            "location_description",
+            "station_game_instructions",
+            "setup_instructions",
+            "scoring_instructions",
+        ]
 
 
 class GroupForm(SemesterBasedModelForm):
