@@ -1,0 +1,74 @@
+{% extends "ratings/base_ratings.html" %}
+{% load l10n %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block rallye_common_headercontent %}
+{% blocktrans trimmed with name=station.name count tutor_amount=station.tutor_amount %}
+Station {{ name }}
+{% plural %}
+Station {{ name }} ({{ tutor_amount }} tutors)
+{% endblocktrans %}
+{% endblock %}
+
+{% block rallye_common_content %}
+{% if settings.station_rating_avialible %}
+<div class='col-sm p-1 d-grid mb-4'>
+    <a
+        class="btn btn-lg btn-block btn-primary"
+        href="{% url "ratings:add_rating" %}"
+    >
+        <span class="bi bi-plus"> {% trans "Add new Rating" %}</span>
+    </a>
+</div>
+{% endif %}
+<h1 class="h4">{% trans "Instructions" %}</h1>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr>
+                <th>{% trans "Stations setup-instructions" %}</th>
+                <td>{{ station.setup_instructions }}</td>
+            </tr>
+            <tr>
+                <th>{% trans "Stations game-instructions" %}</th>
+                <td>{{ station.station_game_instructions }}</td>
+            </tr>
+            <tr>
+                <th>{% trans "Stations scoring-guidelines" %}</th>
+                <td>{{ station.scoring_instructions }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<h1 class="h4">{% trans "Supporting information" %}</h1>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr>
+                <th>{% trans "Contact Person" %}</th>
+                <td>{{ station.contact_person }}</td>
+            </tr>
+            <tr>
+                <th>{% trans "Utensils/tools needed for this station" %}</th>
+                <td>{{ station.setup_tools }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<h1 class="h4">{% trans "Location" %}</h1>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr>
+                <th>{% trans "Contact Person" %}</th>
+                <td>{{ station.location_description }}</td>
+            </tr>
+            <tr>
+                <th>{% trans "latitude/ longitude" %}</th>
+                <td><a href="https://www.openstreetmap.org/#map=20/{{ station.latitude|unlocalize }}/{{ station.longitude|unlocalize }}/">{{ station.latitude }} {{ station.longitude }}</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

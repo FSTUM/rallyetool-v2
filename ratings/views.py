@@ -257,3 +257,10 @@ def register_user(request: WSGIRequest, semester_pk: int, registration_uuid: UUI
 def overview_map(request):
     stations: QuerySet[Station] = list(Station.objects.all())
     return render(request, "registration/map.html", {"stations": stations})
+
+
+@rallye_login_required
+@user_has_stand_required
+def view_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
+    station: Station = get_object_or_404(Station, pk=station_pk)
+    return render(request, "ratings/station/view_station.html", {"station": station})

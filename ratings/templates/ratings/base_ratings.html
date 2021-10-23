@@ -9,6 +9,12 @@
     class="nav-link {% active_link "ratings:dashboard" %}"
     href="{% url "ratings:dashboard" %}"
 >{% trans "Dashboard" %}</a>
+{% if user.station %}
+<a
+    class="nav-link {% active_link "ratings:view_station-active_link" %}"
+    href="{% url "ratings:view_station" user.station.pk %}"
+>{% trans "Station" %}</a>
+{% endif %}
 
 <h4 class="navbar-text">{% trans "Ratings" %}</h4>
 <a

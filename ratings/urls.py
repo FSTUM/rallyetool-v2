@@ -13,13 +13,25 @@ urlpatterns = [
     path("leaderboard/", views.leaderboard, name="view_leaderboard"),
     path("register/", views.register_group, name="register_group"),
     path(
-        "ratings/",
+        "station/",
         include(
             [
-                path("list/", views.list_ratings, name="list_ratings"),
-                path("add/", views.add_rating, name="add_rating"),
-                path("edit/<int:rating_pk>/", views.edit_rating, name="edit_rating"),
-                path("del/<int:rating_pk>/", views.del_rating, name="del_rating"),
+                path("", RedirectView.as_view(pattern_name="ratings:list_ratings"), name="rate-main_view"),
+                path(
+                    "rate/",
+                    include(
+                        [
+                            path("list/", views.list_ratings, name="list_ratings"),
+                            path("add/", views.add_rating, name="add_rating"),
+                            path("edit/<int:rating_pk>/", views.edit_rating, name="edit_rating"),
+                            path("del/<int:rating_pk>/", views.del_rating, name="del_rating"),
+                        ],
+                    ),
+                ),
+                path("view/<int:station_pk>/", views.view_station, name="view_station"),
+                path(
+                    "view/", RedirectView.as_view(pattern_name="ratings:list_ratings"), name="view_station-active_link"
+                ),
             ],
         ),
     ),

@@ -117,8 +117,8 @@
                         {% if user.is_authenticated %}
                         {% if user.station %}
                         <a
-                            class="nav-link {% active_link "ratings:list_ratings" %}"
-                            href="{% url "ratings:list_ratings" %}"
+                            class="nav-link {% active_link "ratings:rate-main_view" %}"
+                            href="{% url "ratings:rate-main_view" %}"
                         >{% trans "Rate" %}</a>
                         {% endif %}
                         {% if user.is_superuser %}
