@@ -34,6 +34,19 @@ def showroom_fixture_state_no_confirmation():  # nosec: this is only used in a f
     _generate_ratings()
 
 
+def _set_scheme(scheme):
+    scheme.mark_for_10p = 10 * 20 - 19
+    scheme.mark_for_9p = 9 * 20 - 19
+    scheme.mark_for_8p = 8 * 20 - 19
+    scheme.mark_for_7p = 7 * 20 - 19
+    scheme.mark_for_6p = 6 * 20 - 19
+    scheme.mark_for_5p = 5 * 20 - 19
+    scheme.mark_for_4p = 4 * 20 - 19
+    scheme.mark_for_3p = 3 * 20 - 19
+    scheme.mark_for_2p = 2 * 20 - 19
+    scheme.mark_for_1p = 1 * 20 - 19
+
+
 def _generate_ratings():  # nosec: this is only used in a fixture
     groups = ratings_m.Group.objects.all()
     stations = ratings_m.Station.objects.all()
@@ -42,12 +55,38 @@ def _generate_ratings():  # nosec: this is only used in a fixture
         if random.choice((True, True, True, True, False)):
             for station in stations:
                 if random.choice((True, False)):
-                    points = random.randint(0, 10)
-                    ratings_m.Rating.objects.create(
-                        station=station,
-                        group=group,
-                        points=points,
-                    )
+                    if station.rating_scheme_choices == 3:  # noqa: SIM114
+                        ratings_m.Rating.objects.create(
+                            station=station,
+                            group=group,
+                            value=random.randint(0, 200),
+                            handicap=random.randint(4, 7),
+                        )
+                    elif station.rating_scheme_choices == 2:
+                        ratings_m.Rating.objects.create(
+                            station=station,
+                            group=group,
+                            value=random.randint(0, 200),
+                        )
+                    else:
+                        ratings_m.Rating.objects.create(
+                            station=station,
+                            group=group,
+                            points=random.randint(0, 10),
+                        )
+
+    # rating_scheme setup
+    for station in stations:
+        if station.rating_scheme_choices == 3:
+            for i in range(4, 8):
+                rating_scheme = station.rating_scheme
+                rating_scheme_group = ratings_m.RatingScheme3Group(rating_scheme=rating_scheme, handicap=i)
+                _set_scheme(rating_scheme_group)
+                rating_scheme_group.save(recalculate_points=False)
+        if station.rating_scheme_choices == 2:
+            _set_scheme(station.rating_scheme)
+            station.rating_scheme.save(recalculate_points=False)
+        station.rating_scheme.recalculate_points()
 
 
 def _generate_stations():  # nosec: this is only used in a fixture
@@ -62,6 +101,7 @@ def _generate_stations():  # nosec: this is only used in a fixture
         setup_instructions = lorem.paragraph()
         station_game_instructions = lorem.paragraph()
         scoring_instructions = lorem.paragraph()
+        r_s_number = random.choice((1, 2, 3))
         ratings_m.Station.objects.create(
             name=name,
             name_de=name,
@@ -82,8 +122,9 @@ def _generate_stations():  # nosec: this is only used in a fixture
             setup_tools=lorem.sentence(),
             longitude=11.671 + random.choice((1, -1)) * random.randint(0, 1000) / 1000 / 500,
             latitude=48.265 + random.choice((1, -1)) * random.randint(0, 1000) / 1000 / 500,
-            tutor_amount=random.choice((1, 2, 2, 2, 3, 3, 5, 6, 9)),
+            tutor_amount=r_s_number,
             user=user,
+            rating_scheme_choices=r_s_number,
         )
 
 
