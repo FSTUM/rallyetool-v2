@@ -1,0 +1,41 @@
+{% load django_bootstrap5 %}
+{% load i18n %}
+<p>
+    {% trans "The Rating-Scheme is 3. The following keys can be filled out." %}
+</p>
+
+<form
+    method="post"
+    action=""
+>
+    {% csrf_token %}
+    {{ formset.management_form }}
+
+
+
+    {% for form in formset %}
+    <hr class="mt-4 mb-4">
+    <div class="row">
+        <div class="col-md-4">{% bootstrap_field form.handicap layout="floating"  %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_10p layout="floating" %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_9p layout="floating" %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_8p layout="floating" %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_7p layout="floating" %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_6p layout="floating" %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_5p layout="floating" %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_4p layout="floating" %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_3p layout="floating" %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_2p layout="floating" %}</div>
+        <div class="col-md-2">{% bootstrap_field form.mark_for_1p layout="floating" %}</div>
+    </div>
+    {% endfor %}
+
+    <a
+        class="btn btn-secondary"
+        href="{% url "ratings:manage_rating_scheme" %}"
+    >{% trans "Cancel" %}</a>
+    <button
+        class="btn btn-warning"
+        type="submit"
+    >{% trans "Edit rating-scheme" %}</button>
+</form>

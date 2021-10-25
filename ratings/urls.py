@@ -28,6 +28,7 @@ urlpatterns = [
                         ],
                     ),
                 ),
+                path("rating-scheme/manage/", views.manage_rating_scheme, name="manage_rating_scheme"),
                 path("view/<int:station_pk>/", views.view_station, name="view_station"),
                 path(
                     "view/",

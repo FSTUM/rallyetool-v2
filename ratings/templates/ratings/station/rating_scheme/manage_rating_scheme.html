@@ -1,0 +1,20 @@
+{% extends "ratings/base_ratings.html" %}
+{% load l10n %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block rallye_common_headercontent %}
+{% blocktrans trimmed with name=station.name  %}
+Manage station {{ name }} using {{ rating_scheme }}
+{% endblocktrans %}
+{% endblock %}
+
+{% block rallye_common_content %}
+{% if station.rating_scheme_choices == 1 %}
+{% include "ratings/station/rating_scheme/body_rating_scheme_1.html" %}
+{% elif station.rating_scheme_choices == 2 %}
+{% include "ratings/station/rating_scheme/body_rating_scheme_2.html" %}
+{% else %}
+{% include "ratings/station/rating_scheme/body_rating_scheme_3.html" %}
+{% endif %}
+{% endblock %}

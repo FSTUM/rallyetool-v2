@@ -27,4 +27,10 @@
     href="{% url "ratings:add_rating" %}"
 >{% trans "Add new rating" %}</a>
 {% endif %}
+
+<h4 class="navbar-text">{% trans "Rating-Scheme" %}</h4>
+<a
+    class="nav-link {% active_link "ratings:manage_rating_scheme" %}"
+    href="{% url "ratings:manage_rating_scheme" %}"
+>{% trans "Manage Rating-Scheme" %}</a>
 {% endblock %}

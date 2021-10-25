@@ -1,0 +1,27 @@
+{% load django_bootstrap5 %}
+{% load i18n %}
+<p>
+    {% trans "The Rating-Scheme is 2. The following key can be filled out." %}
+</p>
+
+<form
+    method="post"
+    action=""
+>
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-xs-12 col-lg-5">
+            {% bootstrap_form form %}
+        </div>
+    </div>
+
+    <a
+        class="btn btn-secondary"
+        href="{% url "ratings:manage_rating_scheme" %}"
+    >{% trans "Cancel" %}</a>
+    <button
+        class="btn btn-warning"
+        type="submit"
+    >{% trans "Edit rating-scheme" %}</button>
+</form>

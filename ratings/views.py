@@ -6,7 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import user_passes_test
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import ProtectedError, QuerySet
-from django.forms import forms
+from django.forms import forms, formset_factory
 from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -366,8 +366,8 @@ def register_user(request: WSGIRequest, semester_pk: int, registration_uuid: UUI
     return render(request, "registration/register_user.html", {"form": form})
 
 
-def overview_map(request):
-    stations: QuerySet[Station] = list(Station.objects.all())
+def overview_map(request: WSGIRequest) -> HttpResponse:
+    stations: List[Station] = list(Station.objects.all())
     return render(request, "registration/map.html", {"stations": stations})
 
 
@@ -376,3 +376,37 @@ def overview_map(request):
 def view_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
     station: Station = get_object_or_404(Station, pk=station_pk)
     return render(request, "ratings/station/view_station.html", {"station": station})
+
+
+@rallye_login_required
+@user_has_stand_required
+def manage_rating_scheme(request: AuthWSGIRequest) -> HttpResponse:
+    station: Station = request.user.station
+    rating_scheme = station.rating_scheme
+
+    context: Dict[str, Any] = {"station": station, "rating_scheme": rating_scheme}
+    if station.rating_scheme_choices == 2:
+        form = RatingScheme2Form(request.POST or None, instance=rating_scheme)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("RatingScheme2 was successful modified."))
+            return redirect("ratings:manage_rating_scheme")
+        context["form"] = form
+    if station.rating_scheme_choices == 3:
+        if not isinstance(rating_scheme, RatingScheme3):
+            raise Exception("impossible state")
+        rs_groups = [rs.serialization() for rs in RatingScheme3Group.objects.filter(rating_scheme=rating_scheme).all()]
+        RatingScheme3GroupFormSet = formset_factory(RatingScheme3GroupForm, extra=1)
+        formset = RatingScheme3GroupFormSet(
+            request.POST or None,
+            initial=rs_groups,
+            form_kwargs={"rating_scheme": rating_scheme},
+        )
+        if formset.is_valid():
+            for form in formset:
+                form.save()
+            messages.success(request, _("RatingScheme3s' Groups were successfully modified."))
+            return redirect("ratings:manage_rating_scheme")
+        context["formset"] = formset
+
+    return render(request, "ratings/station/rating_scheme/manage_rating_scheme.html", context)
