@@ -7,7 +7,7 @@
 <script>
     $(() => {
         $('#ratingsTable').DataTable({
-            columnDefs: [{ targets: 3, orderable: false }],
+            columnDefs: [{ targets: {{ station.rating_scheme_choices|add:2 }}, orderable: false }],
         });
     });
 </script>
@@ -40,6 +40,12 @@ List all rating by station {{ station }}
             <tr>
                 <th>{% trans "Last Update" %}</th>
                 <th>{% trans "Teamname" %}</th>
+                {% if station.rating_scheme_choices == 2 or station.rating_scheme_choices == 3 %}
+                <th>{% trans "Value" %}</th>
+                {% endif %}
+                {% if station.rating_scheme_choices == 3 %}
+                <th>{% trans "Handicap" %}</th>
+                {% endif %}
                 <th>{% trans "Points awarded" %}</th>
                 <th>{% trans "Actions" %}</th>
             </tr>
@@ -49,6 +55,12 @@ List all rating by station {{ station }}
             <tr>
                 <td data-sort="{{rating.updated_at|date:"c"}}">{{rating.updated_at|date:"H:i"}}</td>
                 <td>{{rating.group.name}}</td>
+                {% if station.rating_scheme_choices == 2 or station.rating_scheme_choices == 3 %}
+                <td>{{rating.value}}</td>
+                {% endif %}
+                {% if station.rating_scheme_choices == 3 %}
+                <td>{{rating.handicap}}</td>
+                {% endif %}
                 <td>{{rating.points}}</td>
                 <td>
                     <a

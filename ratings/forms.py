@@ -1,10 +1,12 @@
 from typing import List
 
 from django import forms
+from django.core.exceptions import ValidationError
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from common.forms import SemesterBasedModelForm
-from ratings.models import Group, Rating, Station
+from ratings.models import Group, Rating, RatingScheme2, RatingScheme3, RatingScheme3Group, Station
 
 
 class EditRatingForm(forms.ModelForm):
@@ -33,6 +35,18 @@ class RatingForm(forms.ModelForm):
         return rating
 
 
+class Rating2Form(RatingForm):
+    class Meta:
+        model = Rating
+        fields: List[str] = ["group", "value"]
+
+
+class Rating3Form(RatingForm):
+    class Meta:
+        model = Rating
+        fields: List[str] = ["group", "value", "handicap"]
+
+
 class StationForm(forms.ModelForm):
     class Meta:
         model = Station
@@ -43,6 +57,64 @@ class StationForm(forms.ModelForm):
             "setup_instructions",
             "scoring_instructions",
         ]
+
+
+class EditStationForm(StationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["rating_scheme_choices"].widget.attrs = {"class": "no-automatic-choicejs"}
+
+    def clean_rating_scheme_choices(self):
+        rating_scheme_choice: int = self.cleaned_data["rating_scheme_choices"]
+        own_ratings = Rating.objects.filter(station=self.instance)
+        if rating_scheme_choice == 2:
+            showstoppers = own_ratings.filter(value=None)
+            if showstoppers:
+                raise ValidationError(
+                    _(
+                        "The groups %(value)s have been rated by the station and "
+                        "don't include the filed field 'value'. "
+                        "Thus the rating-scheme 2 cannot be selected.",
+                    ),
+                    params={"value": list(showstoppers.values_list("group__name", flat=True))},
+                    code="invalid_rating_scheme_value",
+                )
+        if rating_scheme_choice == 3:
+            showstoppers = own_ratings.filter(Q(handicap=None) | Q(value=None))
+            if showstoppers:
+                raise ValidationError(
+                    _(
+                        "The groups %(value)s have been rated by the station and "
+                        "don't include the filed field 'handicap' or 'value'. "
+                        "Thus the rating-scheme 3 cannot be selected.",
+                    ),
+                    params={"value": list(showstoppers.values_list("group__name", flat=True))},
+                    code="invalid_rating_scheme_value",
+                )
+        return rating_scheme_choice
+
+
+class RatingScheme2Form(forms.ModelForm):
+    class Meta:
+        model = RatingScheme2
+        exclude: List[str] = ["station"]
+
+
+class RatingScheme3GroupForm(forms.ModelForm):
+    class Meta:
+        model = RatingScheme3Group
+        exclude: List[str] = ["rating_scheme"]
+
+    def __init__(self, *args, **kwargs):
+        self.rating_scheme: RatingScheme3 = kwargs.pop("rating_scheme")
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        rs_group: RatingScheme3Group = super().save(commit=False)
+        rs_group.rating_scheme = self.rating_scheme
+        if commit:
+            rs_group.save()
+        return rs_group
 
 
 class GroupForm(SemesterBasedModelForm):

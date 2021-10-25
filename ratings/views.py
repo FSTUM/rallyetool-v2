@@ -17,8 +17,19 @@ from common.forms import NewUserForm
 from common.models import get_semester, Semester, Settings
 from common.views import AuthWSGIRequest, rallye_login_required, superuser_required
 
-from .forms import EditRatingForm, GroupForm, JsonStationUpdateForm, RatingForm, StationForm
-from .models import Group, Rating, RegistrationToken, Station
+from .forms import (
+    EditRatingForm,
+    EditStationForm,
+    GroupForm,
+    JsonStationUpdateForm,
+    Rating2Form,
+    Rating3Form,
+    RatingForm,
+    RatingScheme2Form,
+    RatingScheme3GroupForm,
+    StationForm,
+)
+from .models import Group, Rating, RatingScheme3, RatingScheme3Group, RegistrationToken, Station
 
 user_has_stand_required: Callable = user_passes_test(lambda u: bool(u.station))  # type: ignore
 
@@ -92,7 +103,7 @@ def list_ratings(request: AuthWSGIRequest) -> HttpResponse:
     if not settings.station_rating_avialible:
         messages.error(request, _("The organisers have ended this event."))
     station: Station = request.user.station
-    ratings: QuerySet[Rating] = Rating.objects.filter(station=request.user.station).all()
+    ratings: QuerySet[Rating] = Rating.objects.filter(station=station).all()
 
     context = {"ratings": ratings, "station": station}
     return render(request, "ratings/rating/list_ratings.html", context)
@@ -107,7 +118,11 @@ def add_rating(request: AuthWSGIRequest) -> HttpResponse:
         return redirect("main-view")
 
     station = request.user.station
-    form = RatingForm(request.POST or None, station=station)
+
+    form_lut = {2: Rating2Form, 3: Rating3Form}
+    form_class = form_lut.get(station.rating_scheme_choices, RatingForm)
+    form = form_class(request.POST or None, station=station)
+
     if request.POST and form.is_valid():
         rating: Rating = form.save()
         messages.success(request, _("Rating {} was successfully added").format(rating))
@@ -193,11 +208,18 @@ def add_station(request: AuthWSGIRequest) -> HttpResponse:
 def edit_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
     station: Station = get_object_or_404(Station, pk=station_pk)
 
-    form = StationForm(request.POST or None, instance=station)
+    form = EditStationForm(request.POST or None, instance=station)
     if form.is_valid():
         form.save()
         messages.success(request, _("Station {} was successfully edited.").format(station))
         return redirect("ratings:list_stations")
+    messages.info(
+        request,
+        _(
+            "If you want to increment the rating-scheme, make sure that no prior ratings exist. "
+            "(highter number schemes require more information)",
+        ),
+    )
     context = {"form": form, "station": station}
     return render(request, "ratings/administration/edit_station.html", context)
 
