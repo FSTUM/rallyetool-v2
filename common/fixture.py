@@ -4,6 +4,7 @@ from subprocess import run  # nosec: used for flushing the db
 import django.utils.timezone
 import lorem
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 from django.utils.datetime_safe import datetime
 
 import common.models as common_m
@@ -23,7 +24,7 @@ def showroom_fixture_state_no_confirmation():  # nosec: this is only used in a f
     run(["python3", "manage.py", "flush", "--noinput"], check=True)
 
     # user
-    _generate_superuser_frank()
+    _generate_superusers()
 
     # app common
     semesters = _generate_semesters()
@@ -32,6 +33,25 @@ def showroom_fixture_state_no_confirmation():  # nosec: this is only used in a f
     _generate_groups(semesters)
     _generate_stations()
     _generate_ratings()
+
+
+def _generate_superusers():
+    users = [
+        ("frank", "130120", "Frank", "Elsinga", "elsinga@example.com"),
+        ("password", "username", "Nelson 'Big Head'", "Bighetti", "bighetti@example.com"),
+    ]
+    for username, password, first_name, last_name, email in users:
+        get_user_model().objects.create(
+            username=username,
+            password=make_password(password),
+            first_name=first_name,
+            last_name=last_name,
+            is_superuser=True,
+            is_staff=True,
+            is_active=True,
+            email=email,
+            date_joined=django.utils.timezone.make_aware(datetime.today()),
+        )
 
 
 def _set_scheme(scheme):
@@ -135,20 +155,6 @@ def _generate_groups(semesters):  # nosec: this is only used in a fixture
                 semester=semester,
                 name=f"Group {i}",
             )
-
-
-def _generate_superuser_frank():  # nosec: this is only used in a fixture
-    return get_user_model().objects.create(
-        username="frank",
-        password="pbkdf2_sha256$216000$DHqZuXE7LQwJ$i8iIEB3qQN+NXMUTuRxKKFgYYC5XqlOYdSz/0om1FmE=",
-        first_name="Frank",
-        last_name="Elsinga",
-        is_superuser=True,
-        is_staff=True,
-        is_active=True,
-        email="elsinga@fs.tum.de",
-        date_joined=django.utils.timezone.make_aware(datetime.today()),
-    )
 
 
 def _generate_semesters():
