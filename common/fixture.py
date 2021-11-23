@@ -20,7 +20,7 @@ def showroom_fixture_state():
     showroom_fixture_state_no_confirmation()
 
 
-def showroom_fixture_state_no_confirmation():  # nosec: this is only used in a fixture
+def showroom_fixture_state_no_confirmation():
     run(["python3", "manage.py", "flush", "--noinput"], check=True)
 
     # user
@@ -55,19 +55,11 @@ def _generate_superusers():
 
 
 def _set_scheme(scheme):
-    scheme.mark_for_10p = 10 * 20 - 19
-    scheme.mark_for_9p = 9 * 20 - 19
-    scheme.mark_for_8p = 8 * 20 - 19
-    scheme.mark_for_7p = 7 * 20 - 19
-    scheme.mark_for_6p = 6 * 20 - 19
-    scheme.mark_for_5p = 5 * 20 - 19
-    scheme.mark_for_4p = 4 * 20 - 19
-    scheme.mark_for_3p = 3 * 20 - 19
-    scheme.mark_for_2p = 2 * 20 - 19
-    scheme.mark_for_1p = 1 * 20 - 19
+    for i in range(1, 11):
+        scheme.__setattr__(f"mark_for_{i}p", i * 20 - 19)
 
 
-def _generate_ratings():  # nosec: this is only used in a fixture
+def _generate_ratings():
     groups = ratings_m.Group.objects.all()
     stations = ratings_m.Station.objects.all()
 
@@ -109,7 +101,7 @@ def _generate_ratings():  # nosec: this is only used in a fixture
         station.rating_scheme.recalculate_points()
 
 
-def _generate_stations():  # nosec: this is only used in a fixture
+def _generate_stations():
     users = list(get_user_model().objects.all())
     random.shuffle(users)
     for _ in range(1, random.randint(10, 20)):
@@ -148,7 +140,7 @@ def _generate_stations():  # nosec: this is only used in a fixture
         )
 
 
-def _generate_groups(semesters):  # nosec: this is only used in a fixture
+def _generate_groups(semesters):
     for semester in semesters:
         for i in range(1, random.randint(21, 100)):
             ratings_m.Group.objects.create(
