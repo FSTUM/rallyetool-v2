@@ -6,6 +6,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.http import is_safe_url
+from django.utils.translation import gettext as _
 
 from common.models import get_semester, Semester, Settings
 

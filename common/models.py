@@ -13,7 +13,7 @@ from django.db import models
 from django.http import HttpRequest
 from django.utils import timezone
 from django.utils.deconstruct import deconstructible
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .settings import SEMESTER_SESSION_KEY
 

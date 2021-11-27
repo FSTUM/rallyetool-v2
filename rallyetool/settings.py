@@ -2,7 +2,7 @@ import os
 from typing import List
 
 from django.conf.locale.de import formats as de_formats
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
