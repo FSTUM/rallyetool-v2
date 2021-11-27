@@ -5,10 +5,13 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import include, path
 from django.views.generic import RedirectView
 
+import common.views
+
 urlpatterns = [
     # Auth
-    path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
+    path("oidc/", include("mozilla_django_oidc.urls")),
+    path("login/failed/", common.views.login_failed),  # adapt to your app
     # localization
     path("i18n/", include("django.conf.urls.i18n")),
     # common: choose semester and settings

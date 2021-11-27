@@ -17,6 +17,7 @@ ALLOWED_HOSTS: List[str] = []
 # Login URLs
 LOGIN_URL = "/login/"
 LOGOUT_URL = "/logout/"
+LOGIN_REDIRECT_URL_FAILURE = "/login/failed"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
@@ -29,6 +30,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "mozilla_django_oidc",
+    "django_compref_keycloak",
     "django_bootstrap5",
     "active_link",
     "django.contrib.humanize",
@@ -47,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "mozilla_django_oidc.middleware.SessionRefresh",
 ]
 
 ROOT_URLCONF = "rallyetool.urls"
@@ -69,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "rallyetool.wsgi.application"
 
-# Password validation
+# Auth
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -77,6 +81,55 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+AUTHENTICATION_BACKENDS = (
+    "django_compref_keycloak.backend.CompRefKeycloakAuthenticationBackend",
+    "django.contrib.auth.backends.ModelBackend",
+)
+
+# realm is either federated-tum.de or fs.tum.de - provided by CompRef
+OIDC_OP_AUTHORIZATION_ENDPOINT = "https://auth.fs.tum.de/auth/realms/federated-tum.de/protocol/openid-connect/auth"
+OIDC_OP_TOKEN_ENDPOINT = "https://auth.fs.tum.de/auth/realms/federated-tum.de/protocol/openid-connect/token"
+OIDC_OP_USER_ENDPOINT = "https://auth.fs.tum.de/auth/realms/federated-tum.de/protocol/openid-connect/userinfo"
+OIDC_OP_JWKS_ENDPOINT = "https://auth.fs.tum.de/auth/realms/federated-tum.de/protocol/openid-connect/certs"
+
+# We have OpenID Connect clients configured for testing.
+# It is okay to put their secrets to internal git repositories, but not to public ones!
+# These test clients only accept http://localhost:8080 as redirect URL.
+OIDC_RP_CLIENT_ID = "..."  # provided by CompRef and overwritten for prod deployment
+OIDC_RP_CLIENT_SECRET = "..."  # provided by CompRef and overwritten for prod deployment
+
+OIDC_RP_SIGN_ALGO = "RS256"
+OIDC_USERNAME_ALGO = "django_compref_keycloak.backend.generate_username"
+# Allowed federated identity providers
+# fs.tum.de accounts
+COMPREF_KEYCLOAK_FEDERATED_IDP = {
+    "fs.tum.de-internal": {
+        "enabled": True,
+        "active_groups": ["compref", "rallye", "set"],
+        # grant superuser privileges for these LDAP groups (empty = is_staff is not touched, also not removed!)
+        "staff_groups": ["compref", "rallye", "set"],
+        # grant superuser privileges for these LDAP groups (empty = is_superuser is not touched, also not removed!)
+        "superuser_groups": ["compref"],
+        "sync_groups": True,
+    },
+    "fs.tum.de": {
+        "enabled": True,
+        "active_groups": [],
+        "staff_groups": [],
+        "superuser_groups": [],
+        "sync_groups": True,
+    },
+    "shibboleth.tum.de": {
+        "enabled": True,
+        "active": {
+            "affiliations": [],
+            "org_student": [],
+            "org_employee": [],
+        },
+    },
+}
+
+# APi
 API = False
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
