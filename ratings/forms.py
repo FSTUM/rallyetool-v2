@@ -3,7 +3,7 @@ from typing import List
 from django import forms
 from django.core.exceptions import ValidationError
 from django.db.models import Q
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 
 from common.forms import SemesterBasedModelForm
 from ratings.models import Group, Rating, RatingScheme2, RatingScheme3, RatingScheme3Group, Station

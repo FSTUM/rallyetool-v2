@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 
 from common.models import current_semester, Settings
 from common.views import AuthWSGIRequest
