@@ -21,10 +21,10 @@ RUN mkdir /code/
 WORKDIR /code/
 ADD . /code/
 
-ENV DJANGO_SETTINGS_MODULE=rallyetool.settings
+ENV DJANGO_SETTINGS_MODULE=rallyetool.settings.staging_settings
 
 ENV DJANGO_SECRET_KEY=not-needed-in-docker
-RUN  python manage.py collectstatic --noinput --settings staging.staging_settings --force-color \
+RUN  python manage.py collectstatic --noinput --settings rallyetool.settings.staging_settings --force-color \
     && rm -f *.sqlite3 \
     && python manage.py makemigrations --noinput \
     && python manage.py migrate --noinput|grep -v "... OK" \
@@ -35,4 +35,4 @@ ENV DJANGO_SETTINGS_MODULE=staging.staging_settings
 
 EXPOSE 8000
 
-CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "staging.staging_wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "rallyetool.staging_wsgi:application"]

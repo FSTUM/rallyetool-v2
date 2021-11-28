@@ -4,7 +4,7 @@
 
 import logging.config
 
-from rallyetool.settings import *
+from rallyetool.settings.keycloak_settings import *
 
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",")
