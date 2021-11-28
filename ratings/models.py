@@ -12,8 +12,8 @@ from django.core.validators import (
 )
 from django.db import models, transaction
 from django.db.models import Sum
+from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ugettext
-from django.utils.translation import ugettext_lazy as _
 
 from common.models import LoggedModel, Semester
 
