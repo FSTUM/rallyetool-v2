@@ -33,23 +33,21 @@ OIDC_RP_CLIENT_SECRET = "..."  # nosec: provided by CompRef and overwritten for 
 
 OIDC_RP_SIGN_ALGO = "RS256"
 OIDC_USERNAME_ALGO = "django_compref_keycloak.backend.generate_username"
+
 # Allowed federated identity providers
-# fs.tum.de accounts
 COMPREF_KEYCLOAK_FEDERATED_IDP = {
     "fs.tum.de-internal": {
-        "enabled": True,
-        "active_groups": ['users'],
-        # grant superuser privileges for these LDAP groups (empty = is_staff is not touched, also not removed!)
-        "staff_groups": ["compref", "rallye-admins"],
-        # grant superuser privileges for these LDAP groups (empty = is_superuser is not touched, also not removed!)
-        "superuser_groups": ["compref", "rallye-admins"],
-        "sync_groups": True,
-    },
-    "fs.tum.de": {
         "enabled": True,
         "active_groups": [],
         "staff_groups": [],
         "superuser_groups": [],
+        "sync_groups": True,
+    },
+    "fs.tum.de": {
+        "enabled": True,
+        "active_groups": ['users'],
+        "staff_groups": ["compref", "rallye-admins"],
+        "superuser_groups": ["compref", "rallye-admins"],
         "sync_groups": True,
     },
     "shibboleth.tum.de": {
