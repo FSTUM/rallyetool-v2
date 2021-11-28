@@ -1,10 +1,10 @@
 --extra-index-url https://git.fs.tum.de/api/v4/groups/django/-/packages/pypi/simple
 django~=3.2.7
 django-active-link~=0.1.8
-django-bootstrap5~=2.1.2
+django-bootstrap5~=21.1
 django-compref-keycloak
 django-modeltranslation~=0.17.3
 djangorestframework~=3.12.4
-Pillow~=8.3.2
+Pillow~=8.4.0
 psycopg2-binary~=2.9.1
 pytz
