@@ -83,6 +83,16 @@ repos:
             entry: ./manage.py migrate
             language: system
             pass_filenames: false
+          - id: django-makemessages
+            name: django-makemessages
+            entry: ./manage.py makemessages -a --add-location=file --ignore="venv/*"
+            language: system
+            pass_filenames: false
+          - id: django-compilemessages
+            name: django-compilemessages
+            entry: ./manage.py compilemessages --ignore="venv/*"
+            language: system
+            pass_filenames: false
     - repo: https://github.com/PyCQA/bandit
       rev: 1.7.1
       hooks:

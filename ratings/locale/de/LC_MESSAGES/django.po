@@ -1,14 +1,13 @@
 msgid ""
 msgstr ""
-"Report-Msgid-Bugs-To: elsinga@fs.tum.de\n"
-"POT-Creation-Date: 2021-10-28 19:49+0200\n"
+"Report-Msgid-Bugs-To: elsinga <at> fs.tum.de\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ratings/forms.py:75
+#: ratings/forms.py
 #, python-format
 msgid ""
 "The groups %(value)s have been rated by the station and don't include the "
@@ -17,7 +16,7 @@ msgstr ""
 "Die Gruppen %(value)s wurden von der Station bewertet und enthalten nicht "
 "das Feld 'value'. Daher kann das Bewertungsschema 2 nicht ausgewählt werden."
 
-#: ratings/forms.py:87
+#: ratings/forms.py
 #, python-format
 msgid ""
 "The groups %(value)s have been rated by the station and don't include the "
@@ -28,7 +27,7 @@ msgstr ""
 "das Felder 'handicap' oder 'value'. Daher kann das Bewertungsschema 3 nicht "
 "ausgewählt werden."
 
-#: ratings/forms.py:126
+#: ratings/forms.py
 msgid ""
 "<ul><li>Required.</li><li>Only alphanumeric characters, @#$€<>%^&+=_-, space "
 "and äöüß are allowed.</li><li>Minimum of 4 characters</li><li>Maximum of 30 "
@@ -38,15 +37,15 @@ msgstr ""
 "%^&+=_-, Leerzeichen und äöü.</li><li>Minimum von 4 Zeichen</li><li>Maximum "
 "von 30 Zeichen</li></ul>"
 
-#: ratings/models.py:27 ratings/templates/ratings/leaderboard.html:29
+#: ratings/models.py ratings/templates/ratings/leaderboard.html
 msgid "Name of your Team"
 msgstr "Teamname"
 
-#: ratings/models.py:29
+#: ratings/models.py
 msgid "Visible on a public leaderboard"
 msgstr "Sichtbar in einer öffentlichen Rangliste"
 
-#: ratings/models.py:35
+#: ratings/models.py
 #, python-format
 msgid ""
 "Only alphanumeric characters, @#$€<>%%^&+=_-, space and äöüß are allowed"
@@ -54,139 +53,137 @@ msgstr ""
 "Nur alphanumerische Zeichen, @#$€<>%%^&+=_-, Leerzeichen und äöüß sind "
 "erlaubt"
 
-#: ratings/models.py:80
+#: ratings/models.py
 msgid "Min-value for 10 points"
 msgstr "Mindestwert für 10 Punkte"
 
-#: ratings/models.py:81
+#: ratings/models.py
 msgid "Min-value for 9 points"
 msgstr "Mindestwert für 9 Punkte"
 
-#: ratings/models.py:82
+#: ratings/models.py
 msgid "Min-value for 8 points"
 msgstr "Mindestwert für 8 Punkte"
 
-#: ratings/models.py:83
+#: ratings/models.py
 msgid "Min-value for 7 points"
 msgstr "Mindestwert für 7 Punkte"
 
-#: ratings/models.py:84
+#: ratings/models.py
 msgid "Min-value for 6 points"
 msgstr "Mindestwert für 6 Punkte"
 
-#: ratings/models.py:85
+#: ratings/models.py
 msgid "Min-value for 5 points"
 msgstr "Mindestwert für 5 Punkte"
 
-#: ratings/models.py:86
+#: ratings/models.py
 msgid "Min-value for 4 points"
 msgstr "Mindestwert für 4 Punkte"
 
-#: ratings/models.py:87
+#: ratings/models.py
 msgid "Min-value for 3 points"
 msgstr "Mindestwert für 3 Punkte"
 
-#: ratings/models.py:88
+#: ratings/models.py
 msgid "Min-value for 2 points"
 msgstr "Mindestwert für 2 Punkte"
 
-#: ratings/models.py:89
+#: ratings/models.py
 msgid "Min-value for 1 point"
 msgstr "Mindestwert für 1 Punkte"
 
-#: ratings/models.py:139
+#: ratings/models.py
 msgid "RatingScheme 1 (rating is final. No scheme)"
 msgstr "Bewertungsschema 1 (Bewertung ist endgültig. Kein Schema)"
 
-#: ratings/models.py:159
+#: ratings/models.py
 msgid "RatingScheme 2 (rating based on a single key)"
 msgstr ""
 "Bewertungsschema 2 (Bewertung auf der Grundlage eines einzigen "
 "Bewertungsschlüssels)"
 
-#: ratings/models.py:173
+#: ratings/models.py
 msgid "RatingScheme 3 (rating based on multiple keys, one for each handicap)"
 msgstr ""
 "Bewertungsschema 3 (Bewertung auf der Grundlage von mehreren "
 "Bewertungsschlüsseln, einer für jedes handicap)"
 
-#: ratings/models.py:181 ratings/models.py:348
+#: ratings/models.py
 msgid "Handicap used for grading. (i.e. group-size)"
 msgstr "Handicap, das für die Benotung verwendet wird. (z.B. Gruppengröße)"
 
-#: ratings/models.py:242
+#: ratings/models.py
 msgid "Name of the Station"
 msgstr "Stationsname"
 
-#: ratings/models.py:243
+#: ratings/models.py
 msgid "Station-name unknown"
 msgstr "unbekannter Stationsname"
 
-#: ratings/models.py:245
+#: ratings/models.py
 msgid "Visible to logged in users on the map and to tutors"
 msgstr "Sichtbar für eingeloggte Benutzer auf der Karte und für Tutoren"
 
-#: ratings/models.py:248
+#: ratings/models.py
 msgid "Instructions, how to setup the station."
 msgstr "Anweisungen, wie die Station einzurichten ist."
 
-#: ratings/models.py:249 ratings/models.py:254 ratings/models.py:259
-#: ratings/models.py:265 ratings/models.py:270
+#: ratings/models.py
 msgid "Displayed to the tutor."
 msgstr "Für Tutoren Angezeigt"
 
-#: ratings/models.py:253
+#: ratings/models.py
 msgid "Instructions, how to conduct a game."
 msgstr "Anweisungen, wie ein Spiel durchzuführen ist."
 
-#: ratings/models.py:258
+#: ratings/models.py
 msgid "Instructions, how to score a game."
 msgstr "Anweisungen, wie ein Spiel zu bewerten ist."
 
-#: ratings/models.py:264 ratings/templates/ratings/station/view_station.html:49
-#: ratings/templates/ratings/station/view_station.html:64
+#: ratings/models.py ratings/templates/ratings/station/view_station.html
 msgid "Contact Person"
 msgstr "Kontaktperson"
 
-#: ratings/models.py:269 ratings/templates/ratings/station/view_station.html:53
+#: ratings/models.py ratings/templates/ratings/station/view_station.html
 msgid "Utensils/tools needed for this station"
 msgstr "Für diese Station benötigte Utensilien/Werkzeuge"
 
-#: ratings/models.py:276
+#: ratings/models.py
 msgid "Description of the Station"
 msgstr "Stationsbeschreibung"
 
-#: ratings/models.py:278
+#: ratings/models.py
 msgid "Location unknown"
 msgstr "unbekannter Standort"
 
-#: ratings/models.py:279 ratings/models.py:284 ratings/models.py:289
+#: ratings/models.py
 msgid "Visible on the map"
 msgstr "Auf der Karte sichtbar"
 
-#: ratings/models.py:282
+#: ratings/models.py
 msgid "Longitude of the station"
 msgstr "Stations-Längengrad"
 
-#: ratings/models.py:287
+#: ratings/models.py
 msgid "Latitude of the station"
 msgstr "Stations-Breitengrad"
 
-#: ratings/models.py:293
+#: ratings/models.py
 msgid "Amount of tutors needed"
 msgstr "Anzahl der benötigten Tutoren"
 
-#: ratings/models.py:305
+#: ratings/models.py
 msgid "1 - Rating of the groups by the tutors is final. No scheme."
 msgstr "1 - Bewertung der Gruppen durch die Tutoren ist endgültig. Kein Schema"
 
-#: ratings/models.py:306
+#: ratings/models.py
 msgid "2 - Rating of the groups by the tutors is based on a single key."
 msgstr ""
 "2 - Bewertung der Gruppen durch die Tutoren auf der Grundlage von einem "
 "Bewertungsschlüssel"
 
-#: ratings/models.py:309
+#: ratings/models.py
 msgid ""
 "3 - Rating of the groups by the tutors is based on multiple keys (one for "
 "each handicap)."
@@ -194,300 +191,296 @@ msgstr ""
 "3 - Bewertung der Gruppen durch die Tutoren auf der Grundlage von mehreren "
 "Bewertungsschlüsseln, einer für jedes handicap"
 
-#: ratings/models.py:313
+#: ratings/models.py
 msgid "Rating Scheme"
 msgstr "Bewertungsschema"
 
-#: ratings/models.py:342
+#: ratings/models.py
 msgid "Value achieved by the group"
 msgstr "Von der Gruppe erzielter Wert"
 
-#: ratings/models.py:343
+#: ratings/models.py
 msgid "Needed for the RatingScheme 2 or 3"
 msgstr "Für das Bewertungsschema 2 oder 3 benötigt"
 
-#: ratings/models.py:349
+#: ratings/models.py
 msgid "Needed for the RatingScheme 3"
 msgstr "Für das Bewertungsschema 3 benötigt"
 
-#: ratings/templates/ratings/administration/add_station.html:5
-#: ratings/templates/ratings/administration/add_station.html:22
+#: ratings/templates/ratings/administration/add_station.html
 msgid "Add station"
 msgstr "Station hinzufügen"
 
-#: ratings/templates/ratings/administration/add_station.html:18
-#: ratings/templates/ratings/administration/del_station.html:18
-#: ratings/templates/ratings/administration/edit_station.html:18
-#: ratings/templates/ratings/administration/import_stations.html:34
-#: ratings/templates/ratings/administration/sanitise_stations.html:22
-#: ratings/templates/ratings/rating/add_rating.html:18
-#: ratings/templates/ratings/rating/del_rating.html:27
-#: ratings/templates/ratings/rating/edit_rating.html:27
-#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_2.html:22
-#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_3.html:36
+#: ratings/templates/ratings/administration/add_station.html
+#: ratings/templates/ratings/administration/del_station.html
+#: ratings/templates/ratings/administration/edit_station.html
+#: ratings/templates/ratings/administration/import_stations.html
+#: ratings/templates/ratings/administration/sanitise_stations.html
+#: ratings/templates/ratings/rating/add_rating.html
+#: ratings/templates/ratings/rating/del_rating.html
+#: ratings/templates/ratings/rating/edit_rating.html
+#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_2.html
+#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_3.html
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ratings/templates/ratings/administration/del_station.html:5
-#: ratings/templates/ratings/administration/del_station.html:22
+#: ratings/templates/ratings/administration/del_station.html
 msgid "Delete station"
 msgstr "Station löschen"
 
-#: ratings/templates/ratings/administration/edit_station.html:5
-#: ratings/templates/ratings/administration/edit_station.html:22
+#: ratings/templates/ratings/administration/edit_station.html
 msgid "Edit station"
 msgstr "Station bearbeiten"
 
-#: ratings/templates/ratings/administration/import_stations.html:5
+#: ratings/templates/ratings/administration/import_stations.html
 msgid "Import stations from Json"
 msgstr "Stationen von Json importieren"
 
-#: ratings/templates/ratings/administration/import_stations.html:15
+#: ratings/templates/ratings/administration/import_stations.html
 msgid "Sanitise Stations"
 msgstr "Stationen reinigen"
 
-#: ratings/templates/ratings/administration/import_stations.html:21
+#: ratings/templates/ratings/administration/import_stations.html
 msgid "Export Stations"
 msgstr "Stationen exportieren"
 
-#: ratings/templates/ratings/administration/import_stations.html:38
+#: ratings/templates/ratings/administration/import_stations.html
 msgid "Import stations-updates and maybe override current status"
 msgstr ""
 "Stationen-Aktualisierungen importieren und eventuell den aktuellen Status "
 "überschreiben."
 
-#: ratings/templates/ratings/administration/list_stations.html:18
+#: ratings/templates/ratings/administration/list_stations.html
 msgid "List all stations"
 msgstr "Alle Station auflisten"
 
-#: ratings/templates/ratings/administration/list_stations.html:26
+#: ratings/templates/ratings/administration/list_stations.html
 msgid "Add new Station"
 msgstr "Neue Station hinzufügen"
 
-#: ratings/templates/ratings/administration/list_stations.html:37
+#: ratings/templates/ratings/administration/list_stations.html
 msgid "Show link for user registration"
 msgstr "Link zur Benutzerregistrierung anzeigen"
 
-#: ratings/templates/ratings/administration/list_stations.html:40
+#: ratings/templates/ratings/administration/list_stations.html
 msgid "User registration is disabled in the Settings"
 msgstr "Die Benutzerregistrierung ist in den Einstellungen deaktiviert"
 
-#: ratings/templates/ratings/administration/list_stations.html:67
-#: ratings/templates/ratings/rating/list_ratings.html:41
+#: ratings/templates/ratings/administration/list_stations.html
+#: ratings/templates/ratings/rating/list_ratings.html
 msgid "Last Update"
 msgstr "Letzes Update"
 
-#: ratings/templates/ratings/administration/list_stations.html:68
+#: ratings/templates/ratings/administration/list_stations.html
 msgid "User"
 msgstr "Benutzer"
 
-#: ratings/templates/ratings/administration/list_stations.html:69
+#: ratings/templates/ratings/administration/list_stations.html
 msgid "Name"
 msgstr "Name"
 
-#: ratings/templates/ratings/administration/list_stations.html:70
+#: ratings/templates/ratings/administration/list_stations.html
 msgid "Tutors"
 msgstr "Tutoren"
 
-#: ratings/templates/ratings/administration/list_stations.html:71
-#: ratings/templates/ratings/rating/list_ratings.html:50
+#: ratings/templates/ratings/administration/list_stations.html
+#: ratings/templates/ratings/rating/list_ratings.html
 msgid "Actions"
 msgstr "Aktionen"
 
-#: ratings/templates/ratings/administration/list_stations.html:86
-#: ratings/templates/ratings/rating/list_ratings.html:69
+#: ratings/templates/ratings/administration/list_stations.html
+#: ratings/templates/ratings/rating/list_ratings.html
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ratings/templates/ratings/administration/list_stations.html:90
-#: ratings/templates/ratings/rating/list_ratings.html:73
+#: ratings/templates/ratings/administration/list_stations.html
+#: ratings/templates/ratings/rating/list_ratings.html
 msgid "Delete"
 msgstr "Löschen"
 
-#: ratings/templates/ratings/administration/list_stations.html:99
+#: ratings/templates/ratings/administration/list_stations.html
 msgid "No stations yet."
 msgstr "Noch keine Stationen."
 
-#: ratings/templates/ratings/administration/sanitise_stations.html:6
+#: ratings/templates/ratings/administration/sanitise_stations.html
 #, python-format
 msgid "Sanitise station %(station)s for a new semester"
 msgstr "Reinige station %(station)s für ein neues Semester"
 
-#: ratings/templates/ratings/administration/sanitise_stations.html:26
+#: ratings/templates/ratings/administration/sanitise_stations.html
 msgid "Seperate all users from all stations"
 msgstr "Separiere alle User von ihren Stationen"
 
-#: ratings/templates/ratings/base_administration.html:8
+#: ratings/templates/ratings/base_administration.html
 msgid "Stations"
 msgstr "Stationen"
 
-#: ratings/templates/ratings/base_administration.html:12
+#: ratings/templates/ratings/base_administration.html
 msgid "List stations"
 msgstr "Stationen auflisten"
 
-#: ratings/templates/ratings/base_administration.html:16
+#: ratings/templates/ratings/base_administration.html
 msgid "Add new station"
 msgstr "Neue Station hinzufügen"
 
-#: ratings/templates/ratings/base_administration.html:20
+#: ratings/templates/ratings/base_administration.html
 msgid "Stations management"
 msgstr "Stationen verwalten"
 
-#: ratings/templates/ratings/base_ratings.html:11
+#: ratings/templates/ratings/base_ratings.html
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: ratings/templates/ratings/base_ratings.html:16
+#: ratings/templates/ratings/base_ratings.html
 msgid "Station"
 msgstr "Station"
 
-#: ratings/templates/ratings/base_ratings.html:19
+#: ratings/templates/ratings/base_ratings.html
 msgid "Ratings"
 msgstr "Bewertungen"
 
-#: ratings/templates/ratings/base_ratings.html:23
+#: ratings/templates/ratings/base_ratings.html
 msgid "List previous ratings"
 msgstr "Vorherige bewertungen auflisten"
 
-#: ratings/templates/ratings/base_ratings.html:28
+#: ratings/templates/ratings/base_ratings.html
 msgid "Add new rating"
 msgstr "Neue Bewertung hinzufügen"
 
-#: ratings/templates/ratings/base_ratings.html:31
+#: ratings/templates/ratings/base_ratings.html
 msgid "Rating-Scheme"
 msgstr "Bewertungensschema"
 
-#: ratings/templates/ratings/base_ratings.html:35
+#: ratings/templates/ratings/base_ratings.html
 msgid "Manage Rating-Scheme"
 msgstr "Bewertungensschema verwalten"
 
-#: ratings/templates/ratings/leaderboard.html:12
+#: ratings/templates/ratings/leaderboard.html
 msgid "Leaderboard"
 msgstr "Rangliste"
 
-#: ratings/templates/ratings/leaderboard.html:28
+#: ratings/templates/ratings/leaderboard.html
 msgid "Place"
 msgstr "Platz"
 
-#: ratings/templates/ratings/leaderboard.html:30
+#: ratings/templates/ratings/leaderboard.html
 msgid "Points"
 msgstr "Punkte"
 
-#: ratings/templates/ratings/rating/add_rating.html:5
-#: ratings/templates/ratings/rating/add_rating.html:22
+#: ratings/templates/ratings/rating/add_rating.html
 msgid "Add rating"
 msgstr "Bewertung hinzufügen"
 
-#: ratings/templates/ratings/rating/del_rating.html:6
+#: ratings/templates/ratings/rating/del_rating.html
 #, python-format
 msgid "Delete rating %(rating)s"
 msgstr "Bewertung %(rating)s löschen"
 
-#: ratings/templates/ratings/rating/del_rating.html:31
+#: ratings/templates/ratings/rating/del_rating.html
 msgid "Delete rating"
 msgstr "Bewertung löschen"
 
-#: ratings/templates/ratings/rating/edit_rating.html:6
+#: ratings/templates/ratings/rating/edit_rating.html
 #, python-format
 msgid "Edit rating %(rating)s"
 msgstr "Bewertung %(rating)s bearbeiten"
 
-#: ratings/templates/ratings/rating/edit_rating.html:31
+#: ratings/templates/ratings/rating/edit_rating.html
 msgid "Edit rating"
 msgstr "Bewertung bearbeiten"
 
-#: ratings/templates/ratings/rating/list_ratings.html:17
+#: ratings/templates/ratings/rating/list_ratings.html
 #, python-format
 msgid "List all rating by station %(station)s"
 msgstr "Alle Bewertungen von Station %(station)s auflisten"
 
-#: ratings/templates/ratings/rating/list_ratings.html:29
-#: ratings/templates/ratings/station/view_station.html:21
+#: ratings/templates/ratings/rating/list_ratings.html
+#: ratings/templates/ratings/station/view_station.html
 msgid "Add new Rating"
 msgstr "Neues Bewertung hinzufügen"
 
-#: ratings/templates/ratings/rating/list_ratings.html:42
+#: ratings/templates/ratings/rating/list_ratings.html
 msgid "Teamname"
 msgstr "Teamname"
 
-#: ratings/templates/ratings/rating/list_ratings.html:44
+#: ratings/templates/ratings/rating/list_ratings.html
 msgid "Value"
 msgstr "Wert"
 
-#: ratings/templates/ratings/rating/list_ratings.html:47
+#: ratings/templates/ratings/rating/list_ratings.html
 msgid "Handicap"
 msgstr "Handicap"
 
-#: ratings/templates/ratings/rating/list_ratings.html:49
+#: ratings/templates/ratings/rating/list_ratings.html
 msgid "Points awarded"
 msgstr "Vergebene Punkte"
 
-#: ratings/templates/ratings/rating/list_ratings.html:81
+#: ratings/templates/ratings/rating/list_ratings.html
 msgid "No ratings yet."
 msgstr "Noch keine Bewertungen."
 
-#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_1.html:3
+#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_1.html
 msgid "The Rating-Scheme is 1. Thus no Configuration is availible."
 msgstr "Das Bewertungsschema ist 1. Somit ist keine Konfiguration verfügbar."
 
-#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_2.html:4
+#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_2.html
 msgid "The Rating-Scheme is 2. The following key can be filled out."
 msgstr ""
 "Das Bewertungsschema ist 2. Der folgende Bewertungsschlüssel kann ausgefüllt "
 "werden."
 
-#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_2.html:26
-#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_3.html:40
+#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_2.html
+#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_3.html
 msgid "Edit rating-scheme"
 msgstr "Bewertungschema bearbeiten"
 
-#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_3.html:4
+#: ratings/templates/ratings/station/rating_scheme/body_rating_scheme_3.html
 msgid "The Rating-Scheme is 3. The following keys can be filled out."
 msgstr ""
 "Das Bewertungsschema ist 3. Der folgenden Bewertungsschlüssel können "
 "ausgefüllt werden."
 
-#: ratings/templates/ratings/station/rating_scheme/manage_rating_scheme.html:7
+#: ratings/templates/ratings/station/rating_scheme/manage_rating_scheme.html
 #, python-format
 msgid "Manage station %(name)s using %(rating_scheme)s"
 msgstr "Verwalten Sie Station %(name)s mit %(rating_scheme)s"
 
-#: ratings/templates/ratings/station/view_station.html:7
+#: ratings/templates/ratings/station/view_station.html
 #, python-format
 msgid "Station %(name)s"
 msgid_plural "Station %(name)s (%(tutor_amount)s tutors)"
 msgstr[0] "Station %(name)s"
 msgstr[1] "Station %(name)s (%(tutor_amount)s tutoren)"
 
-#: ratings/templates/ratings/station/view_station.html:25
+#: ratings/templates/ratings/station/view_station.html
 msgid "Instructions"
 msgstr "Anweisungen"
 
-#: ratings/templates/ratings/station/view_station.html:30
+#: ratings/templates/ratings/station/view_station.html
 msgid "Stations setup-instructions"
 msgstr "Stations Setup-Anweisungen"
 
-#: ratings/templates/ratings/station/view_station.html:34
+#: ratings/templates/ratings/station/view_station.html
 msgid "Stations game-instructions"
 msgstr "Stations Spiel-Anweisungen"
 
-#: ratings/templates/ratings/station/view_station.html:38
+#: ratings/templates/ratings/station/view_station.html
 msgid "Stations scoring-guidelines"
 msgstr "Stations Bewertungsleitlinien"
 
-#: ratings/templates/ratings/station/view_station.html:44
+#: ratings/templates/ratings/station/view_station.html
 msgid "Supporting information"
 msgstr "Unterstützende Informationen"
 
-#: ratings/templates/ratings/station/view_station.html:59
+#: ratings/templates/ratings/station/view_station.html
 msgid "Location"
 msgstr "Standort"
 
-#: ratings/templates/ratings/station/view_station.html:68
+#: ratings/templates/ratings/station/view_station.html
 msgid "latitude/ longitude"
 msgstr "latitude/ longitude"
 
-#: ratings/views.py:42
+#: ratings/views.py
 msgid ""
 "Registration of new groups is closed. Contact the Organisers if you think "
 "this is a mistake."
@@ -495,7 +488,7 @@ msgstr ""
 "Die Anmeldung neuer Gruppen ist geschlossen. Kontaktieren Sie die "
 "Organisatoren, wenn du glaubst, dass dies ein Fehler ist."
 
-#: ratings/views.py:59
+#: ratings/views.py
 #, python-brace-format
 msgid ""
 "Registration of group '{group_name}' failed. A group with a very similar "
@@ -505,67 +498,67 @@ msgstr ""
 "bereits eine Gruppe mit einem sehr ähnlichen Namen. Der Konkurrent ist: "
 "{similar_groups}"
 
-#: ratings/views.py:68
+#: ratings/views.py
 msgid "Registration of group '{}' successful."
 msgstr "Registrierung der Gruppe '{}' erfolgreich."
 
-#: ratings/views.py:71 ratings/views.py:364
+#: ratings/views.py
 msgid "Unsuccessful registration. Invalid information."
 msgstr "Die Registrierung ist fehlgeschlagen. Ungültige Informationen."
 
-#: ratings/views.py:104
+#: ratings/views.py
 msgid "The organisers have ended this event."
 msgstr "Die Organisatoren haben diese Veranstaltung beendet."
 
-#: ratings/views.py:117
+#: ratings/views.py
 msgid "Unable to add a Rating. The organisers have ended this event."
 msgstr ""
 "Leider kannst du keine Bewertungen mehr abgeben. Die Organisatoren haben "
 "diese Veranstaltung beendet."
 
-#: ratings/views.py:128
+#: ratings/views.py
 msgid "Rating {} was successfully added"
 msgstr "Bewertung {} wurde erfolgreich hinzugefügt"
 
-#: ratings/views.py:141
+#: ratings/views.py
 msgid "Unable to edit a Rating. The organisers have ended this event."
 msgstr ""
 "Es ist nicht möglich, eine Bewertung zu bearbeiten. Die Organisatoren haben "
 "diese Veranstaltung beendet."
 
-#: ratings/views.py:147
+#: ratings/views.py
 msgid "Rating {} was successfully edited"
 msgstr "Bewertung {} wurde erfolgreich bearbeitet"
 
-#: ratings/views.py:160
+#: ratings/views.py
 msgid "Unable to delete a Rating. The organisers have ended this event."
 msgstr ""
 "Leider ist es nicht möglich, eine Bewertung zu löschen. Die Organisatoren "
 "haben diese Veranstaltung beendet."
 
-#: ratings/views.py:165
+#: ratings/views.py
 msgid "You cant delete ratings of stations that are not your own"
 msgstr ""
 "Sie können keine Bewertungen von Stationen löschen, die nicht Ihre eigenen "
 "sind"
 
-#: ratings/views.py:170
+#: ratings/views.py
 msgid "Rating {} was permanently deleted."
 msgstr "Die Bewertung {} wurde endgültig gelöscht."
 
-#: ratings/views.py:172 ratings/views.py:338
+#: ratings/views.py
 msgid "Deletion is permanent."
 msgstr "Löschen ist endgültig."
 
-#: ratings/views.py:201
+#: ratings/views.py
 msgid "Station {} was successfully added."
 msgstr "Station {} wurde erfolgreich hinzugefügt."
 
-#: ratings/views.py:214
+#: ratings/views.py
 msgid "Station {} was successfully edited."
 msgstr "Station {} wurde erfolgreich bearbeitet."
 
-#: ratings/views.py:219
+#: ratings/views.py
 msgid ""
 "If you want to increment the rating-scheme, make sure that no prior ratings "
 "exist. (highter number schemes require more information)"
@@ -574,14 +567,14 @@ msgstr ""
 "keine früheren Bewertungen vorhanden sind. (Höhere Zahlenschemata erfordern "
 "mehr Informationen)"
 
-#: ratings/views.py:239
+#: ratings/views.py
 msgid ""
 "The users of the stations {} have been permanently removed from their "
 "stations."
 msgstr ""
 "Die Benutzer der Stationen {} wurden dauerhaft von ihren Stationen entfernt."
 
-#: ratings/views.py:246
+#: ratings/views.py
 msgid ""
 "Removing people from their stations is permanent. Manually re-adding them is "
 "tedious."
@@ -589,15 +582,15 @@ msgstr ""
 "Das Entfernen von Personen aus ihren Stationen ist dauerhaft. Sie manuell "
 "wieder hinzuzufügen ist mühsam."
 
-#: ratings/views.py:258 ratings/views.py:262 ratings/views.py:271
+#: ratings/views.py
 msgid "json is not of type `List[Dict[str, Union[int, float, str]]]`"
 msgstr "json ist nicht vom Typ `List[Dict[str, Union[int, float, str]]]`"
 
-#: ratings/views.py:275
+#: ratings/views.py
 msgid "All updates have been successfully written"
 msgstr "Alle Updates wurden erfolgreich geschrieben"
 
-#: ratings/views.py:281
+#: ratings/views.py
 msgid ""
 "Importing is risky. Overriding with this import method is non-reversible. Do "
 "this only if you have made an export bevore and and are shure what you are "
@@ -607,7 +600,7 @@ msgstr ""
 "nicht rückgängig zu machen. Tun Sie dies nur, wenn Sie zuvor einen Export "
 "durchgeführt haben und sich sicher sind, was Sie tun."
 
-#: ratings/views.py:332
+#: ratings/views.py
 msgid ""
 "Unable to delete the station '{}'.<br/>It is currently protected by its "
 "ratings:<br/>{}"
@@ -615,11 +608,11 @@ msgstr ""
 "Es ist nicht möglich, die Station '{}' zu löschen.<br/>Er ist derzeit durch "
 "seine Bewertungen geschützt:<br/>{}"
 
-#: ratings/views.py:336
+#: ratings/views.py
 msgid "station {} was permanently deleted."
 msgstr "Station {} wurde permanent gelöscht."
 
-#: ratings/views.py:349
+#: ratings/views.py
 msgid ""
 "User Registration is disabeled in the settings. Please contact the "
 "organisers if you think that this is an error."
@@ -628,14 +621,14 @@ msgstr ""
 "kontaktieren Sie die Organisatoren, wenn Sie glauben, dass dies ein Fehler "
 "ist."
 
-#: ratings/views.py:361
+#: ratings/views.py
 msgid "Registration successful."
 msgstr "Die Benutzerregistrierung war erfolgreich."
 
-#: ratings/views.py:392
+#: ratings/views.py
 msgid "RatingScheme2 was successful modified."
 msgstr "RatingScheme2 wurde erfolgreich geändert."
 
-#: ratings/views.py:408
+#: ratings/views.py
 msgid "RatingScheme3s' Groups were successfully modified."
 msgstr "RatingScheme3s' Gruppen wurde erfolgreich geändert."
