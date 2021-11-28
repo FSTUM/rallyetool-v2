@@ -53,7 +53,7 @@ COMPREF_KEYCLOAK_FEDERATED_IDP = {
         "sync_groups": True,
     },
     "shibboleth.tum.de": {
-        "enabled": True,
+        "enabled": False,
         "active": {
             "affiliations": [],
             "org_student": [],
