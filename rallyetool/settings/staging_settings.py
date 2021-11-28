@@ -5,7 +5,7 @@
 import logging.config
 import os
 
-USE_KEYCLOAK = os.getenv("USE_KEYCLOAK", "True") == "True"
+USE_KEYCLOAK = os.getenv("USE_KEYCLOAK", "False") == "True"
 if USE_KEYCLOAK:
     from rallyetool.settings.keycloak_settings import *
 
