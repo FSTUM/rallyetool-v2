@@ -11,19 +11,12 @@ INSTALLED_APPS = INSTALLED_APPS[:ins_index] + apps_to_install + INSTALLED_APPS[i
 
 AUTHENTICATION_BACKENDS = ("django_compref_keycloak.backend.CompRefKeycloakAuthenticationBackend",)
 
-# realm is either federated-tum.de or fs.tum.de - provided by CompRef
-OIDC_OP_AUTHORIZATION_ENDPOINT = (
-    "https://auth.fs.tum.de/auth/realms/federated-tum.de/protocol/openid-connect/auth"  # nosec: not secret
-)
-OIDC_OP_TOKEN_ENDPOINT = (
-    "https://auth.fs.tum.de/auth/realms/federated-tum.de/protocol/openid-connect/token"  # nosec: not secret
-)
-OIDC_OP_USER_ENDPOINT = (
-    "https://auth.fs.tum.de/auth/realms/federated-tum.de/protocol/openid-connect/userinfo"  # nosec: not secret
-)
-OIDC_OP_JWKS_ENDPOINT = (
-    "https://auth.fs.tum.de/auth/realms/federated-tum.de/protocol/openid-connect/certs"  # nosec: not secret
-)
+OIDC_REALM = "federated-tum.de"  # realm is either federated-tum.de or fs.tum.de - provided by CompRef
+OIDC_PREFIX = f"https://auth.fs.tum.de/auth/realms/{OIDC_REALM}/protocol/openid-connect/"
+OIDC_OP_AUTHORIZATION_ENDPOINT = OIDC_PREFIX + "auth"  # nosec: not secret
+OIDC_OP_TOKEN_ENDPOINT = OIDC_PREFIX + "token"  # nosec: not secret
+OIDC_OP_USER_ENDPOINT = OIDC_PREFIX + "userinfo"  # nosec: not secret
+OIDC_OP_JWKS_ENDPOINT = OIDC_PREFIX + "certs"  # nosec: not secret
 
 # We have OpenID Connect clients configured for testing.
 # It is okay to put their secrets to internal git repositories, but not to public ones!
