@@ -13,7 +13,7 @@ from django.core.validators import (
 from django.db import models, transaction
 from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from common.models import LoggedModel, Semester
 
@@ -137,7 +137,7 @@ class RatingScheme1(AbstractRatingScheme):
 
     def __str__(self):
         trans = _("RatingScheme 1 (rating is final. No scheme)")
-        return ugettext(trans)
+        return gettext(trans)
 
 
 class RatingScheme2(AbstractRatingScheme, SchemeBase):
@@ -157,7 +157,7 @@ class RatingScheme2(AbstractRatingScheme, SchemeBase):
 
     def __str__(self):
         trans = _("RatingScheme 2 (rating based on a single key)")
-        return ugettext(trans)
+        return gettext(trans)
 
 
 class RatingScheme3(AbstractRatingScheme):
@@ -171,7 +171,7 @@ class RatingScheme3(AbstractRatingScheme):
 
     def __str__(self):
         trans = _("RatingScheme 3 (rating based on multiple keys, one for each handicap)")
-        return ugettext(trans)
+        return gettext(trans)
 
 
 class RatingScheme3Group(LoggedModel, SchemeBase):
@@ -328,7 +328,7 @@ class Station(LoggedModel):
         return RatingScheme3.objects.get_or_create(station=self)[0]
 
     def __str__(self):
-        return ugettext(self.name)
+        return gettext(self.name)
 
 
 class Rating(LoggedModel):
