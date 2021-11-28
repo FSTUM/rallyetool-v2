@@ -38,11 +38,11 @@ OIDC_USERNAME_ALGO = "django_compref_keycloak.backend.generate_username"
 COMPREF_KEYCLOAK_FEDERATED_IDP = {
     "fs.tum.de-internal": {
         "enabled": True,
-        "active_groups": ["compref", "rallye", "set"],
+        "active_groups": ['users'],
         # grant superuser privileges for these LDAP groups (empty = is_staff is not touched, also not removed!)
-        "staff_groups": ["compref", "rallye", "set"],
+        "staff_groups": ["compref", "rallye-admins"],
         # grant superuser privileges for these LDAP groups (empty = is_superuser is not touched, also not removed!)
-        "superuser_groups": ["compref"],
+        "superuser_groups": ["compref", "rallye-admins"],
         "sync_groups": True,
     },
     "fs.tum.de": {
