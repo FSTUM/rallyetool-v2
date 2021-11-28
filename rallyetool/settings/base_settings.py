@@ -1,5 +1,5 @@
 import os
-from typing import List
+from typing import List, Optional
 
 from django.conf.locale.de import formats as de_formats
 from django.utils.translation import gettext_lazy as _
@@ -77,6 +77,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+USE_KEYCLOAK: Optional[bool] = None
 
 # APi
 API = False

@@ -2,6 +2,7 @@
 # pylint: disable=unused-wildcard-import
 from rallyetool.settings.base_settings import *  # noqa: F403
 
+USE_KEYCLOAK = True
 MIDDLEWARE.append("mozilla_django_oidc.middleware.SessionRefresh")  # noqa: F405
 
 ins_index = INSTALLED_APPS.index("django.contrib.staticfiles") + 1  # noqa: F405
