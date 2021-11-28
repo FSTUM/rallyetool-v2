@@ -20,7 +20,7 @@ repos:
       hooks:
           - id: django-makemigrations
             name: django-migrations
-            entry: ./manage.py makemigrations --settings rallyetool.settings.dev_settings
+            entry: ./manage.py makemigrations
             language: system
             pass_filenames: false
     - repo: https://github.com/paulhfischer/pre-commit-hooks
@@ -75,12 +75,12 @@ repos:
       hooks:
           - id: django-check
             name: django-check
-            entry: ./manage.py check --fail-level=INFO --settings rallyetool.settings.dev_settings
+            entry: ./manage.py check --fail-level=INFO
             language: system
             pass_filenames: false
           - id: django-migratate
             name: django-migrations
-            entry: ./manage.py migrate --settings rallyetool.settings.dev_settings
+            entry: ./manage.py migrate
             language: system
             pass_filenames: false
     - repo: https://github.com/PyCQA/bandit
