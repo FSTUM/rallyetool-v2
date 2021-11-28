@@ -1,3 +1,4 @@
+{% load auth_method %}
 {% load settings %}
 {% load titles %}
 {% load active_link_tags %}
@@ -10,6 +11,7 @@
 {% get_available_languages as LANGUAGES %}
 {% get_language_info_list for LANGUAGES as languages %}
 {% get_settings as settings %}
+{% get_keycloak_status as keycloak_status %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 
@@ -206,7 +208,7 @@
                             <li class="nav-item">
                                 <a
                                     class="nav-link"
-                                    href="{% url "login" %}"
+                                    href="{% if keycloak_status %}{% url "oidc_authentication_init" %}{% else %}{% url "login" %}{% endif %}"
                                 >{% trans "Login" %}</a>
                             </li>
                             {% endif %}

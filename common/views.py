@@ -1,5 +1,6 @@
 from typing import Callable, Optional
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User  # pylint: disable=imported-auth-user
 from django.core.handlers.wsgi import WSGIRequest
@@ -53,3 +54,8 @@ def edit_settings(request: AuthWSGIRequest) -> HttpResponse:
         "form": form,
     }
     return render(request, "common/settings/edit_settings.html", context)
+
+
+def login_failed(request: WSGIRequest) -> HttpResponse:
+    messages.error(request, _("You are not allowed to login to the application."))
+    return redirect("main-view")

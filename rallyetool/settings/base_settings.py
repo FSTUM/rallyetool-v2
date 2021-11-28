@@ -1,13 +1,13 @@
 import os
-from typing import List
+from typing import List, Optional
 
 from django.conf.locale.de import formats as de_formats
 from django.utils.translation import gettext_lazy as _
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "v)0*5c7_&(5k#qh4*-wps&90jwoxn2%e#(42_1qk5qp19wnf6#"  # nosec: not used in production
+SECRET_KEY = "v)0*5c7_&(5k#qh4*-wps&90jwoxn2%e#(42_1qk5qp19wnf6#"  # nosec: provided by CompRef and overwritten for prod
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -17,6 +17,7 @@ ALLOWED_HOSTS: List[str] = []
 # Login URLs
 LOGIN_URL = "/login/"
 LOGOUT_URL = "/logout/"
+LOGIN_REDIRECT_URL_FAILURE = "/login/failed"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
@@ -69,14 +70,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "rallyetool.wsgi.application"
 
-# Password validation
+# Auth
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+USE_KEYCLOAK: Optional[bool] = None
 
+# APi
 API = False
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

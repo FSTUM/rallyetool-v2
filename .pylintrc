@@ -1,8 +1,8 @@
 [MASTER]
-ignore=static
+ignore=rallyetool.settings
 jobs=1
 load-plugins=pylint_django
-django-settings-module=rallyetool.settings
+django-settings-module=rallyetool.settings.dev_settings
 
 [MESSAGES CONTROL]
 disable=missing-function-docstring, # too much work
