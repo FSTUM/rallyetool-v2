@@ -41,13 +41,25 @@ sudo apt-get install -y gettext npm
 python3 -m pip install -r requirements_dev.txt
 ```
 
-2. Create the SQLite-database by running the following command inside the project directory:
+2. Set the `DJANGO_SETTINGS_MODULE` environment option:
+
+This Step is needed, because we have to have multiple settings files.
+The `rallyetool.settings.keycloak_settings`-file uses keycloak, but because we DONT want to commit the secrets to git, this config is not useful for development (except if you want to test if keycloak works).  
+The `rallyetool.settings.dev_settings`-file uses django's default [modelbackend](https://docs.djangoproject.com/en/3.2/ref/contrib/auth/) for authorisation.
+This backend can be populated with a user using the [fixture](#sample-data-fixtures), or the `createsuperuser` command mentioned below.
+The `rallyetool.settings.staging_settings`-file is only used in the staging environment.
+
+```bash
+export DJANGO_SETTINGS_MODULE=rallyetool.settings.keycloak_settings
+```
+
+3. Create the SQLite-database by running the following command inside the project directory:
 
 ```bash
 python3 manage.py migrate
 ```
 
-3. Create an admin-account by running the following command inside the project directory:
+4. (Optional step, a user can be created using the [fixture](#sample-data-fixtures) below) Create an admin-account by running the following command inside the project directory:
 
 ```bash
 python3 manage.py createsuperuser
@@ -56,7 +68,7 @@ python3 manage.py createsuperuser
 Note that this doesn't set the `fist_name`, thus the `username` is shown on the website. If you want your `fist_name` to
 be shown instead, you have to add your fist name in the admin interface.
 
-4. Start the local webserver
+5. Start the local webserver
 
 ```bash
 python3 manage.py runserver
@@ -102,11 +114,11 @@ fixture.showroom_fixture_state()
 
 This operation might take a few seconds. Don't worry.
 
-## Adding Depenencies
+## Adding Dependencies
 
 If you want to add a dependency that is in `pip` add it to the appropriate `requirements`-file.  
 If you want to add a dependency that is in `npm` run `npm i DEPENDENCY`. **Make shure that you do only commit the
-nessesary files to git.**
+necessary files to git.**
 
 # Translation
 
@@ -134,14 +146,14 @@ Note that `pre-commit` will automatically compile the translations for you.
 
 # Staging
 
-An staging environment is offered at rallye.frank.elsinga.de
-The username is password
-The password is username
+A staging environment is offered at rallye.frank.elsinga.de.  
+The username is password.  
+The password is username.
 
-## Building and running the dockerfile for local developement
+## Building and running the dockerfile for local development
 
-1. you need to save your enveronmment variables in an `.env`-file.
-   The further guide assumes content simmilar to the following in `staging/.env`.
+1. you need to save your environment variables in an `.env`-file.
+   The further guide assumes content similar to the following in `staging/.env`.
 
 ```
 DJANGO_DEBUG="True"
@@ -161,7 +173,8 @@ docker build -t rallyetool-staging:v1 .
 docker run --env-file staging/.env -p 8080:8000 rallyetool-staging:v1
 ```
 
-The Staging instance is now availibe at [`127.0.0.1:8080`](http://127.0.0.1:8080/) and is pushed to the Github Container Registry for convinience.
+The Staging instance is now available at [`127.0.0.1:8080`](http://127.0.0.1:8080/).  
+The latest branch is also build and pushed to the GitHub Container Registry for convenience.
 
 # Authors
 
