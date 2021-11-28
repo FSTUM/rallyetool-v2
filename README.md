@@ -50,7 +50,7 @@ This backend can be populated with a user using the [fixture](#sample-data-fixtu
 The `rallyetool.settings.staging_settings`-file is only used in the staging environment.
 
 ```bash
-export DJANGO_SETTINGS_MODULE=rallyetool.settings.keycloak_settings
+export DJANGO_SETTINGS_MODULE=rallyetool.settings.dev_settings
 ```
 
 3. Create the SQLite-database by running the following command inside the project directory:
@@ -140,7 +140,7 @@ python manage.py makemessages -a
     |        Wrap at | `120`    |
     | check-spelling | `True`   |
 
-3. Edit the `.po`-files, e.g. `guidedtours/locale/de/LC_MESSAGES/django.po`.
+3. Edit the `.po`-files, e.g. `common/locale/de/LC_MESSAGES/django.po`.
 
 Note that `pre-commit` will automatically compile the translations for you.
 
