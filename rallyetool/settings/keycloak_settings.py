@@ -38,7 +38,7 @@ COMPREF_KEYCLOAK_FEDERATED_IDP = {
     },
     "fs.tum.de": {
         "enabled": True,
-        "active_groups": ['users'],
+        "active_groups": ["users"],
         "staff_groups": ["compref", "rallye-admins"],
         "superuser_groups": ["compref", "rallye-admins"],
         "sync_groups": True,
