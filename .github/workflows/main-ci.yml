@@ -18,7 +18,7 @@ jobs:
             - name: Setup Python
               uses: actions/setup-python@v2.3.1
               with:
-                  python-version: 3.7
+                  python-version: 3.9
                   cache: 'pip'
                   cache-dependency-path: 'requirements*.txt'
             - name: Install Dependencies
@@ -39,7 +39,7 @@ jobs:
             - name: Setup Python
               uses: actions/setup-python@v2.3.1
               with:
-                  python-version: 3.7
+                  python-version: 3.9
             - name: Install Dependencies
               run: |
                   python -m pip install --upgrade pip
