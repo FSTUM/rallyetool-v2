@@ -54,44 +54,11 @@ msgstr ""
 "erlaubt"
 
 #: ratings/models.py
-msgid "Min-value for 10 points"
-msgstr "Mindestwert für 10 Punkte"
-
-#: ratings/models.py
-msgid "Min-value for 9 points"
-msgstr "Mindestwert für 9 Punkte"
-
-#: ratings/models.py
-msgid "Min-value for 8 points"
-msgstr "Mindestwert für 8 Punkte"
-
-#: ratings/models.py
-msgid "Min-value for 7 points"
-msgstr "Mindestwert für 7 Punkte"
-
-#: ratings/models.py
-msgid "Min-value for 6 points"
-msgstr "Mindestwert für 6 Punkte"
-
-#: ratings/models.py
-msgid "Min-value for 5 points"
-msgstr "Mindestwert für 5 Punkte"
-
-#: ratings/models.py
-msgid "Min-value for 4 points"
-msgstr "Mindestwert für 4 Punkte"
-
-#: ratings/models.py
-msgid "Min-value for 3 points"
-msgstr "Mindestwert für 3 Punkte"
-
-#: ratings/models.py
-msgid "Min-value for 2 points"
-msgstr "Mindestwert für 2 Punkte"
-
-#: ratings/models.py
-msgid "Min-value for 1 point"
-msgstr "Mindestwert für 1 Punkte"
+#, fuzzy, python-brace-format
+msgid "Min-value for {points} point"
+msgid_plural "Min-value for {points} points"
+msgstr[0] "Mindestwert für einen Punkt"
+msgstr[1] "Mindestwert für {points} Punkte"
 
 #: ratings/models.py
 msgid "RatingScheme 1 (rating is final. No scheme)"

@@ -14,6 +14,7 @@ from django.db import models, transaction
 from django.db.models import Sum
 from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 
 from common.models import LoggedModel, Semester
 
@@ -78,39 +79,27 @@ class SchemeBase(models.Model):
     class Meta:
         abstract = True
 
-    mark_for_10p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 10 points"))
-    mark_for_9p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 9 points"))
-    mark_for_8p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 8 points"))
-    mark_for_7p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 7 points"))
-    mark_for_6p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 6 points"))
-    mark_for_5p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 5 points"))
-    mark_for_4p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 4 points"))
-    mark_for_3p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 3 points"))
-    mark_for_2p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 2 points"))
-    mark_for_1p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 1 point"))
+    mark_for_10p: int
+    mark_for_9p: int
+    mark_for_8p: int
+    mark_for_7p: int
+    mark_for_6p: int
+    mark_for_5p: int
+    mark_for_4p: int
+    mark_for_3p: int
+    mark_for_2p: int
+    mark_for_1p: int
+    # set mark_for_1p to mark_for_10p
+    for i in range(1, 11):
+        _verbose_name_fstr = ngettext_lazy("Min-value for {points} point", "Min-value for {points} points", i)
+        _verbose_name = _verbose_name_fstr.format_map({"points": i})
+        locals()[f"mark_for_{i}p"] = models.PositiveIntegerField(null=True, blank=True, verbose_name=_verbose_name)
 
     def generate_rating_lut(self) -> list[tuple[int, int]]:
         result = []
-        if self.mark_for_10p:
-            result.append((10, self.mark_for_10p))
-        if self.mark_for_9p:
-            result.append((9, self.mark_for_9p))
-        if self.mark_for_8p:
-            result.append((8, self.mark_for_8p))
-        if self.mark_for_7p:
-            result.append((7, self.mark_for_7p))
-        if self.mark_for_6p:
-            result.append((6, self.mark_for_6p))
-        if self.mark_for_5p:
-            result.append((5, self.mark_for_5p))
-        if self.mark_for_4p:
-            result.append((4, self.mark_for_4p))
-        if self.mark_for_3p:
-            result.append((3, self.mark_for_3p))
-        if self.mark_for_2p:
-            result.append((2, self.mark_for_2p))
-        if self.mark_for_1p:
-            result.append((1, self.mark_for_1p))
+        for i in range(0, 11):
+            if self.__dict__[f"mark_for_{i}p"]:
+                result.append((self.__dict__[f"mark_for_{i}p"], self.__dict__[f"mark_for_{i}p"]))
         return result
 
     def _pretty_scheme(self) -> str:
@@ -227,8 +216,9 @@ class RatingScheme3Group(LoggedModel, SchemeBase):
     # pylint: disable-next=unused-argument
     @transaction.atomic
     def save(self, *args, **kwargs) -> None:  # type: ignore
-        super().save()
-        if kwargs.pop("recalculate_points", True):
+        recalculate_points: bool = kwargs.pop("recalculate_points", True)
+        super().save(*args, **kwargs)
+        if recalculate_points:
             self.rating_scheme.recalculate_points()
 
     def __repr__(self):
@@ -359,7 +349,7 @@ class Rating(LoggedModel):
 
     @transaction.atomic
     def save(self, *args, **kwargs) -> None:  # type: ignore
-        super().save()
+        super().save(*args, **kwargs)
         self._update_total_points()
 
     def _update_total_points(self) -> None:
