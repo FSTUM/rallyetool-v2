@@ -97,7 +97,7 @@ class SchemeBase(models.Model):
 
     def generate_rating_lut(self) -> list[tuple[int, int]]:
         result = []
-        for i in range(0, 11):
+        for i in range(1, 11):
             if self.__dict__[f"mark_for_{i}p"]:
                 result.append((self.__dict__[f"mark_for_{i}p"], self.__dict__[f"mark_for_{i}p"]))
         return result
