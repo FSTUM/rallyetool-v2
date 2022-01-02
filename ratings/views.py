@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, List, Union
+from typing import Any, Callable, Union
 from uuid import UUID
 
 from django.contrib import messages
@@ -177,7 +177,7 @@ def del_rating(request: AuthWSGIRequest, rating_pk: int) -> HttpResponse:
 @superuser_required
 def list_stations(request: AuthWSGIRequest) -> HttpResponse:
     stations: QuerySet[Station] = Station.objects.all()
-    context: Dict[str, Union[str, QuerySet[Station]]] = {"stations": stations}
+    context: dict[str, Union[str, QuerySet[Station]]] = {"stations": stations}
     settings: Settings = Settings.load()
     if settings.station_registration_availible:
         semester_pk: int = get_semester(request)
@@ -226,7 +226,7 @@ def edit_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
 
 @superuser_required
 def sanitise_stations(request: AuthWSGIRequest) -> HttpResponse:
-    stations: List[Station] = list(Station.objects.exclude(user=None).all())
+    stations: list[Station] = list(Station.objects.exclude(user=None).all())
 
     form = forms.Form(request.POST or None)
     if form.is_valid():
@@ -255,11 +255,11 @@ def import_stations(request: AuthWSGIRequest) -> HttpResponse:
     if form.is_valid():
         json_update = form.cleaned_data["json_update"]
         if not isinstance(json_update, list):
-            messages.error(request, _("json is not of type `List[Dict[str, Union[int, float, str]]]`"))
+            messages.error(request, _("json is not of type `list[dict[str, Union[int, float, str]]]`"))
             return redirect("ratings:import_stations")
         for update in json_update:
             if not isinstance(update, dict) or not update:
-                messages.error(request, _("json is not of type `List[Dict[str, Union[int, float, str]]]`"))
+                messages.error(request, _("json is not of type `list[dict[str, Union[int, float, str]]]`"))
                 return redirect("ratings:import_stations")
             if "pk" not in update:
                 station: Station = Station.objects.create()
@@ -268,7 +268,7 @@ def import_stations(request: AuthWSGIRequest) -> HttpResponse:
             unpacked_update = update.items()
             for key, value in unpacked_update:
                 if not isinstance(value, (float, int, str)):
-                    messages.error(request, _("json is not of type `List[Dict[str, Union[int, float, str]]]`"))
+                    messages.error(request, _("json is not of type `list[dict[str, Union[int, float, str]]]`"))
                     return redirect("ratings:import_stations")
                 station.__setattr__(key, value)
             station.save()
@@ -285,15 +285,19 @@ def import_stations(request: AuthWSGIRequest) -> HttpResponse:
     return render(request, "ratings/administration/import_stations.html", context)
 
 
+# pylint: disable=unused-argument
 @superuser_required
 def export_stations(request: AuthWSGIRequest) -> HttpResponse:
     stations_qs = Station.objects.all()
-    stations: List[Dict[str, Union[int, float, str]]] = [_serialise_station(station) for station in stations_qs]
+    stations: list[dict[str, Union[int, float, str]]] = [_serialise_station(station) for station in stations_qs]
 
     return JsonResponse(stations, safe=False, json_dumps_params={"indent": 4})
 
 
-def _serialise_station(station: Any) -> Dict[str, Union[int, float, str]]:
+# pylint: enable=unused-argument
+
+
+def _serialise_station(station: Any) -> dict[str, Union[int, float, str]]:
     return {
         "pk": station.pk,
         "name_de": station.name_de,
@@ -367,7 +371,7 @@ def register_user(request: WSGIRequest, semester_pk: int, registration_uuid: UUI
 
 
 def overview_map(request: WSGIRequest) -> HttpResponse:
-    stations: List[Station] = list(Station.objects.all())
+    stations: list[Station] = list(Station.objects.all())
     return render(request, "registration/map.html", {"stations": stations})
 
 
@@ -384,7 +388,7 @@ def manage_rating_scheme(request: AuthWSGIRequest) -> HttpResponse:
     station: Station = request.user.station
     rating_scheme = station.rating_scheme
 
-    context: Dict[str, Any] = {"station": station, "rating_scheme": rating_scheme}
+    context: dict[str, Any] = {"station": station, "rating_scheme": rating_scheme}
     if station.rating_scheme_choices == 2:
         form = RatingScheme2Form(request.POST or None, instance=rating_scheme)
         if form.is_valid():

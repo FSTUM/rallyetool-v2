@@ -26,7 +26,7 @@ urlpatterns = [
     path("map/", RedirectView.as_view(pattern_name="ratings:overview-map"), name="overview-map"),
     path("m/", RedirectView.as_view(pattern_name="ratings:overview-map")),
 ]
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # type: ignore
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.USE_KEYCLOAK:
     urlpatterns += [
         # Auth

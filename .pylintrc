@@ -8,6 +8,8 @@ django-settings-module=rallyetool.settings.dev_settings
 disable=missing-function-docstring, # too much work
         missing-module-docstring, # too much work
         missing-class-docstring, # too much work
+        too-few-public-methods, # too low signal-to-noise, due to djangos structure
+        too-many-ancestors, # too low signal-to-noise, due to djangos structure
         line-too-long, # we have another hook for this
         wrong-import-position, # we have another hook for this
         no-member, # mypy does this job with less false positives

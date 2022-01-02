@@ -1,5 +1,3 @@
-from typing import List
-
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -33,7 +31,7 @@ class SemesterBasedModelForm(forms.ModelForm):
 class SettingsForm(SemesterBasedForm, forms.ModelForm):
     class Meta:
         model = Settings
-        exclude: List[str] = []
+        exclude: list[str] = []
 
     def save(self, commit=True):
         setting: Settings = super().save(commit=False)
@@ -69,7 +67,7 @@ class NewUserForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields: List[str] = ["username", "email", "password1", "password2"]
+        fields: list[str] = ["username", "email", "password1", "password2"]
         labels = {"username": _("Username, you can tell to the organisers")}
         help_texts = {
             "username": _(

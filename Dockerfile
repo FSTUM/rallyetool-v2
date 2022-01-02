@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.9-slim
 
 # Install packages needed to run your application (not build deps):
 #   mime-support -- for mime types when serving staticfiles files

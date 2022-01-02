@@ -1,6 +1,6 @@
 import uuid
 from abc import abstractmethod
-from typing import Dict, List, Tuple, Union
+from typing import Union
 
 from django.contrib.auth import get_user_model
 from django.core.validators import (
@@ -59,8 +59,9 @@ class AbstractRatingScheme(LoggedModel):
     def rate(self, rating: Union["Rating"]) -> int:
         ...
 
+    # pylint: disable=unused-argument
     @transaction.atomic
-    def delete(self, *args, **kwargs) -> Tuple[int, Dict[str, int]]:  # type: ignore
+    def delete(self, *args, **kwargs) -> tuple[int, dict[str, int]]:  # type: ignore
         result = super().delete(*args, **kwargs)
         if kwargs.pop("recalculate_points", True):
             self.recalculate_points()
@@ -88,7 +89,7 @@ class SchemeBase(models.Model):
     mark_for_2p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 2 points"))
     mark_for_1p = models.PositiveIntegerField(null=True, blank=True, verbose_name=_("Min-value for 1 point"))
 
-    def generate_rating_lut(self) -> List[Tuple[int, int]]:
+    def generate_rating_lut(self) -> list[tuple[int, int]]:
         result = []
         if self.mark_for_10p:
             result.append((10, self.mark_for_10p))
@@ -210,7 +211,7 @@ class RatingScheme3Group(LoggedModel, SchemeBase):
         }
 
     @transaction.atomic
-    def delete(self, *args, **kwargs) -> Tuple[int, Dict[str, int]]:  # type: ignore
+    def delete(self, *args, **kwargs) -> tuple[int, dict[str, int]]:  # type: ignore
         poss_problemeatic_ratings = Rating.objects.filter(station=self.rating_scheme.station, handicap=self.handicap)
         if poss_problemeatic_ratings.exists():
             raise models.ProtectedError(
@@ -223,6 +224,7 @@ class RatingScheme3Group(LoggedModel, SchemeBase):
             self.rating_scheme.recalculate_points()
         return result  # noqa: R504
 
+    # pylint: disable-next=unused-argument
     @transaction.atomic
     def save(self, *args, **kwargs) -> None:  # type: ignore
         super().save()
@@ -350,7 +352,7 @@ class Rating(LoggedModel):
     )
 
     @transaction.atomic
-    def delete(self, *args, **kwargs) -> Tuple[int, Dict[str, int]]:  # type: ignore
+    def delete(self, *args, **kwargs) -> tuple[int, dict[str, int]]:  # type: ignore
         result = super().delete(*args, **kwargs)
         self._update_total_points()
         return result  # noqa: R504

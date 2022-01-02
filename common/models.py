@@ -31,7 +31,8 @@ class SingletonModel(models.Model):
         cache.set(self.__class__.__name__, self)
 
     def save(self, *args, **kwargs):
-        self.pk = 1  # pylint: disable=invalid-name
+        # pylint: disable-next=invalid-name
+        self.pk = 1
         super().save(*args, **kwargs)
         self.set_cache()
 

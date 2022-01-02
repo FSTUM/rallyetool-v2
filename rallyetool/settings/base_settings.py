@@ -1,5 +1,5 @@
 import os
-from typing import List, Optional
+from typing import Optional
 
 from django.conf.locale.de import formats as de_formats
 from django.utils.translation import gettext_lazy as _
@@ -12,7 +12,7 @@ SECRET_KEY = "v)0*5c7_&(5k#qh4*-wps&90jwoxn2%e#(42_1qk5qp19wnf6#"  # nosec: prov
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: List[str] = []
+ALLOWED_HOSTS: list[str] = []
 
 # Login URLs
 LOGIN_URL = "/login/"

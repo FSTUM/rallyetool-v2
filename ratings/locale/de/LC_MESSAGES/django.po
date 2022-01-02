@@ -583,8 +583,8 @@ msgstr ""
 "wieder hinzuzufügen ist mühsam."
 
 #: ratings/views.py
-msgid "json is not of type `List[Dict[str, Union[int, float, str]]]`"
-msgstr "json ist nicht vom Typ `List[Dict[str, Union[int, float, str]]]`"
+msgid "json is not of type `list[dict[str, Union[int, float, str]]]`"
+msgstr "json ist nicht vom Typ `list[dict[str, Union[int, float, str]]]`"
 
 #: ratings/views.py
 msgid "All updates have been successfully written"
@@ -632,3 +632,30 @@ msgstr "RatingScheme2 wurde erfolgreich geändert."
 #: ratings/views.py
 msgid "RatingScheme3s' Groups were successfully modified."
 msgstr "RatingScheme3s' Gruppen wurde erfolgreich geändert."
+
+#~ msgid "Min-value for 10 points"
+#~ msgstr "Mindestwert für 10 Punkte"
+
+#~ msgid "Min-value for 9 points"
+#~ msgstr "Mindestwert für 9 Punkte"
+
+#~ msgid "Min-value for 8 points"
+#~ msgstr "Mindestwert für 8 Punkte"
+
+#~ msgid "Min-value for 7 points"
+#~ msgstr "Mindestwert für 7 Punkte"
+
+#~ msgid "Min-value for 6 points"
+#~ msgstr "Mindestwert für 6 Punkte"
+
+#~ msgid "Min-value for 5 points"
+#~ msgstr "Mindestwert für 5 Punkte"
+
+#~ msgid "Min-value for 4 points"
+#~ msgstr "Mindestwert für 4 Punkte"
+
+#~ msgid "Min-value for 3 points"
+#~ msgstr "Mindestwert für 3 Punkte"
+
+#~ msgid "Min-value for 2 points"
+#~ msgstr "Mindestwert für 2 Punkte"

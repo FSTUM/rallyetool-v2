@@ -1,5 +1,3 @@
-from typing import List
-
 from django import forms
 from django.core.exceptions import ValidationError
 from django.db.models import Q
@@ -12,13 +10,13 @@ from ratings.models import Group, Rating, RatingScheme2, RatingScheme3, RatingSc
 class EditRatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields: List[str] = ["points"]
+        fields: list[str] = ["points"]
 
 
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields: List[str] = ["group", "points"]
+        fields: list[str] = ["group", "points"]
 
     def __init__(self, *args, **kwargs):
         self.station: Station = kwargs.pop("station")
@@ -38,19 +36,19 @@ class RatingForm(forms.ModelForm):
 class Rating2Form(RatingForm):
     class Meta:
         model = Rating
-        fields: List[str] = ["group", "value"]
+        fields: list[str] = ["group", "value"]
 
 
 class Rating3Form(RatingForm):
     class Meta:
         model = Rating
-        fields: List[str] = ["group", "value", "handicap"]
+        fields: list[str] = ["group", "value", "handicap"]
 
 
 class StationForm(forms.ModelForm):
     class Meta:
         model = Station
-        exclude: List[str] = [
+        exclude: list[str] = [
             "name",
             "location_description",
             "station_game_instructions",
@@ -97,13 +95,13 @@ class EditStationForm(StationForm):
 class RatingScheme2Form(forms.ModelForm):
     class Meta:
         model = RatingScheme2
-        exclude: List[str] = ["station"]
+        exclude: list[str] = ["station"]
 
 
 class RatingScheme3GroupForm(forms.ModelForm):
     class Meta:
         model = RatingScheme3Group
-        exclude: List[str] = ["rating_scheme"]
+        exclude: list[str] = ["rating_scheme"]
 
     def __init__(self, *args, **kwargs):
         self.rating_scheme: RatingScheme3 = kwargs.pop("rating_scheme")
@@ -120,7 +118,7 @@ class RatingScheme3GroupForm(forms.ModelForm):
 class GroupForm(SemesterBasedModelForm):
     class Meta:
         model = Group
-        fields: List[str] = ["name"]
+        fields: list[str] = ["name"]
         help_texts = {
             "name": _(
                 "<ul>"
