@@ -568,12 +568,13 @@ msgstr ""
 "durchgeführt haben und sich sicher sind, was Sie tun."
 
 #: ratings/views.py
+#, python-brace-format
 msgid ""
-"Unable to delete the station '{}'.<br/>It is currently protected by its "
-"ratings:<br/>{}"
+"Unable to delete the station '{station}'.<br/>It is currently protected by "
+"its ratings:<br/>{formatted_ratings}"
 msgstr ""
-"Es ist nicht möglich, die Station '{}' zu löschen.<br/>Er ist derzeit durch "
-"seine Bewertungen geschützt:<br/>{}"
+"Es ist nicht möglich, die Station '{station}' zu löschen.<br/>Er ist derzeit "
+"durch seine Bewertungen geschützt:<br/>{formatted_ratings}"
 
 #: ratings/views.py
 msgid "station {} was permanently deleted."

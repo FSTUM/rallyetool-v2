@@ -328,13 +328,15 @@ def del_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
             station.delete()
         except ProtectedError as error:
             ratings = error.args[1]
-            formatted_ratings = "; ".join([f"{rating.group} ({rating.points}p)" for rating in ratings])
+            formatted_ratings: str = "; ".join([f"{rating.group} ({rating.points}p)" for rating in ratings])
             messages.error(
                 request,
                 mark_safe(  # nosec: fully defined
                     _(
-                        "Unable to delete the station '{}'.<br/>" "It is currently protected by its ratings:<br/>" "{}",
-                    ).format(station, formatted_ratings),
+                        "Unable to delete the station '{station}'.<br/>"
+                        "It is currently protected by its ratings:<br/>"
+                        "{formatted_ratings}",
+                    ).format_map({"station": station, "formatted_ratings": formatted_ratings}),
                 ),
             )
         messages.success(request, _("station {} was permanently deleted.").format(station))
