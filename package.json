@@ -20,6 +20,6 @@
         "datatables.net": "^1.11.3",
         "datatables.net-bs5": "^1.11.3",
         "jquery": "^3.6.0",
-        "maplibre-gl": "^2.0.0-pre.6"
+        "maplibre-gl": "^2.1.1"
     }
 }
