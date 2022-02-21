@@ -30,9 +30,10 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.USE_KEYCLOAK:
     urlpatterns += [
         # Auth
-        path("logout/", LogoutView.as_view(), name="logout"),
         path("oidc/", include("mozilla_django_oidc.urls")),
         path("login/failed/", common.views.login_failed),
+        path("logout/", RedirectView.as_view(pattern_name="oidc_logout"), name="logout"),
+        path("login/", RedirectView.as_view(pattern_name="oidc_authentication_init"), name="login"),
     ]
 else:
     urlpatterns += [
