@@ -24,7 +24,7 @@ repos:
             language: system
             pass_filenames: false
     - repo: https://github.com/paulhfischer/pre-commit-hooks
-      rev: v1.2.37
+      rev: v1.2.38
       hooks:
           - id: format-general
           - id: format-web
