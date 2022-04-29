@@ -24,7 +24,7 @@ repos:
             language: system
             pass_filenames: false
     - repo: https://github.com/paulhfischer/pre-commit-hooks
-      rev: v1.2.42
+      rev: v1.2.44
       hooks:
           - id: format-general
           - id: format-web
@@ -35,7 +35,7 @@ repos:
       hooks:
           - id: isort
     - repo: https://github.com/asottile/add-trailing-comma
-      rev: v2.2.2
+      rev: v2.2.3
       hooks:
           - id: add-trailing-comma
     - repo: https://github.com/psf/black
