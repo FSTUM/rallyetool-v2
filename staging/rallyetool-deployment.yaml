@@ -1,44 +1,44 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: rallyetool-app
-    labels:
-        app: rallyetool
-    namespace: rallyetool
+  name: rallyetool-app
+  labels:
+    app: rallyetool
+  namespace: rallyetool
 spec:
-    replicas: 1
-    selector:
-        matchLabels:
-            app: rallyetool
-    template:
-        metadata:
-            labels:
-                app: rallyetool
-        spec:
-            volumes:
-                - name: shared-mediafiles
-                  persistentVolumeClaim:
-                      claimName: rallyetool-mediafiles-pvc
-            containers:
-                - name: nginx-container
-                  image: nginx
-                  ports:
-                      - containerPort: 80
-                        name: mediafiles-srv
-                  volumeMounts:
-                      - name: shared-mediafiles
-                        mountPath: /usr/share/nginx/html/media
-                - name: rallyetool
-                  image: ghcr.io/fstum/rallyetool-v2-staging:main
-                  imagePullPolicy: Always
-                  envFrom:
-                      - secretRef:
-                            name: rallyetool-secret
-                      - configMapRef:
-                            name: rallyetool-config
-                  ports:
-                      - containerPort: 8000
-                        name: gunicorn
-                  volumeMounts:
-                      - name: shared-mediafiles
-                        mountPath: /code/media
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rallyetool
+  template:
+    metadata:
+      labels:
+        app: rallyetool
+    spec:
+      volumes:
+        - name: shared-mediafiles
+          persistentVolumeClaim:
+            claimName: rallyetool-mediafiles-pvc
+      containers:
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+              name: mediafiles-srv
+          volumeMounts:
+            - name: shared-mediafiles
+              mountPath: /usr/share/nginx/html/media
+        - name: rallyetool
+          image: ghcr.io/fstum/rallyetool-v2-staging:main
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: rallyetool-secret
+            - configMapRef:
+                name: rallyetool-config
+          ports:
+            - containerPort: 8000
+              name: gunicorn
+          volumeMounts:
+            - name: shared-mediafiles
+              mountPath: /code/media

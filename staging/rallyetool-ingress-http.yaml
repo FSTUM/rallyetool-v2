@@ -1,18 +1,18 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-    name: rallyetool-ingress-http
-    labels:
-        app: rallyetool
-    namespace: rallyetool
+  name: rallyetool-ingress-http
+  labels:
+    app: rallyetool
+  namespace: rallyetool
 spec:
-    entryPoints:
-        - web
-    routes:
-        - kind: Rule
-          match: Host(`rallye.frank.elsinga.de`)
-          services:
-              - name: noop@internal
-                kind: TraefikService
-          middlewares:
-              - name: https
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`rallye.frank.elsinga.de`)
+      services:
+        - name: noop@internal
+          kind: TraefikService
+      middlewares:
+        - name: https

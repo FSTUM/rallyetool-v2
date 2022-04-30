@@ -27,7 +27,6 @@ body {
 
 /* Buttons on mobile should strech the whole screen */
 @media (max-width: 767px) {
-
     .btn {
         display: block;
         width: 100%;
@@ -35,14 +34,12 @@ body {
     }
 }
 
-
 /* On the same level as the search bar but not overlapping */
 .datatable-title {
     margin-bottom: -2rem
 }
 
 @media (max-width: 767px) {
-
     .datatable-title {
         margin-bottom: 1rem;
     }

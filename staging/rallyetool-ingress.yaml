@@ -1,25 +1,25 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-    name: rallyetool-ingress
-    labels:
-        app: rallyetool
-    namespace: rallyetool
+  name: rallyetool-ingress
+  labels:
+    app: rallyetool
+  namespace: rallyetool
 spec:
-    entryPoints:
-        - websecure
-    routes:
-        - kind: Rule
-          match: Host(`rallye.frank.elsinga.de`) && PathPrefix(`/media/`)
-          priority: 11
-          services:
-              - name: rallyetool-svc
-                port: 7000
-        - kind: Rule
-          match: Host(`rallye.frank.elsinga.de`)
-          priority: 10
-          services:
-              - name: rallyetool-svc
-                port: 8000
-    tls:
-        secretName: rallye.frank.elsinga.de
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`rallye.frank.elsinga.de`) && PathPrefix(`/media/`)
+      priority: 11
+      services:
+        - name: rallyetool-svc
+          port: 7000
+    - kind: Rule
+      match: Host(`rallye.frank.elsinga.de`)
+      priority: 10
+      services:
+        - name: rallyetool-svc
+          port: 8000
+  tls:
+    secretName: rallye.frank.elsinga.de
