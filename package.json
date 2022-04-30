@@ -28,7 +28,7 @@
     "author": "SET-Referat FSMPI",
     "license": "MIT",
     "dependencies": {
-        "@popperjs/core": "^2.11.4",
+        "@popperjs/core": "^2.11.5",
         "bootstrap": "^5.1.3",
         "bootstrap-icons": "^1.8.1",
         "choices.js": "^10.1.0",
