@@ -23,13 +23,18 @@ repos:
         entry: ./manage.py makemigrations
         language: system
         pass_filenames: false
-  - repo: https://github.com/paulhfischer/pre-commit-hooks
-    rev: v1.2.44
+  - repo: https://github.com/paulhfischer/prettier-config
+    rev: v1.4.0
     hooks:
-      - id: format-general
-      - id: format-web
-      #- id: lint-css
-      #- id: lint-javascript
+      - id: lint
+  - repo: https://github.com/paulhfischer/stylelint-config
+    rev: v1.2.6
+    hooks:
+      - id: lint
+  - repo: https://github.com/paulhfischer/eslint-config-javascript
+    rev: v1.8.1
+    hooks:
+      - id: lint
   - repo: https://github.com/PyCQA/isort
     rev: 5.10.1
     hooks:

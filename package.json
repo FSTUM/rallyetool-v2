@@ -10,6 +10,21 @@
         "type": "git",
         "url": "https://github.com/FSTUM/rallyetool-v2"
     },
+    "eslintConfig": {
+        "extends": [
+            "@paulhfischer/eslint-config-javascript"
+        ],
+        "env": {
+            "browser": true,
+            "jquery": true
+        }
+    },
+    "prettier": "@paulhfischer/prettier-config",
+    "stylelint": {
+        "extends": [
+            "@paulhfischer/stylelint-config"
+        ]
+    },
     "author": "SET-Referat FSMPI",
     "license": "MIT",
     "dependencies": {

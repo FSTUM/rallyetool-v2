@@ -36,7 +36,7 @@ body {
 
 /* On the same level as the search bar but not overlapping */
 .datatable-title {
-    margin-bottom: -2rem
+    margin-bottom: -2rem;
 }
 
 @media (max-width: 767px) {

@@ -17,6 +17,7 @@ from django.utils.translation import gettext_lazy as _
 
 from .settings import SEMESTER_SESSION_KEY
 
+# pylint: disable-next=invalid-name
 SingletonType = TypeVar("SingletonType", bound="SingletonModel")
 
 

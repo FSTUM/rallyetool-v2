@@ -55,7 +55,10 @@
                 },
                 geometry: {
                     type: 'Point',
-                    coordinates: [{{ station.longitude|unlocalize }}, {{ station.latitude|unlocalize }}],
+                    coordinates: [
+                        {{ station.longitude|unlocalize }},
+                        {{ station.latitude|unlocalize }},
+                    ],
                 },
             },
             {% endfor %}
