@@ -14,6 +14,5 @@ disable=missing-function-docstring, # too much work
         wrong-import-position, # we have another hook for this
         no-member, # mypy does this job with less false positives
         modelform-uses-exclude, # usage of exclude is sometimes valid.
-        bad-continuation, #gives weird unreproducible bugs in ci but not locally
         duplicate-code, # gives weird unreproducible bugs in ci but not locally
         fixme, # prevents users from committing things with a TODO in comments. Having more frequent commits is desirable
