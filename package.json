@@ -34,7 +34,7 @@
         "choices.js": "^10.1.0",
         "datatables.net": "^1.12.1",
         "datatables.net-bs5": "^1.12.1",
-        "jquery": "^3.6.0",
+        "jquery": "^3.6.1",
         "maplibre-gl": "^2.1.9"
     }
 }
