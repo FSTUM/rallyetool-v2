@@ -3,7 +3,7 @@ django~=4.0
 django-active-link~=0.1.8
 django-bootstrap5~=21.3
 django-compref-keycloak
-django-modeltranslation~=0.17.6
+django-modeltranslation~=0.18.4
 djangorestframework~=3.13.1
-Pillow~=9.1.0
+Pillow~=9.2.0
 pytz
