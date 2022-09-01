@@ -234,6 +234,10 @@ msgid "User registration is disabled in the Settings"
 msgstr "Die Benutzerregistrierung ist in den Einstellungen deaktiviert"
 
 #: ratings/templates/ratings/administration/list_stations.html
+msgid "Link for user registration"
+msgstr "Link zur Benutzerregistrierung"
+
+#: ratings/templates/ratings/administration/list_stations.html
 #: ratings/templates/ratings/rating/list_ratings.html
 msgid "Last Update"
 msgstr "Letzes Update"
