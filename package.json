@@ -32,7 +32,7 @@
         "bootstrap": "^5.2.0",
         "bootstrap-icons": "^1.9.1",
         "choices.js": "^10.1.0",
-        "datatables.net": "^1.11.5",
+        "datatables.net": "^1.12.1",
         "datatables.net-bs5": "^1.12.1",
         "jquery": "^3.6.0",
         "maplibre-gl": "^2.1.9"
