@@ -5,4 +5,4 @@ mypy~=0.931
 pre-commit~=2.20.0
 pylint~=2.13.7
 pylint-django~=2.5.3
-types-paramiko~=2.8.21
+types-paramiko~=2.11.4
