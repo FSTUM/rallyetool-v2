@@ -12,7 +12,7 @@
 
     <form method="POST">
         {% csrf_token %}
-        {% bootstrap_field form.last_name layout="floating" %}
+        {% bootstrap_field form.username layout="floating" %}
         <button
             class="btn btn-primary"
             data-bs-target="#confrimationModal"

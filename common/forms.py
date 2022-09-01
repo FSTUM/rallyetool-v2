@@ -48,7 +48,7 @@ class SettingsForm(SemesterBasedForm, forms.ModelForm):
 
 
 class NewTutorForm(forms.Form):
-    last_name = forms.CharField(
+    username = forms.CharField(
         label=_("Username, you can tell to the organisers"),
         help_text=_(
             "<ul>"

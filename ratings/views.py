@@ -371,14 +371,14 @@ def register_user(request: WSGIRequest, semester_pk: int, registration_uuid: UUI
 
     form = NewTutorForm(request.POST or None)
     if form.is_valid():
-        last_name: str = form.cleaned_data["last_name"]
-        request.user.last_name = last_name
+        username: str = form.cleaned_data["username"]
+        request.user.username = username
         request.user.save()
     elif request.POST:
         messages.error(request, _("Unsuccessful registration. Invalid information."))
 
-    if request.user.last_name:
-        # the entire point of the further flow is, to ensure, that the user has a last name
+    if not request.user.username.endswith("@shibboleth.tum.de"):
+        # the entire point of the further flow is, to ensure, that the user has a readable username
         messages.success(request, _("Registration successful."))
         return redirect("main-view")
 
