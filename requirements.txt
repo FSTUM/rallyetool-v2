@@ -1,5 +1,5 @@
 --extra-index-url https://git.fs.tum.de/api/v4/groups/django/-/packages/pypi/simple
-django~=4.0
+django~=4.1
 django-active-link~=0.1.8
 django-bootstrap5~=22.1
 django-compref-keycloak
