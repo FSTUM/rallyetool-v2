@@ -346,8 +346,7 @@ def del_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
     return render(request, "ratings/administration/del_station.html", context)
 
 
-@rallye_login_required
-def register_user(request: AuthWSGIRequest, semester_pk: int, registration_uuid: UUID) -> HttpResponse:
+def register_user(request: WSGIRequest, semester_pk: int, registration_uuid: UUID) -> HttpResponse:
     settings: Settings = Settings.load()
     if not settings.station_registration_availible:
         messages.error(
@@ -363,10 +362,12 @@ def register_user(request: AuthWSGIRequest, semester_pk: int, registration_uuid:
     if django_settings.USE_KEYCLOAK:
         from django_compref_keycloak.decorators import is_tum_shibboleth  # pylint: disable=import-outside-toplevel
 
-        if not is_tum_shibboleth(request):
-            return redirect("logout")
+        if not request.user.is_authenticated:
+            return redirect(f"/oidc/authenticate/?next={request.path}")
+        if not is_tum_shibboleth(request.user):
+            return redirect(f"/oidc/logout/?next={request.path}")
     else:
-        messages.warning(request, "Skipping the shibotlet check for registration in devmode")
+        messages.warning(request, "Skipping the shibboleth check for registration in dev-mode")
 
     form = NewTutorForm(request.POST or None)
     if form.is_valid():
