@@ -8,35 +8,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: common/forms.py
-msgid "Email, you want to log in with"
-msgstr "Email, mit der du dich einloggen willst"
-
-#: common/forms.py
-msgid ""
-"<ul><li>Please choose an (syntactically valid) email that you can remember. "
-"150 characters or fewer.</li><li>The email does not have to belong to you. "
-"Use a fake-email.</li><li>We dont sent mails to this address.</li><li><b>No "
-"personally identifying information!</b></li></ul>"
-msgstr ""
-"<ul><li>Bitte wählen Sie eine (syntaktisch gültige) E-Mail, die Du dir "
-"merken können. 150 Zeichen oder weniger.</li><li>Die E-Mail muss nicht zu "
-"Ihnen gehören. Verwenden Sie eine fiktive E-Mail.</li><li>Wir senden keine "
-"Emails an diese Adresse.</li><li><b>Keine personenbezogenen Daten!</b></li></"
-"ul>"
-
-#: common/forms.py
 msgid "Username, you can tell to the organisers"
 msgstr "Benutzername, den Du den Organisatoren mitteilen kannst"
 
 #: common/forms.py
 msgid ""
 "<ul><li>Please choose an Username you can tell to the organisers. </"
-"li><li>150 characters or fewer. Letters, digits and @/./+/-/_ only.</"
+"li><li>4...30 characters.</li><li>Letters, digits and @/./+/-/_ only.</"
 "li><li><b>No personally identifying information!</b></li></ul>"
 msgstr ""
 "<ul><li>Bitte wählen Sie einen Benutzernamen, den Du den Organisatoren "
-"mitteilen kannst. </li><li>150 Zeichen oder weniger. Nur Buchstaben, Ziffern "
+"mitteilen kannst. </li><li>4...30 Zeichen.</li><li>Nur Buchstaben, Ziffern "
 "und @/./+/-/_.</li><li><b>Keine personenbezogenen Daten!</b></li></ul>"
+
+#: common/forms.py
+#, python-format
+msgid ""
+"Only alphanumeric characters, @#$€<>%%^&+=_-, space and äöüß are allowed"
+msgstr ""
+"Nur alphanumerische Zeichen, @#$€<>%%^&+=_-, Leerzeichen und äöüß sind "
+"erlaubt"
 
 #: common/models.py
 msgid "Winter semester"

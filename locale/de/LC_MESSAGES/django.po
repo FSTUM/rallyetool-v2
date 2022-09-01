@@ -169,11 +169,9 @@ msgstr "Rallyetool registrierung bestätigen"
 
 #: templates/registration/register_user.html
 msgid ""
-"I confirm that neither my username, nor email does contain personal "
-"identifing information."
+"I confirm that my username does not contain personal identifing information."
 msgstr ""
-"Ich bestätige, dass weder mein Benutzername noch meine E-Mail persönliche "
-"Daten enthalten."
+"Ich bestätige, dass mein Username keine personenbezogenen Daten enthält."
 
 #: templates/registration/register_user.html
 #, python-format

@@ -12,10 +12,7 @@
 
     <form method="POST">
         {% csrf_token %}
-        {% bootstrap_field form.username layout="floating" %}
-        {% bootstrap_field form.email layout="floating" %}
-        {% bootstrap_field form.password1 layout="floating" %}
-        {% bootstrap_field form.password2 layout="floating" %}
+        {% bootstrap_field form.last_name layout="floating" %}
         <button
             class="btn btn-primary"
             data-bs-target="#confrimationModal"
@@ -40,7 +37,7 @@
                     </div>
                     <div class="modal-body">
                         <p>
-                            {% trans "I confirm that neither my username, nor email does contain personal identifing information." %}
+                            {% trans "I confirm that my username does not contain personal identifing information." %}
                         </p>
                     </div>
                     <div class="modal-footer">

@@ -1,8 +1,6 @@
 from django import forms
-from django.conf import settings
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.validators import MaxLengthValidator, MinLengthValidator, RegexValidator
 from django.utils.translation import gettext as _
 
 from common.models import Semester, Settings
@@ -49,41 +47,24 @@ class SettingsForm(SemesterBasedForm, forms.ModelForm):
         return setting
 
 
-class NewUserForm(UserCreationForm):
-    email = forms.EmailField(
-        label=_("Email, you want to log in with"),
+class NewTutorForm(forms.Form):
+    last_name = forms.CharField(
+        label=_("Username, you can tell to the organisers"),
         help_text=_(
             "<ul>"
-            "<li>Please choose an (syntactically valid) email that you can remember. "
-            "150 characters or fewer.</li>"
-            "<li>The email does not have to belong to you. Use a fake-email.</li>"
-            "<li>We dont sent mails to this address.</li>"
+            "<li>Please choose an Username you can tell to the organisers. </li>"
+            "<li>4...30 characters.</li>"
+            "<li>Letters, digits and @/./+/-/_ only.</li>"
             "<li><b>No personally identifying information!</b></li>"
             "</ul>",
         ),
-        max_length=150,
+        validators=[
+            MinLengthValidator(4),
+            MaxLengthValidator(30),
+            RegexValidator(
+                r"^[A-Za-z0-9@#$€<>%\^&+=_\- äüöß]+$",
+                _("Only alphanumeric characters, @#$€<>%%^&+=_-, space and äöüß are allowed"),
+            ),
+        ],
         required=True,
     )
-
-    class Meta:
-        model = get_user_model()
-        fields: list[str] = ["username", "email", "password1", "password2"]
-        labels = {"username": _("Username, you can tell to the organisers")}
-        help_texts = {
-            "username": _(
-                "<ul>"
-                "<li>Please choose an Username you can tell to the organisers. </li>"
-                "<li>150 characters or fewer. Letters, digits and @/./+/-/_ only.</li>"
-                "<li><b>No personally identifying information!</b></li>"
-                "</ul>",
-            ),
-        }
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data["email"]
-        if getattr(settings, "AUTHENTICATION_BACKENDS", None) and len(settings.AUTHENTICATION_BACKENDS) > 1:
-            user.backend = settings.AUTHENTICATION_BACKENDS[-1]
-        if commit:
-            user.save()
-        return user
