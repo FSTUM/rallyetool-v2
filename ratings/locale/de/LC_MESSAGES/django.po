@@ -33,9 +33,9 @@ msgid ""
 "and äöüß are allowed.</li><li>Minimum of 4 characters</li><li>Maximum of 30 "
 "characters</li></ul>"
 msgstr ""
-"<ul><li>Notwendig.</li><li>Erlaubt sind nur alphanumerische Zeichen, @#$€<>"
-"%^&+=_-, Leerzeichen und äöü.</li><li>Minimum von 4 Zeichen</li><li>Maximum "
-"von 30 Zeichen</li></ul>"
+"<ul><li>Notwendig.</li><li>Erlaubt sind nur alphanumerische Zeichen, @#$"
+"€<>%^&+=_-, Leerzeichen und äöü.</li><li>Minimum von 4 Zeichen</"
+"li><li>Maximum von 30 Zeichen</li></ul>"
 
 #: ratings/models.py ratings/templates/ratings/leaderboard.html
 msgid "Name of your Team"
@@ -232,6 +232,10 @@ msgstr "Link zur Benutzerregistrierung anzeigen"
 #: ratings/templates/ratings/administration/list_stations.html
 msgid "User registration is disabled in the Settings"
 msgstr "Die Benutzerregistrierung ist in den Einstellungen deaktiviert"
+
+#: ratings/templates/ratings/administration/list_stations.html
+msgid "Link for user registration"
+msgstr "Link zur Benutzerregistrierung"
 
 #: ratings/templates/ratings/administration/list_stations.html
 #: ratings/templates/ratings/rating/list_ratings.html

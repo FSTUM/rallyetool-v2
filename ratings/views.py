@@ -1,8 +1,8 @@
 from typing import Any, Callable, Union
 from uuid import UUID
 
+from django.conf import settings as django_settings
 from django.contrib import messages
-from django.contrib.auth import login
 from django.contrib.auth.decorators import user_passes_test
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import ProtectedError, QuerySet
@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 
-from common.forms import NewUserForm
+from common.forms import NewTutorForm
 from common.models import get_semester, Semester, Settings
 from common.views import AuthWSGIRequest, rallye_login_required, superuser_required
 
@@ -346,7 +346,8 @@ def del_station(request: AuthWSGIRequest, station_pk: int) -> HttpResponse:
     return render(request, "ratings/administration/del_station.html", context)
 
 
-def register_user(request: WSGIRequest, semester_pk: int, registration_uuid: UUID) -> HttpResponse:
+@rallye_login_required
+def register_user(request: AuthWSGIRequest, semester_pk: int, registration_uuid: UUID) -> HttpResponse:
     settings: Settings = Settings.load()
     if not settings.station_registration_availible:
         messages.error(
@@ -358,16 +359,27 @@ def register_user(request: WSGIRequest, semester_pk: int, registration_uuid: UUI
         )
         return redirect("main-view")
     get_object_or_404(RegistrationToken, uuid=registration_uuid, semester=semester_pk)
-    get_object_or_404(Semester, pk=semester_pk)
 
-    form = NewUserForm(request.POST or None)
+    if django_settings.USE_KEYCLOAK:
+        from django_compref_keycloak.decorators import is_tum_shibboleth  # pylint: disable=import-outside-toplevel
+
+        if not is_tum_shibboleth(request):
+            return redirect("logout")
+    else:
+        messages.warning(request, "Skipping the shibotlet check for registration in devmode")
+
+    form = NewTutorForm(request.POST or None)
     if form.is_valid():
-        user = form.save()
-        login(request, user)
+        last_name: str = form.cleaned_data["last_name"]
+        request.user.last_name = last_name
+        request.user.save()
+    elif request.POST:
+        messages.error(request, _("Unsuccessful registration. Invalid information."))
+
+    if request.user.last_name:
+        # the entire point of the further flow is, to ensure, that the user has a last name
         messages.success(request, _("Registration successful."))
         return redirect("main-view")
-    if request.POST:
-        messages.error(request, _("Unsuccessful registration. Invalid information."))
 
     return render(request, "registration/register_user.html", {"form": form})
 

@@ -27,33 +27,34 @@
     </div>
     <div class='col-sm p-1 d-grid'>
         {% if registration_link %}
-        <button
-            class="btn btn-secondary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseRegistrationink"
-            aria-expanded="false"
-            aria-controls="collapseRegistrationink"
-        >{% trans "Show link for user registration" %}
-        </button>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#registrationLinkModal">
+            {% trans "Show link for user registration" %}
+            </button>
         {% else %}
         <a class="btn btn-secondary disabled">{% trans "User registration is disabled in the Settings" %}</a>
         {% endif %}
     </div>
 </div>
 {% if registration_link %}
-<div
-    class="collapse mb-4"
-    id="collapseRegistrationink"
->
-    <a href="{{ registration_link }}">
+<div class="modal" tabindex="-1" id="registrationLinkModal">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{% trans "Link for user registration" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <a href="{{ registration_link }}">
         <img
             class="img-responsive"
-            width="100%"
+            height="100%"
             alt="QR-Code Link to {{ registration_link }}"
             src="https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H|4&chl={{ registration_link }}"
-        >
-    </a>
+            >
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 {% endif %}
 {% if stations %}
