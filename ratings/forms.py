@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
@@ -79,6 +80,9 @@ class EditStationForm(StationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["rating_scheme_choices"].widget.attrs = {"class": "no-automatic-choicejs"}
+        other_stations = Station.objects.exclude(pk=self.instance.pk)
+        tutors_of_other_stations = other_stations.exclude(user=None).values_list("user__pk", flat=True)
+        self.fields["user"].queryset = get_user_model().objects.all().exclude(pk__in=tutors_of_other_stations)
 
     def clean_rating_scheme_choices(self):
         rating_scheme_choice: int = self.cleaned_data["rating_scheme_choices"]
