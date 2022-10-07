@@ -22,6 +22,10 @@ msgstr ""
 "die nicht zwischen a-z stehen, werden ignoriert."
 
 #: challenges/forms.py
+msgid "Your groups name"
+msgstr "Name eurer Gruppe"
+
+#: challenges/forms.py
 msgid ""
 "Please select your group here. If you select another group, the points will "
 "be awarded to them, instead you you."

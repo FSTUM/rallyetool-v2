@@ -18,6 +18,7 @@ class ScavengerForm(SemesterBasedForm):
         ),
     )
     group = forms.ModelChoiceField(
+        label=_("Your groups name"),
         queryset=Group.objects.none(),
         help_text=_(
             "Please select your group here. "
