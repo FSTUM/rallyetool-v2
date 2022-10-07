@@ -5,6 +5,7 @@ from django.conf import settings as django_settings
 from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.core.handlers.wsgi import WSGIRequest
+from django.db import IntegrityError
 from django.db.models import ProtectedError, QuerySet
 from django.forms import forms, formset_factory
 from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
@@ -428,7 +429,18 @@ def manage_rating_scheme(request: AuthWSGIRequest) -> HttpResponse:
         )
         if formset.is_valid():
             for form in formset:
-                form.save()
+                try:
+                    form.save()
+                except IntegrityError as error:
+                    messages.error(
+                        request,
+                        _(
+                            "The Ratingscheme you tried to add does not make much sense: "
+                            "a handycap can only exist once",
+                        ),
+                    )
+                    messages.error(request, str(error))
+                    return redirect("ratings:manage_rating_scheme")
             messages.success(request, _("RatingScheme3s' Groups were successfully modified."))
             return redirect("ratings:manage_rating_scheme")
         context["formset"] = formset

@@ -606,6 +606,10 @@ msgid "RatingScheme2 was successful modified."
 msgstr "RatingScheme2 wurde erfolgreich geändert."
 
 #: ratings/views.py
+msgid "The Ratingscheme you tried to add does not make much sense: a handycap can only exist once"
+msgstr "Das Ratingschema, das du versucht hast, hinzuzufügen, macht nicht viel Sinn: ein Handycap kann nur einmal existieren"
+
+#: ratings/views.py
 msgid "RatingScheme3s' Groups were successfully modified."
 msgstr "RatingScheme3s' Gruppen wurde erfolgreich geändert."
 

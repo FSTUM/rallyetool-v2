@@ -167,6 +167,9 @@ class RatingScheme3(AbstractRatingScheme):
 class RatingScheme3Group(LoggedModel, SchemeBase):
     """Rating of the groups by the tutors is based on multiple keys (one for each handicap)."""
 
+    class Meta:
+        unique_together = ["handicap", "rating_scheme"]
+
     rating_scheme = models.ForeignKey(RatingScheme3, on_delete=models.CASCADE)
     handicap = models.PositiveIntegerField(verbose_name=_("Handicap used for grading. (i.e. group-size)"))
 
