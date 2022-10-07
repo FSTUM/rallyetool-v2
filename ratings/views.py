@@ -22,9 +22,9 @@ from .forms import (
     EditStationForm,
     GroupForm,
     JsonStationUpdateForm,
+    Rating1Form,
     Rating2Form,
     Rating3Form,
-    RatingForm,
     RatingScheme2Form,
     RatingScheme3GroupForm,
     StationForm,
@@ -120,7 +120,7 @@ def add_rating(request: AuthWSGIRequest) -> HttpResponse:
     station = request.user.station
 
     form_lut = {2: Rating2Form, 3: Rating3Form}
-    form_class = form_lut.get(station.rating_scheme_choices, RatingForm)
+    form_class = form_lut.get(station.rating_scheme_choices, Rating1Form)
     form = form_class(request.POST or None, station=station, semester=get_semester(request))
 
     if request.POST and form.is_valid():

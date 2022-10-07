@@ -13,11 +13,7 @@ class EditRatingForm(forms.ModelForm):
         fields: list[str] = ["points"]
 
 
-class RatingForm(SemesterBasedModelForm):
-    class Meta:
-        model = Rating
-        fields: list[str] = ["group", "points"]
-
+class BaseRatingForm(SemesterBasedModelForm):
     def __init__(self, *args, **kwargs):
         self.station: Station = kwargs.pop("station")
         super().__init__(*args, **kwargs)
@@ -26,6 +22,7 @@ class RatingForm(SemesterBasedModelForm):
             Group.objects.filter(semester=self.semester).exclude(pk__in=prohibited_groups).values_list("pk", "name")
         )
         self.fields["group"].choices = groups
+        self.fields["group"].required = True
 
     def save(self, commit=True):
         rating: Rating = super().save(commit=False)
@@ -35,16 +32,35 @@ class RatingForm(SemesterBasedModelForm):
         return rating
 
 
-class Rating2Form(RatingForm):
+class Rating1Form(BaseRatingForm):
+    class Meta:
+        model = Rating
+        fields: list[str] = ["group", "points"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["points"].required = True
+
+
+class Rating2Form(BaseRatingForm):
     class Meta:
         model = Rating
         fields: list[str] = ["group", "value"]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["value"].required = True
 
-class Rating3Form(RatingForm):
+
+class Rating3Form(BaseRatingForm):
     class Meta:
         model = Rating
         fields: list[str] = ["group", "value", "handicap"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["value"].required = True
+        self.fields["handicap"].required = True
 
 
 class StationForm(forms.ModelForm):
