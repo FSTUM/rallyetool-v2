@@ -1,4 +1,5 @@
 import random
+from pathlib import Path
 from subprocess import run  # nosec: used for flushing the db
 
 import django.utils.timezone
@@ -21,7 +22,7 @@ def showroom_fixture_state():
 
 
 def showroom_fixture_state_no_confirmation():
-    run(["python3", "manage.py", "flush", "--noinput"], check=True)
+    run(["python", f"{Path(__file__).parent.parent}/manage.py", "flush", "--noinput"], check=True)
 
     # user
     _generate_superusers()
