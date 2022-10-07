@@ -404,6 +404,11 @@ def manage_rating_scheme(request: AuthWSGIRequest) -> HttpResponse:
     rating_scheme = station.rating_scheme
 
     context: dict[str, Any] = {"station": station, "rating_scheme": rating_scheme}
+
+    if station.rating_scheme_choices not in [2, 3]:
+        messages.error(request, _("The rating scheme has to be 2 or 3 to manage it."))
+        return redirect("ratings:list_ratings")
+
     if station.rating_scheme_choices == 2:
         form = RatingScheme2Form(request.POST or None, instance=rating_scheme)
         if form.is_valid():

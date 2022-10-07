@@ -598,6 +598,10 @@ msgid "Registration successful."
 msgstr "Die Benutzerregistrierung war erfolgreich."
 
 #: ratings/views.py
+msgid "The rating scheme has to be 2 or 3 to manage it."
+msgstr "Das Bewertungsschema muss 2 oder 3 sein, um es zu managen."
+
+#: ratings/views.py
 msgid "RatingScheme2 was successful modified."
 msgstr "RatingScheme2 wurde erfolgreich geändert."
 
