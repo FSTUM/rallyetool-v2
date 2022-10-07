@@ -121,7 +121,7 @@ def add_rating(request: AuthWSGIRequest) -> HttpResponse:
 
     form_lut = {2: Rating2Form, 3: Rating3Form}
     form_class = form_lut.get(station.rating_scheme_choices, RatingForm)
-    form = form_class(request.POST or None, station=station)
+    form = form_class(request.POST or None, station=station, semester=get_semester(request))
 
     if request.POST and form.is_valid():
         rating: Rating = form.save()

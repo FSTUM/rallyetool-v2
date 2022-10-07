@@ -13,7 +13,7 @@ class EditRatingForm(forms.ModelForm):
         fields: list[str] = ["points"]
 
 
-class RatingForm(forms.ModelForm):
+class RatingForm(SemesterBasedModelForm):
     class Meta:
         model = Rating
         fields: list[str] = ["group", "points"]
@@ -22,7 +22,9 @@ class RatingForm(forms.ModelForm):
         self.station: Station = kwargs.pop("station")
         super().__init__(*args, **kwargs)
         prohibited_groups = self.station.rating_set.values_list("group__pk", flat=True)
-        groups = Group.objects.exclude(pk__in=prohibited_groups).values_list("pk", "name")
+        groups = (
+            Group.objects.filter(semester=self.semester).exclude(pk__in=prohibited_groups).values_list("pk", "name")
+        )
         self.fields["group"].choices = groups
 
     def save(self, commit=True):
