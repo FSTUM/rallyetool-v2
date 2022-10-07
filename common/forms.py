@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import MaxLengthValidator, MinLengthValidator, RegexValidator
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from common.models import Semester, Settings
 from ratings.models import RegistrationToken
