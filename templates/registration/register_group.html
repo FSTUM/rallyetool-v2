@@ -17,8 +17,7 @@
     </ul>
     <form method="POST">
         {% csrf_token %}
-        {% bootstrap_field form.name layout="floating" %}
-        {% bootstrap_field form.data_protection layout="floating" %}
+        {% bootstrap_form form layout="floating" %}
 
         {% include "snippets/data_protection_modal.html" %}
         <button
