@@ -156,8 +156,8 @@ msgstr ""
 "bs-target='#dataProtectionModal'>Anzeigen</a>)"
 
 #: templates/snippets/data_protection_modal.html
-msgid "Datenschutzerklärung"
-msgstr "Privacy statement"
+msgid "Privacy statement"
+msgstr "Datenschutzerklärung"
 
 #: templates/snippets/data_protection_modal.html
 msgid ""
