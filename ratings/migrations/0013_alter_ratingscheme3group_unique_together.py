@@ -3,13 +3,24 @@
 from django.db import migrations
 
 
-class Migration(migrations.Migration):
+def drop_all_duplicate_rs3groups(apps, _):
+    RatingScheme3Group = apps.get_model("ratings", "ratingscheme3group")
+    groups = set()
+    for group in RatingScheme3Group.objects.all():
+        key = (group.rating_scheme, group.handicap)
+        if key in groups:
+            group.delete()
+        else:
+            groups.add(key)
 
+
+class Migration(migrations.Migration):
     dependencies = [
         ("ratings", "0012_auto_20211025_1536"),
     ]
 
     operations = [
+        migrations.RunPython(drop_all_duplicate_rs3groups),
         migrations.AlterUniqueTogether(
             name="ratingscheme3group",
             unique_together={("handicap", "rating_scheme")},
