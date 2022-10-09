@@ -14,51 +14,18 @@
         <li>{% trans "No 'edgy' names..." %}</li>
         <li>{% trans "Your group-name will be used by tutors. They search a search-field." %}</li>
         <li>{% trans "There may, or may not be a prize for the best/most creative name 😉" %}</li>
-
-        <li><b>{% trans "No personally identifying information!" %}</b></li>
     </ul>
     <form method="POST">
         {% csrf_token %}
         {% bootstrap_field form.name layout="floating" %}
+        {% bootstrap_field form.data_protection layout="floating" %}
+
         <button
-            class="btn btn-primary"
+            class="mt-3 btn btn-lg btn-primary"
             data-bs-target="#confrimationModal"
             data-bs-toggle="modal"
             type="button"
         >{% trans "Register for the rallye" %}</button>
-        <div
-            class="modal"
-            id="confrimationModal"
-            tabindex="-1"
-        >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{% trans "Confirm group registration" %}</h5>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="{% trans "Close" %}"
-                        ></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>{% trans "I confirm that our group-name does not contain personal identifing information." %}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >{% trans "Close" %}</button>
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                        >{% trans "Confirm registration" %}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </form>
 </div>
 

@@ -120,32 +120,8 @@ msgstr ""
 "muss aber nicht. 😉"
 
 #: templates/registration/register_group.html
-msgid "No personally identifying information!"
-msgstr "Keine personenbezogenen Daten!"
-
-#: templates/registration/register_group.html
 msgid "Register for the rallye"
 msgstr "Anmeldung zur Rallye"
-
-#: templates/registration/register_group.html
-msgid "Confirm group registration"
-msgstr "Gruppenanmeldung bestätigen"
-
-#: templates/registration/register_group.html
-#: templates/registration/register_user.html
-msgid "Close"
-msgstr "Schließen"
-
-#: templates/registration/register_group.html
-msgid ""
-"I confirm that our group-name does not contain personal identifing "
-"information."
-msgstr ""
-"Ich bestätige, dass unser Gruppenname keine personenbezogenen Daten enthält."
-
-#: templates/registration/register_group.html
-msgid "Confirm registration"
-msgstr "Registrierung bestätigen"
 
 #: templates/registration/register_user.html
 msgid "Wellcome to the Rallyetool"
@@ -162,16 +138,6 @@ msgstr ""
 #: templates/registration/register_user.html
 msgid "Register for the rallyetool"
 msgstr "Für das Rallyetool reistrieren"
-
-#: templates/registration/register_user.html
-msgid "Confirm rallyetool registration"
-msgstr "Rallyetool registrierung bestätigen"
-
-#: templates/registration/register_user.html
-msgid ""
-"I confirm that my username does not contain personal identifing information."
-msgstr ""
-"Ich bestätige, dass mein Username keine personenbezogenen Daten enthält."
 
 #: templates/registration/register_user.html
 #, python-format

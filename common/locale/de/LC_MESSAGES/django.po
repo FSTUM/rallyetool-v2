@@ -8,18 +8,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: common/forms.py
+msgid ""
+"I have read and understood the <a href='https://fs.tum.de/datenschutz/rallye."
+"mpi.fs.tum.de/'>data protection policy</a> and agree to it"
+msgstr ""
+"Ich habe die <a href='https://fs.tum.de/datenschutz/rallye.mpi.fs.tum."
+"de/'>Datenschutzerklärung</a> gelesen, verstanden und stimme ihr zu."
+
+#: common/forms.py
 msgid "Username, you can tell to the organisers"
 msgstr "Benutzername, den Du den Organisatoren mitteilen kannst"
 
 #: common/forms.py
 msgid ""
 "<ul><li>Please choose an Username you can tell to the organisers. </"
-"li><li>4...30 characters.</li><li>Letters, digits and @/./+/-/_ only.</"
-"li><li><b>No personally identifying information!</b></li></ul>"
+"li><li>4...30 characters.</li><li>Letters, digits and @/./+/-/_ only.</li></"
+"ul>"
 msgstr ""
 "<ul><li>Bitte wählen Sie einen Benutzernamen, den Du den Organisatoren "
 "mitteilen kannst. </li><li>4...30 Zeichen.</li><li>Nur Buchstaben, Ziffern "
-"und @/./+/-/_.</li><li><b>Keine personenbezogenen Daten!</b></li></ul>"
+"und @/./+/-/_.</li></ul>"
 
 #: common/forms.py
 #, python-format

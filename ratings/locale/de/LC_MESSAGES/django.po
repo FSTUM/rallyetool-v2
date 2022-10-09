@@ -29,6 +29,14 @@ msgstr ""
 
 #: ratings/forms.py
 msgid ""
+"I have read and understood the <a href='https://fs.tum.de/datenschutz/"
+"rallye.mpi.fs.tum.de/'>data protection policy</a> and agree to it"
+msgstr ""
+"Ich habe die <a href='https://fs.tum.de/datenschutz/rallye.mpi.fs.tum."
+"de/'>Datenschutzerklärung</a> gelesen, verstanden und stimme ihr zu."
+
+#: ratings/forms.py
+msgid ""
 "<ul><li>Required.</li><li>Only alphanumeric characters, @#$€<>%^&+=_-, space "
 "and äöüß are allowed.</li><li>Minimum of 4 characters</li><li>Maximum of 30 "
 "characters</li></ul>"

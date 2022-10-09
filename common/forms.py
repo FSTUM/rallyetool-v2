@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import MaxLengthValidator, MinLengthValidator, RegexValidator
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
 from common.models import Semester, Settings
@@ -48,6 +49,16 @@ class SettingsForm(SemesterBasedForm, forms.ModelForm):
 
 
 class NewTutorForm(forms.Form):
+    data_protection = forms.BooleanField(
+        label=mark_safe(
+            _(
+                "I have read and understood the "
+                "<a href='https://fs.tum.de/datenschutz/rallye.mpi.fs.tum.de/'>data protection policy</a> "
+                "and agree to it",
+            ),
+        ),
+        required=True,
+    )
     username = forms.CharField(
         label=_("Username, you can tell to the organisers"),
         help_text=_(
@@ -55,7 +66,6 @@ class NewTutorForm(forms.Form):
             "<li>Please choose an Username you can tell to the organisers. </li>"
             "<li>4...30 characters.</li>"
             "<li>Letters, digits and @/./+/-/_ only.</li>"
-            "<li><b>No personally identifying information!</b></li>"
             "</ul>",
         ),
         validators=[
