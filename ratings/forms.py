@@ -151,7 +151,7 @@ class GroupForm(SemesterBasedModelForm):
 
     class Meta:
         model = Group
-        fields: list[str] = ["name"]
+        fields: list[str] = ["name", "data_protection"]
         help_texts = {
             "name": _(
                 "<ul>"
