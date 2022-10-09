@@ -142,9 +142,8 @@ class GroupForm(SemesterBasedModelForm):
     data_protection = forms.BooleanField(
         label=mark_safe(
             _(
-                "I have read and understood the "
-                "<a href='https://fs.tum.de/datenschutz/rallye.mpi.fs.tum.de/'>data protection policy</a> "
-                "and agree to it",
+                "I agree with the data privacy statement. "
+                "(<a href data-bs-toggle='modal' data-bs-target='#dataProtectionModal'>Show</a>)",
             ),
         ),
         required=True,

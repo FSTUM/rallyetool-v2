@@ -9,11 +9,11 @@ msgstr ""
 
 #: common/forms.py
 msgid ""
-"I have read and understood the <a href='https://fs.tum.de/datenschutz/rallye."
-"mpi.fs.tum.de/'>data protection policy</a> and agree to it"
+"I agree with the data privacy statement. (<a href data-bs-toggle='modal' "
+"data-bs-target='#dataProtectionModal'>Show</a>)"
 msgstr ""
-"Ich habe die <a href='https://fs.tum.de/datenschutz/rallye.mpi.fs.tum."
-"de/'>Datenschutzerklärung</a> gelesen, verstanden und stimme ihr zu."
+"Ich stimme der Datenschutzerklärung zu. (<a href data-bs-toggle='modal' data-"
+"bs-target='#dataProtectionModal'>Anzeigen</a>)"
 
 #: common/forms.py
 msgid "Username, you can tell to the organisers"

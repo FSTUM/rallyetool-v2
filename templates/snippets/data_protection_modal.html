@@ -1,0 +1,42 @@
+{% load i18n %}
+
+<div class="modal fade" id="dataProtectionModal" tabindex="-1" aria-labelledby="dataProtectionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dataProtectionModalLabel">{% trans "Datenschutzerklärung" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+            {% blocktrans trimmed %}
+              I agree that my personal data will be processed by the MPI Student Council of the Technical University of Munich (www.fs.tum.de/impressum) for the purpose of conducting a rally (rallye.mpi.fs.tum.de).<br>
+              <b>For Teams:</b> We store a freely selectable team name (a non-personal name is recommended) so that tutors can enter points for the rally. The number of points achieved at each station is saved. The team name is displayed on a public leaderboard along with the total number of points. To evaluate the scavenger hunt, the answer entered is compared with the solution word and points are awarded depending on the solution. It is saved that there is a correct answer and the points have been awarded.<br>
+              <b>For Tutors:</b> We store a username of your choice (a non-personal name is recommended) and a shibboleth token (eduPersonTargetedID) of the tutors to assign them tasks. The ratings that tutors create are stored for the rally.<br>
+              Access to the personal data is only granted to selected organizers of the event.<br>
+              The data will be deleted 2 months after the event.
+            {% endblocktrans %}
+        </p>
+        <p>
+            {% blocktrans trimmed %}
+              At any given time, without affecting the legitimacy of the processing of my data on the basis of prior approval, I may withdraw my consent until my submission of consent on the basis of Article 6(1)(GDPR) (General Data Protection Regulation).<br>
+              Upon receiving my notice of withdrawal of consent, the personal data will be removed from the system.<br>
+              Please send any notice of withdrawal of consent to Fachschaft MPI, Technische Universität München, Boltzmannstraße 3, 85748 Garching (datenschutz@fs.tum.de).
+            {% endblocktrans %}
+        </p>
+        <p>
+            {% blocktrans trimmed %}
+              By law, participants have a right to information, rectification, erasure, restriction of processing, or objection to processing or data portability.<br>
+              Furthermore, participants have a right of complaint and the right to appeal to the Bavarian commissioner for data protection.
+            {% endblocktrans %}
+        </p>
+        <p>
+            {% trans "Further questions should be addressed to us (datenschutz@fs.tum.de) or the data protection officer of Technical University of Munich (www.datenschutz.tum.de)." %}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
