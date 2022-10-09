@@ -29,14 +29,6 @@ msgstr ""
 
 #: ratings/forms.py
 msgid ""
-"I agree with the data privacy statement. (<a href data-bs-toggle='modal' "
-"data-bs-target='#dataProtectionModal'>Show</a>)"
-msgstr ""
-"Ich stimme der Datenschutzerklärung zu. (<a href data-bs-toggle='modal' data-"
-"bs-target='#dataProtectionModal'>Anzeigen</a>)"
-
-#: ratings/forms.py
-msgid ""
 "<ul><li>Required.</li><li>Only alphanumeric characters, @#$€<>%^&+=_-, space "
 "and äöüß are allowed.</li><li>Minimum of 4 characters</li><li>Maximum of 30 "
 "characters</li></ul>"
@@ -624,6 +616,13 @@ msgstr ""
 #: ratings/views.py
 msgid "RatingScheme3s' Groups were successfully modified."
 msgstr "RatingScheme3s' Gruppen wurde erfolgreich geändert."
+
+#~ msgid ""
+#~ "I agree with the data privacy statement. (<a href data-bs-toggle='modal' "
+#~ "data-bs-target='#dataProtectionModal'>Show</a>)"
+#~ msgstr ""
+#~ "Ich stimme der Datenschutzerklärung zu. (<a href data-bs-toggle='modal' "
+#~ "data-bs-target='#dataProtectionModal'>Anzeigen</a>)"
 
 #~ msgid "Min-value for 10 points"
 #~ msgstr "Mindestwert für 10 Punkte"

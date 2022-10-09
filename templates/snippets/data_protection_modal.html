@@ -1,4 +1,13 @@
 {% load i18n %}
+<div class="form-check">
+  <input required class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+  <label class="form-check-label" for="defaultCheck1">
+      {% blocktrans trimmed %}
+          I agree with the data privacy statement.
+          (<a href data-bs-toggle='modal' data-bs-target='#dataProtectionModal'>Show</a>)
+      {% endblocktrans %}
+  </label>
+</div>
 
 <div class="modal fade" id="dataProtectionModal" tabindex="-1" aria-labelledby="dataProtectionModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg">

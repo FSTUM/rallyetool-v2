@@ -1,7 +1,6 @@
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import MaxLengthValidator, MinLengthValidator, RegexValidator
-from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
 from common.models import Semester, Settings
@@ -49,15 +48,6 @@ class SettingsForm(SemesterBasedForm, forms.ModelForm):
 
 
 class NewTutorForm(forms.Form):
-    data_protection = forms.BooleanField(
-        label=mark_safe(
-            _(
-                "I agree with the data privacy statement. "
-                "(<a href data-bs-toggle='modal' data-bs-target='#dataProtectionModal'>Show</a>)",
-            ),
-        ),
-        required=True,
-    )
     username = forms.CharField(
         label=_("Username, you can tell to the organisers"),
         help_text=_(

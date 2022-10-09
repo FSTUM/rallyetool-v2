@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db.models import Q
-from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
 from common.forms import SemesterBasedModelForm
@@ -139,19 +138,9 @@ class RatingScheme3GroupForm(forms.ModelForm):
 
 
 class GroupForm(SemesterBasedModelForm):
-    data_protection = forms.BooleanField(
-        label=mark_safe(
-            _(
-                "I agree with the data privacy statement. "
-                "(<a href data-bs-toggle='modal' data-bs-target='#dataProtectionModal'>Show</a>)",
-            ),
-        ),
-        required=True,
-    )
-
     class Meta:
         model = Group
-        fields: list[str] = ["name", "data_protection"]
+        fields: list[str] = ["name"]
         help_texts = {
             "name": _(
                 "<ul>"
