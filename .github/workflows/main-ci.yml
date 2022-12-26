@@ -16,7 +16,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: Setup Python
-        uses: actions/setup-python@v4.1.0
+        uses: actions/setup-python@v4.4.0
         with:
           python-version: 3.9
           cache: 'pip'
@@ -37,7 +37,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: Setup Python
-        uses: actions/setup-python@v4.1.0
+        uses: actions/setup-python@v4.4.0
         with:
           python-version: 3.9
       - name: Install Dependencies
